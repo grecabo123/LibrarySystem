@@ -4,7 +4,7 @@ import AdminRoutes from '../../routes/AdminRoutes'
 import { Divider } from 'primereact/divider';
 import { Menubar } from 'primereact/menubar';
 import { FcCalendar, FcSurvey, FcOpenedFolder, FcHome, FcSms, FcPositiveDynamic, FcManager, FcHighPriority, FcCheckmark, FcFolder, FcFeedback } from 'react-icons/fc'
-import { FaBars, FaBox, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaChartLine, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaEnvelope, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaUserAlt, FaUsers } from 'react-icons/fa'
+import { FaBars, FaBox, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaChartLine, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaEnvelope, FaFile, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaUserAlt, FaUsers } from 'react-icons/fa'
 import { Button } from 'primereact/button';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -58,37 +58,16 @@ function Admin() {
                         <FcManager className='nav-icon' />Accounts</a>
                     </li>
                     <div class="collapse" id='collapseOne'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/registered"><FcCheckmark className='nav-icon' /> Registered</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/pending"><HiOutlineX className='nav-icon text-danger' /> Non Registered</Link></li>
-                    </div>
-
-
-                    {/* Report */}
-                    <li class="nav-item"><Link class="nav-link" to="/admin/issue">
-                        <FcHighPriority className='nav-icon' /> Report Issue</Link></li>
-                    {/* End of Report */}
-
-
-                    <li class="nav-item"><Link class="nav-link" to="/admin/bid">
-                        <FcFolder className='nav-icon' /> Bid Items</Link></li>
-
-                    <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#message">
-                        <FcSms className='nav-icon' />Message </a>
-                    </li>
-
-                    <div class="collapse" id='message'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/compose"><FaPen className='nav-icon' /> Compose Message</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/inbox"><FaEnvelope  className='nav-icon text-danger' /> Inbox</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/sent"><FcFeedback className='nav-icon text-danger' /> Sent Items</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/registered"> <span className='nav-icon'></span> Registered Account</Link></li>
                     </div>
 
                     <li class="nav-title">Manage</li>
                     <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#price">
-                        <FaBox className='nav-icon' />Price</a>
+                        <FaFile className='nav-icon' />Thesis Files</a>
                     </li>
                     <div class="collapse" id='price'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/copras"> <span className='nav-icon'></span> Copras</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/whole" ><span className='nav-icon'></span>Whole Nut</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/copras"> <span  className='nav-icon'></span> Upload Thesis Files</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/whole" ><span className='nav-icon'></span>List of Thesis</Link></li>
                     </div>
 
 
@@ -101,13 +80,10 @@ function Admin() {
                     {/* History */}
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">
-                        <FcSurvey className='nav-icon' /> Activity Logs</Link></li>
+                        <FaDesktop className='nav-icon' /> Activity Logs</Link></li>
 
-                    <li class="nav-item mt-auto"><a class="nav-link nav-link-danger fw-bold text-danger" target="_top">
-                        <BiLogOut className="nav-icon" /> Logout
-                    </a></li>
+                
                 </ul>
-                <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
             </div>
 
             {/* Sidebar */}

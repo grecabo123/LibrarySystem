@@ -8794,7 +8794,7 @@ html:not([dir=rtl]) .callout {
   --cui-header-min-height: 4rem;
   --cui-header-padding-x: 0.5rem;
   --cui-header-padding-y: 0.5rem;
-  --cui-header-bg: #071426;
+  --cui-header-bg: #4473C5;
   --cui-header-color: rgba(44, 56, 74, 0.681);
   --cui-header-border-color: #d8dbe0;
   --cui-header-border: none;
@@ -8826,6 +8826,7 @@ html:not([dir=rtl]) .callout {
   padding: var(--cui-header-padding-y) var(--cui-header-padding-x);
   background: var(--cui-header-bg);
   border-bottom: var(--cui-header-border);
+  box-shadow: 2px 2px 10px black;
 }
 
 .header>.container,
@@ -9070,7 +9071,7 @@ html:not([dir=rtl]) .header-nav {
 
 .sidebar {
   --cui-sidebar-width: 16rem;
-  --cui-sidebar-bg: #071426;
+  --cui-sidebar-bg: #4473C5;
   --cui-sidebar-padding-x: 0;
   --cui-sidebar-padding-y: 0;
   --cui-sidebar-color: rgba(255, 255, 255, 0.87);
@@ -9134,6 +9135,8 @@ html:not([dir=rtl]) .header-nav {
   color: var(--cui-sidebar-color);
   background: var(--cui-sidebar-bg);
   box-shadow: none;
+  box-shadow: 2px 2px 10px black;
+
   transition: margin-left 0.15s, margin-right 0.15s, box-shadow 0.075s, transform 0.15s, width 0.15s, z-index 0s ease 0.15s;
 }
 
@@ -9556,7 +9559,8 @@ html:not([dir=rtl]) .sidebar-close {
   flex: 1;
   align-items: center;
   padding: var(--cui-sidebar-nav-link-padding-y) var(--cui-sidebar-nav-link-padding-x);
-  color: var(--cui-sidebar-nav-link-color);
+  /* color: var(--cui-sidebar-nav-link-color); */
+  color: white;
   text-decoration: none;
   white-space: nowrap;
   background: var(--cui-sidebar-nav-link-bg);

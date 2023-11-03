@@ -1,4 +1,6 @@
-
+body{
+    background-color: #e6e6e6b6 !important;
+}
 footer {
     background-color: #2E3440 !important;
 }
@@ -11,8 +13,7 @@ footer {
 #hero {
     width: 100%;
     height: 80vh;
-    /* background: #2e5fb3; */
-    background: #06202c;
+    background: #2e5fb3;
 }
 
 #hero .container {

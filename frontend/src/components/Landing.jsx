@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
-import img1 from '../assets/icon/bid.png'
+import img1 from '../assets/icon/iocn.png'
 import { Button } from 'primereact/button';
 import { Ripple } from 'primereact/ripple';
 import { Menubar } from 'primereact/menubar';
@@ -12,20 +12,8 @@ function Landing() {
 
     const items = [
         {
-            label: 'Home',
-            icon: PrimeIcons.HOME,
-        },
-        {
-            label: 'About',
-            icon: PrimeIcons.CALENDAR,
-        },
-        {
-            label: 'Contact',
-            icon: PrimeIcons.PHONE,
-        },
-        {
-            label: <><span>Auction Product</span></>,
-            icon: PrimeIcons.SHOPPING_CART,
+            label: <><span>Search Titles</span></>,
+            icon: PrimeIcons.BOOK,
             url: "/search/product",
         },
     ];
@@ -41,9 +29,9 @@ function Landing() {
                         <Ripple />
 
                     </div>
-                    <Link to="/register"><Button className='p-button-sm p-button-text p-button-outlined' label='Register' /></Link>
+                    <Link to="/register"><Button className='p-button-sm me-2 p-button-text fw-bold' label='Register' /></Link>
                     <Link to="/login">
-                        <Button className='p-button-sm p-button-text p-button-outlined' label='Login' />
+                        <Button className='p-button-sm p-button-text fw-bold' label='Login' />
                     </Link>
                 </div>
             </>} />

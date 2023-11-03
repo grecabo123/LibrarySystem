@@ -10,27 +10,7 @@ import { Card } from 'primereact/card';
 
 function ActivityLogs() {
 
-    createTheme('solarized', {
-        text: {
-            primary: '#bfc5c7',
-            secondary: '#2aa198',
-        },
-        background: {
-            default: 'transparent',
-        },
-        context: {
-            background: '#cb4b16',
-            text: '#FFFFFF',
-        },
-        divider: {
-            default: '#bfc5c7',
-        },
-        action: {
-            button: 'rgba(0,0,0,.54)',
-            hover: 'rgba(0,0,0,.08)',
-            disabled: 'rgba(0,0,0,.12)',
-        },
-    }, 'dark');
+   
 
     const [Logs, setLogs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -73,7 +53,6 @@ function ActivityLogs() {
                     progressComponent={
                         <Skeleton  className='w-100' borderRadius='20' />
                     }
-                    theme='solarized'
                 />
                 </Card>
         </div>

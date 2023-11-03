@@ -77,28 +77,6 @@ function Copras() {
         })
     }
 
-    createTheme('solarized', {
-        text: {
-            primary: '#bfc5c7',
-            secondary: '#2aa198',
-        },
-        background: {
-            default: 'transparent',
-        },
-        context: {
-            background: '#cb4b16',
-            text: '#FFFFFF',
-        },
-        divider: {
-            default: '#bfc5c7',
-        },
-        action: {
-            button: 'rgba(0,0,0,.54)',
-            hover: 'rgba(0,0,0,.08)',
-            disabled: 'rgba(0,0,0,.12)',
-        },
-    }, 'dark');
-
     const onHide = () => {
         setVisible(false)
     }
@@ -172,7 +150,6 @@ function Copras() {
                             </div>
                             <DataTable
                                 title="Copras Price"
-                                theme='solarized'
                                 columns={column}
                                 data={data}
                                 pagination
