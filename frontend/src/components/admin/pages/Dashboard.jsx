@@ -201,7 +201,7 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-3 mb-4">
+                        {/* <div className="col-lg-3 mb-4">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -232,7 +232,7 @@ function Dashboard() {
                                     <span className='fs-6 text-secondary'>Whole Nut Rate Sold</span>
                                 </center>
                             </motion.div>
-                        </div>
+                        </div> */}
 
                         <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
@@ -244,9 +244,9 @@ function Dashboard() {
                                 }}
                             >
                         <div className="row mb-3">
-                            <div className="col-lg-12 col-sm-12 mb-2">
+                            {/* <div className="col-lg-12 col-sm-12 mb-2">
                                 <TableRecords />
-                            </div>
+                            </div> */}
                             <div className="col-lg-3 col-sm-12 mb-2">
                                 <PieChartdata />
                             </div>

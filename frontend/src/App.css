@@ -8794,7 +8794,7 @@ html:not([dir=rtl]) .callout {
   --cui-header-min-height: 4rem;
   --cui-header-padding-x: 0.5rem;
   --cui-header-padding-y: 0.5rem;
-  --cui-header-bg: #4473C5;
+  --cui-header-bg: #EDEDED;
   --cui-header-color: rgba(44, 56, 74, 0.681);
   --cui-header-border-color: #d8dbe0;
   --cui-header-border: none;

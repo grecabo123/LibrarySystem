@@ -58,17 +58,9 @@ function Admin() {
                         <FcManager className='nav-icon' />Accounts</a>
                     </li>
                     <div class="collapse" id='collapseOne'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/registered"> <span className='nav-icon'></span> Registered Account</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/accounts"> <span className='nav-icon'></span> Registered Account</Link></li>
                     </div>
 
-                    <li class="nav-title">Manage</li>
-                    <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#price">
-                        <FaFile className='nav-icon' />Thesis Files</a>
-                    </li>
-                    <div class="collapse" id='price'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/copras"> <span  className='nav-icon'></span> Upload Thesis Files</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/whole" ><span className='nav-icon'></span>List of Thesis</Link></li>
-                    </div>
 
 
                     {/* Chart */}
@@ -78,6 +70,22 @@ function Admin() {
 
 
                     {/* History */}
+                    <li class="nav-title">Manage</li>
+                    <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#price">
+                        <FaFile className='nav-icon' />Thesis Files</a>
+                    </li>
+                    <div class="collapse" id='price'>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/upload"> <span  className='nav-icon'></span> Upload Thesis Files</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/thesis" ><span className='nav-icon'></span>List of Thesis</Link></li>
+                    </div>
+
+                    <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#department">
+                        <FaBuilding className='nav-icon' />Add</a>
+                    </li>
+                    <div class="collapse" id='department'>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/department"> <span  className='nav-icon'></span>Department</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/course" ><span className='nav-icon'></span>Course</Link></li>
+                    </div>
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">
                         <FaDesktop className='nav-icon' /> Activity Logs</Link></li>

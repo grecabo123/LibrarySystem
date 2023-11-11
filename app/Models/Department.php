@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BiddingInfo extends Model
+class Department extends Model
 {
     use HasFactory;
-
-    protected $table = "tbl_biddinginfo";
+    protected $table = "tbl_department";
 
     protected $fillable = [
-        "address",
-        "bidding_brgy_fk",
-        "bidding_item_fk",
+        "department",
+        "department_code",
+      
     ];
+
 }

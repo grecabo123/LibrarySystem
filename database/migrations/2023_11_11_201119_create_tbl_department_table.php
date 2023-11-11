@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTblBiddingitemTable extends Migration
+class CreateTblDepartmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTblBiddingitemTable extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_biddingitem', function (Blueprint $table) {
+        Schema::create('tbl_department', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('price');
-            $table->string('description');
+            $table->string('department');
+            $table->string('department_code');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTblBiddingitemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tbl_biddingitem');
+        Schema::dropIfExists('tbl_department');
     }
 }

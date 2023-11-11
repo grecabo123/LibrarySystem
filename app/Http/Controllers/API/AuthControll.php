@@ -14,6 +14,7 @@ class AuthControll extends Controller
     
     public function CreateAccount(Request $request){
 
+
         $validate = Validator::make($request->all(), [
             "fname"         =>      "required",
             "lname"         =>      "required",

@@ -9,7 +9,6 @@ import { Password } from 'primereact/password';
 import Landing from './Landing';
 
 
-
 function Login() {
 
     const [LoginData, setLogin] = useState({
@@ -90,7 +89,7 @@ function Login() {
 
 
     const bannertext = <div className='p-3'>
-        <h2 className="text-center">
+        <h2 className="text-center text-dark">
             Login
         </h2>
     </div>

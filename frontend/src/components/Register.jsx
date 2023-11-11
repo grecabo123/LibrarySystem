@@ -257,7 +257,7 @@ function Register() {
                                             <ReCAPTCHA
                                                 sitekey={"6LcC86wcAAAAAOohkFSsLQ-Pa-6W21_hukOLMYoV"}
                                                 render="explicit"
-                                                theme="dark"
+                                                theme="light"
                                                 ref={UsercaptchaRef}
                                             />
                                         </div>
