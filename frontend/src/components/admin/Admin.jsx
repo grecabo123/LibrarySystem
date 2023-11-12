@@ -84,7 +84,7 @@ function Admin() {
                     </li>
                     <div class="collapse" id='department'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/department"> <span  className='nav-icon'></span>Department</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/course" ><span className='nav-icon'></span>Course</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/course" ><span className='nav-icon'></span>School Year</Link></li>
                     </div>
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">

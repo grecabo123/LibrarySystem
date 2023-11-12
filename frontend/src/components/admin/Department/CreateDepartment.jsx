@@ -9,6 +9,7 @@ import axios from 'axios'
 import swal from 'sweetalert'
 import { Skeleton } from 'primereact/skeleton'
 import { Toast } from 'primereact/toast'
+import Course from './Course'
 
 
 function CreateDepartment() {
@@ -16,6 +17,7 @@ function CreateDepartment() {
     const [visible, setVisible] = useState(false);
     const [DepartmentData, setDepartmentData] = useState([]);
     const [loading, setloading] = useState(true);
+    const [visibleCourse, setvisibleCourse] = useState(false);
     const toast = useRef();
     const [DepartmentName, setDepartmentName] = useState({
         department: "",
@@ -78,6 +80,17 @@ function CreateDepartment() {
 
     }
 
+    const DisplayData = (e,department) => {
+        setvisibleCourse(true);
+        localStorage.setItem('department_id',e);
+        localStorage.setItem('department_name',department);
+    }
+    const onHideCourse = () =>{
+        setvisibleCourse(false);
+        localStorage.removeItem('department_name');
+        localStorage.removeItem('department_id');
+    }
+
     const column = [
         {
             name: "Department",
@@ -88,7 +101,13 @@ function CreateDepartment() {
             name: "Department Code",
             selector: row => row.department_code,
             sortable: true,
-        }
+        },
+        {
+            name: "Action",
+            selector: row => <Button className='p-button-sm p-button-info' data-department_name={row.department} value={row.id} onClick={(e) => DisplayData(e.target.value, row.department)} label='Courses'  />,
+            sortable: true,
+        },
+
     ]
 
     return (
@@ -98,7 +117,6 @@ function CreateDepartment() {
                 <Button className='p-button-sm' label='Add Department' icon={PrimeIcons.PLUS} onClick={() => setVisible(true)} />
             </div>
             <Panel header={header_temp}>
-
                 <DataTable
                     title=" "
                     columns={column}
@@ -133,6 +151,10 @@ function CreateDepartment() {
                 </form>
             </Dialog>
 
+            <Dialog header={`Courses Data -  ${localStorage.getItem('department_name') === null ? "" : localStorage.getItem('department_name') }`} visible={visibleCourse} onHide={onHideCourse} position='top' draggable={false} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '70vw' }}>
+                <Course />
+            </Dialog>
+            
         </div>
     )
 }
