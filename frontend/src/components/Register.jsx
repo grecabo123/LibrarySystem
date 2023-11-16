@@ -14,6 +14,9 @@ import { Skeleton } from 'primereact/skeleton';
 import swal from 'sweetalert'
 import moment from 'moment/moment';
 import Landing from './Landing';
+import Student from './CreateAccount/Student';
+import NonStudent from './CreateAccount/NonStudent';
+
 
 
 
@@ -42,14 +45,14 @@ function Register() {
     });
 
     useEffect(() => {
-        axios.get(`/api/BarangayData`).then(res => {
-            if (res.data.status === 200) {
-                setbarangay(res.data.brgy);
-            }
-            setloading(false)
-        }).catch((error) => {
+        // axios.get(`/api/BarangayData`).then(res => {
+        //     if (res.data.status === 200) {
+        //         setbarangay(res.data.brgy);
+        //     }
+        setloading(false)
+        // }).catch((error) => {
 
-        })
+        // })
 
     }, []);
 
@@ -125,154 +128,138 @@ function Register() {
     }
 
 
-    // console.log(UsercaptchaRef.current.getValue())
 
     return (
         <>
             <Landing />
             <div className="container-fluid mt-4">
-                <div className="row">
+                <div className="row d-flex justify-content-center">
+                    <div className="col-lg-9">
                     <Panel header="Register Account">
-                        {
-                            loading ? 
-                                <div className="container mt-4">
-                                    <div className="row">
-                                        {/* <Panel header="Register Account"> */}
-                                            <div className="col-lg-12 mb-3">
-                                                <Skeleton></Skeleton>
-                                            </div>
-                                            <div className="col-lg-12 mb-3">
-                                                <Skeleton></Skeleton>
-                                            </div>
-                                            <div className="col-lg-12 mb-3">
-                                                <Skeleton></Skeleton>
-                                            </div>
-                                            <div className="col-lg-12 mb-3">
-                                                <Skeleton></Skeleton>
-                                            </div>
-                                        {/* </Panel> */}
-                                    </div>
+                        <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
+                            <TabPanel header="Student">
+                                <Student />
+                            </TabPanel>
+                            <TabPanel header="Non Student">
+                                <NonStudent />
+                            </TabPanel>
+                          
+                        </TabView>
+{/* 
+                        <div className="container mt-4">
+                            <div className="row">
+                                <div className="col-lg-12 mb-3">
+                                    <Skeleton></Skeleton>
                                 </div>
-                            
-                                :
-                                <form autoComplete='off' onSubmit={CreateAccount} id="resetform">
-                                    <div className="row">
-                                        <Divider align="start">
-                                            <span className="p-tag">Personal Information</span>
-                                        </Divider>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger'>*</span>First Name
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' name='fname' onChange={handleinput} keyfilter={'alpha'} />
-                                            <span className='text-danger text-error'>{userdata.error.fname}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                Middle Name
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alpha'} name='mname' />
-
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger'>*</span>Last Name
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alpha'} name='lname' />
-                                            <span className='text-danger text-error'>{userdata.error.lname}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger '>*</span>Birthdate
-                                            </label>
-                                            <Calendar className='w-100 p-inputtext-sm'  value={date} onChange={(e) => setDate(e.target.value)}></Calendar>
-                                            <span className='text-danger text-error'>{userdata.error.birthdate}</span>
-                                        </div><div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger text-error'>*</span>Barangay
-                                            </label>
-                                            <Dropdown value={city} className='w-100 p-inputtext-sm' options={citySelectItems} onChange={(e) => setCity(e.value)} placeholder="Choose Barangay" />
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger text-error'>*</span>Home Address
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'home'} name='home' />
-                                            <span className='text-danger text-error'>{userdata.error.home}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger text-error'>*</span>Contact Number
-                                            </label>
-                                            <InputText maxLength={11} className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'int'} name='mobile' />
-                                            <span className='text-danger text-error'>{userdata.error.mobile}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger text-error'>*</span>Zip Code
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' maxLength={4} onChange={handleinput} keyfilter={'int'} name='zipcode' />
-                                            <span className='text-danger text-error'>{userdata.error.zipcode}</span>
-                                        </div>
-                                        <Divider align="start">
-                                            <span className="p-tag">Account Information</span>
-                                        </Divider>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger'>*</span>Username
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alphanum'} name='username' />
-                                            <span className='text-danger text-error'>{userdata.error.username}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger text-error'>*</span>Email Address
-                                            </label>
-                                            <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'email'} name='email' />
-                                            <span className='text-danger text-error'>{userdata.error.email}</span>
-                                        </div>
-                                        <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                            <label htmlFor="first" className="form-label">
-                                                <span className='text-danger '>*</span>Password
-                                            </label>
-                                            <InputText type='password' className='w-100 p-inputtext-md ' onChange={handleinput} name='password' />
-                                            <span className='text-danger text-error'>{userdata.error.password}</span>
-                                        </div>
-                                        <Divider align="start">
-                                            <span className="p-tag">ID Identification</span>
-                                        </Divider>
-
-                                        <div className="col-lg-12 col-md-6 col-sm-12 mb-3">
-                                            <ul>
-                                                <li><span className='text-danger'>*</span><small>Provide at least 1 valid ID's for Verification</small></li>
-                                            </ul>
-                                            {/* <FileUpload className='p-fileupload-content' previewWidth={100} withCredentials={true} name="image"  multiple accept="image/*" /> */}
-                                            <InputText type='file' onChange={fileHandler} name='file' className='border-0' />
-                                        </div>
-
-                                        <div className="col-lg-12 mb-3">
-                                            <Checkbox className='p-checkbox' ref={boxcheck} onChange={e => setChecked(e.checked)} checked={checked}></Checkbox> <small className='text-secondary'>By using our services, you agree to the following terms and conditions related to the collection and use of your information. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia animi cumque quibusdam? Sint qui consequatur voluptate, natus atque id est?</small>
-                                        </div>
-                                        <div className="col-lg-12 mb-3">
-                                            <ReCAPTCHA
-                                                sitekey={"6LcC86wcAAAAAOohkFSsLQ-Pa-6W21_hukOLMYoV"}
-                                                render="explicit"
-                                                theme="light"
-                                                ref={UsercaptchaRef}
-                                            />
-                                        </div>
+                                <div className="col-lg-12 mb-3">
+                                    <Skeleton></Skeleton>
+                                </div>
+                                <div className="col-lg-12 mb-3">
+                                    <Skeleton></Skeleton>
+                                </div>
+                                <div className="col-lg-12 mb-3">
+                                    <Skeleton></Skeleton>
+                                </div>
+                            </div>
+                        </div>
 
 
-                                        <div className="mt-3">
-                                            <Button className='p-button-sm p-button-info' label='Create Account' />
-                                        </div>
-                                    </div>
-                                </form>
-                        }
+                        <form autoComplete='off' onSubmit={CreateAccount} id="resetform">
+                            <div className="row">
+                                <Divider align="start">
+                                    <span className="p-tag">Personal Information</span>
+                                </Divider>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger'>*</span>First Name
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' name='fname' onChange={handleinput} keyfilter={'alpha'} />
+                                    <span className='text-danger text-error'>{userdata.error.fname}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        Middle Name
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alpha'} name='mname' />
 
-                        {/* </TabPanel>
-                        </TabView> */}
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger'>*</span>Last Name
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alpha'} name='lname' />
+                                    <span className='text-danger text-error'>{userdata.error.lname}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger '>*</span>Birthdate
+                                    </label>
+                                    <Calendar className='w-100 p-inputtext-sm' value={date} onChange={(e) => setDate(e.target.value)}></Calendar>
+                                    <span className='text-danger text-error'>{userdata.error.birthdate}</span>
+                                </div><div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger text-error'>*</span>Barangay
+                                    </label>
+                                    <Dropdown value={city} className='w-100 p-inputtext-sm' options={citySelectItems} onChange={(e) => setCity(e.value)} placeholder="Choose Barangay" />
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger text-error'>*</span>Home Address
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'home'} name='home' />
+                                    <span className='text-danger text-error'>{userdata.error.home}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger text-error'>*</span>Contact Number
+                                    </label>
+                                    <InputText maxLength={11} className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'int'} name='mobile' />
+                                    <span className='text-danger text-error'>{userdata.error.mobile}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger text-error'>*</span>Zip Code
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' maxLength={4} onChange={handleinput} keyfilter={'int'} name='zipcode' />
+                                    <span className='text-danger text-error'>{userdata.error.zipcode}</span>
+                                </div>
+                                <Divider align="start">
+                                    <span className="p-tag">Account Information</span>
+                                </Divider>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger'>*</span>Username
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'alphanum'} name='username' />
+                                    <span className='text-danger text-error'>{userdata.error.username}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger text-error'>*</span>Email Address
+                                    </label>
+                                    <InputText className='w-100 p-inputtext-sm' onChange={handleinput} keyfilter={'email'} name='email' />
+                                    <span className='text-danger text-error'>{userdata.error.email}</span>
+                                </div>
+                                <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                    <label htmlFor="first" className="form-label">
+                                        <span className='text-danger '>*</span>Password
+                                    </label>
+                                    <InputText type='password' className='w-100 p-inputtext-md ' onChange={handleinput} name='password' />
+                                    <span className='text-danger text-error'>{userdata.error.password}</span>
+                                </div>
+                                <Divider align="start">
+                                    <span className="p-tag">ID Identification</span>
+                                </Divider>
+
+                                <div className="col-lg-12 col-md-6 col-sm-12 mb-3">
+                                    <ul>
+                                        <li><span className='text-danger'>*</span><small>Provide at least 1 valid ID's for Verification</small></li>
+                                    </ul>
+                                    {/* <FileUpload className='p-fileupload-content' previewWidth={100} withCredentials={true} name="image"  multiple accept="image/*" /> */}
+                                
+                               
                     </Panel>
+                    </div>
                 </div>
             </div>
 

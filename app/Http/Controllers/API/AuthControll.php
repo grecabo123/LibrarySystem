@@ -10,23 +10,16 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthControll extends Controller
-{
-    
+{    
     public function CreateAccount(Request $request){
-
 
         $validate = Validator::make($request->all(), [
             "fname"         =>      "required",
             "lname"         =>      "required",
             "email"         =>      "required|email|unique:users,email",
-            "zipcode"       =>      "required",
-            "password"      =>      "required",
-            "city"          =>      "required",
-            "mobile"        =>      "required",
-            "username"      =>      "required",
-            "home"          =>      "required",
-            "file"          =>      "required|mimes:png,jpeg",
-            "birthdate"     =>      "required",
+            "student_no"    =>      "required",
+            "department"    =>      "required",
+            "course"        =>      "required",
         ]);
 
         if($validate->fails()){
@@ -38,36 +31,20 @@ class AuthControll extends Controller
             $user = new User;
 
             $user->name = $request->fname." ".$request->mname." ".$request->lname;
-            $user->username = $request->username;
+            $user->first_name = $request->fname;
+            $user->middle_name = $request->mname;
+            $user->last_name = $request->lname;
             $user->email = $request->email;
-            $user->role = 2;
-            $user->status = 0;
-            $user->birthdate = $request->birthdate;
-            $user->user_brgy_fk = $request->city;
-            $user->password = Hash::make($request->password);
-            
-            if($request->hasFile('file')){
-
-                $file = $request->file('file');
-                $extension = $file->getClientOriginalExtension();
-                $filename = $request->lname.".".$extension;
-                $file->move('Uploads/Files/',$filename);
-                $user->files = "Uploads/Files/".$filename;
-            }
+            $user->student_no = $request->student_no;
+            $user->course_fk = $request->course;
+            $user->department_fk = $request->department;
+            $user->role = $request->role == 2 ? 2 : 3; 
+            $user->secret = $request->student_no;
+            $user->password = Hash::make($request->student_no);
             $user->save();
-
-            $contact = new Contacts;
-
-            $contact->contact_number = $request->mobile;
-            $contact->home_address = $request->home;
-            $contact->zipcode = $request->zipcode;
-            $contact->contact_user_fk = $user->id;
-
-            $contact->save();
 
             return response()->json([
                 "status"            =>          200,
-                "success"           =>          "Registered Account Successfully",
             ]);
 
         }

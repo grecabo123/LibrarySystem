@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Courses;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\AcitivityLogs;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use App\Models\AcitivityLogs;
 
 
 class DepartmentController extends Controller
@@ -48,5 +49,14 @@ class DepartmentController extends Controller
                 "message"           =>          "Added Data",
             ]);
         }
+    }
+
+    public function CourseDataFetch(){
+        $course = Courses::orderBy("created_at","DESC")->get();
+
+        return response()->json([
+            "status"        =>          200,
+            "data"          =>          $course,
+        ]);
     }
 }

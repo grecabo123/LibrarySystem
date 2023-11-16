@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\DocumentInformation;
 use App\Models\User;
+use App\Models\Author;
 use App\Models\Courses;
+use App\Models\Document;
+use App\Models\SchoolYear;
 use App\Models\BiddingInfo;
 use App\Models\BiddingItem;
 use App\Models\MessageForm;
@@ -128,6 +132,106 @@ class AdminController extends Controller
             "status"        =>      200,
             "course"        =>      $course,
         ]);
+    }
+
+
+    public function SchoolYearData(){
+        $data = SchoolYear::orderBy('created_at','desc')->get();
+
+        return response()->json([
+            "status"        =>      200,
+            "data"        =>      $data,
+        ]);
+    }
+    public function AddSchoolYear(Request $request){
+        $schoolyear = new SchoolYear;
+        $schoolyear->SchoolYear = $request->term_data;
+        // $schoolyear->year_status = 1;
+        $schoolyear->save();
+ 
+        return response()->json([
+             "status"        =>      200,
+        ]);
+    }
+
+    public function ThesisData(){
+        $thesis = Document::orderBy('created_at','DESC')->get();
+        
+        return response()->json([
+            "status"        =>          200,
+            "data"          =>          $thesis,
+        ]);
+    }
+
+    public function UploadDocument(Request $request) {
+        
+
+        $validate = Validator::make($request->all(), [
+            "title"               =>          "required",
+            "description"         =>          "required",
+            "year"                =>          "required",
+            "department"          =>          "required",
+            "program"             =>          "required",
+            "email"               =>          "required",
+            "keywords"            =>          "required",
+            "month"               =>          "required",
+            "file"                =>          "required|mimes:pdf",
+        ]);
+
+        if($validate->fails()){
+            return response()->json([
+                    "error"         =>          $validate->messages(),
+            ]);
+        }
+        else{
+
+            $year = SchoolYear::get()->last();
+
+            $document = new Document;
+            $document->title = $request->title;
+            $document->uniquecode = md5($request->title);
+            $document->description = $request->description;
+            $document->year_published = $request->year;
+            $document->keywords = $request->keywords;
+            $document->save();
+
+            $account_email = User::select('*')->whereIn('email',explode(',',$request->email))->pluck('id');
+            $pk = $account_email;
+
+            foreach($pk as $key){
+                $data = array(
+                    "document_fk"       =>      $document->id,
+                    "author_user_fk"    =>      $key,
+                );
+                Author::insert($data);
+            }
+
+            $documentinfo = new DocumentInformation;
+            $documentinfo->adviser =  $request->adviser;
+            $documentinfo->department_fk = $request->department;
+            $documentinfo->course_fk = $request->program;
+            $documentinfo->docu_fk = $document->id;
+            $documentinfo->year_fk = $year->id;
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension();
+                $filename = $request->input('title').".".$extension;
+                $file->move('Uploads/Files/',$filename);
+                $documentinfo->file = "Uploads/Files/".$filename;
+            }
+            $documentinfo->save();
+
+            $logs = new AcitivityLogs;
+            $logs->activity = "Uploading"." ".$request->title;
+            $logs->user_logs_fk = $request->admin_key;
+            $logs->save();
+
+            return response()->json([
+                "status"            =>          200,
+                "message"           =>          "Uploaded Successfully",
+            ]);
+
+        }
     }
 
 

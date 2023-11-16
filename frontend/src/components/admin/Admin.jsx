@@ -76,7 +76,7 @@ function Admin() {
                     </li>
                     <div class="collapse" id='price'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/upload"> <span  className='nav-icon'></span> Upload Thesis Files</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/thesis" ><span className='nav-icon'></span>List of Thesis</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/list" ><span className='nav-icon'></span>List of Thesis</Link></li>
                     </div>
 
                     <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#department">
@@ -84,7 +84,7 @@ function Admin() {
                     </li>
                     <div class="collapse" id='department'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/department"> <span  className='nav-icon'></span>Department</Link></li>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/course" ><span className='nav-icon'></span>School Year</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/schoolyear" ><span className='nav-icon'></span>School Year</Link></li>
                     </div>
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">

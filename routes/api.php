@@ -22,6 +22,7 @@ Route::get('Logs/{id}', [ActivityLogs::class, 'Logs']);
 
 // Department
 Route::get('DepartmentDataFetch',[DepartmentController::class, 'DepartmentData']);
+Route::get('CourseDataFetch',[DepartmentController::class, 'CourseDataFetch']);
 Route::post('AddDepartment',[DepartmentController::class, 'AddDepartment']);
 
 
@@ -55,14 +56,12 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::get('registered',[AdminController::class, 'RegisteredAccount']);
     Route::get('nonregistered', [AdminController::class, 'NonRegistered']);
     Route::get('AccountInformation/{id}', [AdminController::class, 'AccountInformation']);
-    Route::post('SendMessage', [AdminController::class,  'SendMessage']);
-    Route::get('UpdatePrice', [AdminController::class,  'UpdatePrice']);
-    Route::post('PostUpdatedPrice', [AdminController::class, 'PostUpdatedPrice']);
-    Route::get('TotalCount', [AdminController::class,  'TotalCount']);    
-    Route::get('ReportIssue',[AdminController::class, 'ReportIssue']); 
     Route::get('CourseData/{id}', [AdminController::class, 'CourseData']);
     Route::post('AddCourse', [AdminController::class, 'AddCourse']);
-
+    Route::post('AddSchoolYear', [AdminController::class, 'AddSchoolYear']);
+    Route::get('SchoolYearData', [AdminController::class, 'SchoolYearData']);
+    Route::get('ThesisData', [AdminController::class, 'ThesisData']);
+    Route::post('UploadDocument',[AdminController::class,'UploadDocument']);
     
     
     
