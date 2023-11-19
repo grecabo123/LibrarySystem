@@ -14,7 +14,8 @@ function AdminAccounts() {
     const [loading, setloading] = useState(true);
 
     useEffect(() => {
-        axios.get(`/api/registered`).then(res => {
+        const id = 1;
+        axios.get(`/api/registered/${id}`).then(res => {
             if (res.data.status === 200) {
                 setRegister(res.data.accounts);
             }
@@ -30,7 +31,7 @@ function AdminAccounts() {
     const columns = [
         {
             name: "Name",
-            selector: row => row.name_user,
+            selector: row => row.name,
             sortable: true,
         },
         {

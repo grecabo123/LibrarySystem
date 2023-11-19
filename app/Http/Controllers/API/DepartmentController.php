@@ -37,6 +37,7 @@ class DepartmentController extends Controller
             $department = new Department;
             $department->department = $request->department;
             $department->department_code = $request->code;
+            $department->color_code = "#".$request->color_code;
             $department->save();
 
             $logs = new AcitivityLogs;

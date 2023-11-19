@@ -39,6 +39,7 @@ class AuthControll extends Controller
             $user->course_fk = $request->course;
             $user->department_fk = $request->department;
             $user->role = $request->role == 2 ? 2 : 3; 
+            $user->status = 1;
             $user->secret = $request->student_no;
             $user->password = Hash::make($request->student_no);
             $user->save();

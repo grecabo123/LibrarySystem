@@ -15,9 +15,24 @@ use App\Http\Controllers\API\DepartmentController;
 Route::post('Login',[AuthControll::class, 'Login']);
 Route::post('CreateAccount', [AuthControll::class, 'CreateAccount']);
 Route::get('BarangayData', [BarangayController::class, 'ListBarangay']);
+
+Route::post('SearchEngine',[SearchingController::class, 'SearchEngine']);
+Route::post('SearchEngineResult/{id}',[SearchingController::class, 'SearchEngineResult']);
+Route::post('DocumentFilter',[SearchingController::class, 'DocumentFilter']);
+
+
+
 // Searching Controller
 Route::get('AllUsers',[SearchingController::class, 'AllUsers']);
+Route::get('AllRegistered',[SearchingController::class, 'AllRegistered']);
 Route::get('Logs/{id}', [ActivityLogs::class, 'Logs']);
+
+
+// IP Address
+Route::post('IpAddressAccess',[SearchingController::class, 'IpAddressAccess']);
+
+Route::post('DocumentData',[SearchingController::class, 'DocumentData']);
+Route::get('Visitors/{id}',[SearchingController::class, 'Visitors']);
 
 
 // Department
@@ -53,7 +68,7 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
             "role"          =>      auth()->user()->role,
         ],200);
     });
-    Route::get('registered',[AdminController::class, 'RegisteredAccount']);
+    Route::get('registered/{id}',[AdminController::class, 'RegisteredAccount']);
     Route::get('nonregistered', [AdminController::class, 'NonRegistered']);
     Route::get('AccountInformation/{id}', [AdminController::class, 'AccountInformation']);
     Route::get('CourseData/{id}', [AdminController::class, 'CourseData']);
@@ -62,6 +77,8 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::get('SchoolYearData', [AdminController::class, 'SchoolYearData']);
     Route::get('ThesisData', [AdminController::class, 'ThesisData']);
     Route::post('UploadDocument',[AdminController::class,'UploadDocument']);
+    Route::get('AllData',[AdminController::class,'AllData']);
+    Route::get('CourseThesis/{id}',[AdminController::class,'CourseThesis']);
     
     
     

@@ -3,7 +3,7 @@ import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom/cjs/
 import { Divider } from 'primereact/divider';
 import { Menubar } from 'primereact/menubar';
 import { FcComments, FcOvertime, FcOpenedFolder, FcHome, FcList, FcPositiveDynamic, FcPaid, FcHighPriority, FcFolder, FcSms } from 'react-icons/fc'
-import { FaBars, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaUserAlt, FaUsers } from 'react-icons/fa'
+import { FaBars, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaSearch, FaUserAlt, FaUsers } from 'react-icons/fa'
 import { Button } from 'primereact/button';
 import axios from 'axios';
 import {HiUserAdd} from 'react-icons/hi'
@@ -50,27 +50,16 @@ function User() {
 
                     <li class="nav-title">Pages</li>
                     <li class="nav-item"><a class="nav-link" href="/user">
-                        <FcHome className='nav-icon' /> Dashboard</a></li>
+                        <FaSearch className='nav-icon' />Search Thesis</a></li>
                         
-                    {/* Report */}
-                    {/* <li class="nav-item"><Link class="nav-link" to="/user/invite">
-                        <FcHighPriority className='nav-icon' /> Invite Bid</Link></li> */}
-                    {/* End of Report */}
                     
                     <li class="nav-item"><Link class="nav-link" to="/user/product">
-                        <FcFolder className='nav-icon' /> Bid Items</Link></li>
-
-                    {/* Mail */}
+                        <FcFolder className='nav-icon' />Archives</Link></li>
                     <li class="nav-item"><a class="nav-link">
-                        <FcSms className='nav-icon' /> Message <Badge severity={'danger'} value={3} /> </a></li>
-                    {/* end of mail */}
+                        <FaDesktop className='nav-icon' /> Activity Logs  </a></li>
 
-                    {/* <li class="nav-item mt-auto"><a class="nav-link nav-link-danger fw-bold text-danger"target="_top">
-                        <BiLogOut className="nav-icon" /> Logout
-                    </a></li> */}
                     
                 </ul>
-                {/* <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button> */}
             </div>
             <div class="wrapper d-flex flex-column min-vh-100">
                 <header class="header  mb-4">

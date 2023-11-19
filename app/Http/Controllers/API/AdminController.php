@@ -21,11 +21,27 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function RegisteredAccount(){
 
-        $data = User::selectRaw('id,name_user,username,email,status,role')
+    public function AllData(){
+        $allaccounts = User::all();
+        $students = User::where('role',2)->get();
+        $non_student = User::where('role',3)->get();
+        $thesis = Document::all();
+
+        return response()->json([
+            "status"            =>          200,
+            "allaccounts"       =>          $allaccounts->count(),
+            "students"          =>          $students->count(),
+            "non_students"      =>          $non_student->count(),
+            "thesis"            =>          $thesis->count(),
+        ]);
+    }
+    public function RegisteredAccount($id){
+
+        $data = User::selectRaw('id,name,student_no,email,status,role')
             ->where('status', 1)
-                ->get();
+                ->where('role',$id)
+                    ->get();
 
         return response()->json([
             "status"        =>      200,
@@ -155,8 +171,11 @@ class AdminController extends Controller
     }
 
     public function ThesisData(){
-        $thesis = Document::orderBy('created_at','DESC')->get();
-        
+        $thesis = DocumentInformation::join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
+            ->selectRaw('tbl_department.department, count(tbl_documentinfo.department_fk) as total, tbl_department.id,tbl_department.color_code,tbl_department.department_code')
+                ->groupBy('tbl_documentinfo.department_fk')
+                    ->orderBy('total','desc')
+                        ->get();
         return response()->json([
             "status"        =>          200,
             "data"          =>          $thesis,
@@ -232,9 +251,12 @@ class AdminController extends Controller
             ]);
 
         }
+
     }
-
-
+    
+    public function CourseThesis($id){
+        
+    }
     
     
 }

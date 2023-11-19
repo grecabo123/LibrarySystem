@@ -126,7 +126,7 @@ function Student() {
                 if(error.response.status === 500) {
                     swal("Warning",error.response.statusText,'warning');
                     UsercaptchaRef.current.reset();
-                setbtndis(false)
+                    setbtndis(false)
 
                 }
             })
@@ -134,6 +134,8 @@ function Student() {
         else{
             UsercaptchaRef.current.reset();
             swal("Warning","Please confirm that you are human.!",'warning');
+            setbtndis(false)
+
         }
     };
 
@@ -208,6 +210,8 @@ function Student() {
                 </form>
             </div>
         </div>
+
+
     )
 }
 

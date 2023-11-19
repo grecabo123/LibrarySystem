@@ -29,6 +29,7 @@ function Upload() {
     const [UserData, setUserData] = useState([]);
     const [emailchoose, setemailchoose] = useState("")
     const [NameTags, setRemoveNames] = useState([]);
+    const [btndis, setbtndis] = useState(false);
     const [UploadData, setUploadData] = useState({
         title: "",
         year: "",
@@ -97,7 +98,7 @@ function Upload() {
 
     const FormSubmit = (e) => {
         e.preventDefault();
-
+        setbtndis(true)
         const data = new FormData();
         data.append('email',NameTags);
         data.append('title',UploadData.title);
@@ -113,13 +114,19 @@ function Upload() {
         axios.post(`/api/UploadDocument`,data).then(res => {
             if(res.data.status === 200) {
                 document.getElementById('upload_Form').reset();
-                toast.current.show({severity: "Success",summary: "Uploaded",detail: "Sucesss"});
+                setbtndis(false)
+                setTags([]);
+                setRemoveNames([]);
+                toast.current.show({severity: "success",summary: "Uploaded",detail: "Sucesss"});
             }
             else{
+                setbtndis(false)
+
                 setUploadData({...UploadData, error: res.data.error});
             }
         }).catch((error) => {
             if(error.response.status === 500){
+                setbtndis(false);
                 swal("Warning",error.response.statusText,'warning');
             }
         })
@@ -358,7 +365,7 @@ function Upload() {
                             <small><span className='text-danger'>*PDF File Only</span></small>
                         </div>
                         <div className="mt-4">
-                            <Button className='p-button-primary p-button-sm' label='Upload Thesis' />
+                            <Button className='p-button-primary p-button-sm' disabled={btndis} label='Upload Thesis' />
                         </div>
                     </div>
                 </form>

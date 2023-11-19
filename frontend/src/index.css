@@ -188,3 +188,36 @@ a {
         transform: scale(3.15);
     }
 }
+
+.pagination {
+    list-style: none;
+    display: flex-start;
+    align-items: center;
+    margin-bottom: 4rem;
+    font-size: 1.1rem;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.pagination .page-num {
+    color: #f4f4f5;
+    padding: 4px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 400;
+    /* border: 2px solid rgb(199, 184, 184); */
+    background-color: #525252e5;
+}
+
+.pagination .page-num:hover {
+    color: #fff;
+}
+
+.pagination .active {
+    background-color: #3e8144;
+    /* color: white; */
+}
+.cofJRH{
+    color: #1f2027 !important;
+    fill:  #1f2027 !important;
+}

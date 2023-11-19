@@ -41,7 +41,7 @@ function ActivityLogs() {
     ]
 
     return (
-        <div className='container mt-5 p-3'>
+        <div className='container-fluid'>
                 <Card>
                 <DataTable 
                     title="Activity Logs"

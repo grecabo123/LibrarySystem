@@ -14,52 +14,45 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import { Skeleton } from 'primereact/skeleton';
 import { motion } from "framer-motion";
-
-
-
+import CourseData from './dashboard/CourseData';
+import { Divider } from 'primereact/divider';
+import Ranking from './dashboard/Ranking';
+import AllUsers from './dashboard/AllUsers';
+import { Panel } from 'primereact/panel';
+// import { Knob } from 'primereact/knob';
+ 
 function Dashboard() {
 
+    const [loading, setloading] = useState(true);
+    const [value, setValue] = useState(59)
     const [CountData, setCountData] = useState({
         allcount: "",
-        verified: "",
-        pending: "",
-        report: "",
-        copras_total: "",
-        whole_total: "",
-        copras_price: "",
-        whole_price: "",
-        copras_sold: "",
-        whole_sold: "",
+        students: "",
+        non_students: "",
+        thesis: "",
     });
-    const [loading, setloading] = useState(true);
 
     useEffect(() => {
         AllDataTotal();
     }, []);
 
     const AllDataTotal = () => {
-        axios.get(`/api/TotalCount`).then(res => {
+        axios.get(`/api/AllData`).then(res => {
             if (res.data.status === 200) {
                 setCountData({
                     allcount: res.data.allaccounts,
-                    verified: res.data.verified,
-                    pending: res.data.pending,
-                    report: res.data.reports,
-                    copras_total: res.data.copras_total,
-                    whole_total: res.data.whole_total,
-                    copras_price: res.data.copras_price.new_price,
-                    whole_price: res.data.whole_price.new_price,
-                    copras_sold: res.data.copras_sold,
-                    whole_sold: res.data.whole_sold,
-                })
+                    students: res.data.students,
+                    non_students: res.data.non_students,
+                    thesis: res.data.thesis,
+                });
             }
             else {
 
             }
-            setloading(false);
+            setloading(false)
         }).catch((error) => {
             if (error.response.status === 500) {
-                swal("Warning", error.response.statusText, 'warning');
+                swal("Warning", error.response.statusText, 'warning')
             }
         })
     }
@@ -98,10 +91,10 @@ function Dashboard() {
                                     ease: [0, 0.71, 0.2, 1.01]
                                 }}
                             >
-                                <Card title="Verified Account" className='zoom' >
+                                <Card title="Student's Account" className='zoom' >
                                     <div className="d-flex justify-content-between">
                                         <span>Total </span>
-                                        <Badge severity={'success'} value={CountData.verified} />
+                                        <Badge severity={'success'} value={CountData.students} />
                                     </div>
                                 </Card>
                             </motion.div>
@@ -117,10 +110,10 @@ function Dashboard() {
                                     ease: [0, 0.71, 0.2, 1.01]
                                 }}
                             >
-                                <Card title={<><span><small>Pending Account</small></span></>} className='zoom' >
+                                <Card title={<><span><small>Non Student Account</small></span></>} className='zoom' >
                                     <div className="d-flex justify-content-between">
                                         <span>Total </span>
-                                        <Badge value={CountData.pending} />
+                                        <Badge value={CountData.non_students} />
                                     </div>
                                 </Card>
                             </motion.div>
@@ -135,135 +128,33 @@ function Dashboard() {
                                     ease: [0, 0.71, 0.2, 1.01]
                                 }}
                             >
-                                <Card title="Report Issue" className='zoom' >
+                                <Card title="All Thesis" className='zoom' >
                                     <div className="d-flex justify-content-between">
                                         <span>Total </span>
-                                        <Badge severity={'danger'} value={CountData.report} />
+                                        <Badge severity={'danger'} value={CountData.thesis} />
                                     </div>
                                 </Card>
                             </motion.div>
                         </div>
-                        <div className="col-lg-6 mb-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 0.8,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                                <Card title="Product Type" className='zoom'>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span><b className=''>Copras Total: </b> <span className='p-tag'>{CountData.copras_total}</span></span>
-                                        <span><b className=''>Whole Nut Total: </b> <span className='p-tag'>{CountData.whole_total}</span></span>
-                                    </div>
-                                </Card>
-                            </motion.div>
-                            <div className="mt-3">
-                                <div className="row">
-                                    <div className="col-lg-6 mb-4">
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.5 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{
-                                                duration: 0.6,
-                                                delay: 0.9,
-                                                ease: [0, 0.71, 0.2, 1.01]
-                                            }}
-                                        >
-                                            <Card title="Whole Nut" className='zoom'>
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <span>Current Price</span>
-                                                    <span className='p-tag'>₱ {CountData.whole_price}</span>
-                                                </div>
-                                            </Card>
-                                        </motion.div>
-                                    </div>
-                                    <div className="col-lg-6 mb-4">
-                                        <motion.div
-                                            initial={{ opacity: 0, scale: 0.5 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{
-                                                duration: 0.6,
-                                                delay: 1,
-                                                ease: [0, 0.71, 0.2, 1.01]
-                                            }}
-                                        >
-                                            <Card title="Copras" className='zoom'>
-                                                <div className="d-flex justify-content-between align-items-center">
-                                                    <span>Current Price</span>
-                                                    <span className='p-tag'>₱ {CountData.copras_price}</span>
-                                                </div>
-                                            </Card>
-                                        </motion.div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div className="col-lg-3 mb-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 1.1,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                                <center>
-                                    <Knob value={(CountData.copras_sold / CountData.copras_total * 100).toFixed(0)} valueColor={"SlateGray"} valueTemplate={"{value}%"} rangeColor={"MediumTurquoise"} className='p-knob-range w-100' step={10} size={200} />
-                                    <span className='fs-6 text-secondary'>Copras Rate Sold</span>
-                                </center>
-                            </motion.div>
-                        </div>
-                        <div className="col-lg-3 mb-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 1.2,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                                <center>
-                                    <Knob value={(CountData.whole_sold / CountData.whole_total * 100).toFixed(0)} valueColor={"SlateGray"} valueTemplate={"{value}%"} rangeColor={"MediumTurquoise"} className='p-knob-range w-100' step={10} size={200} />
-                                    <span className='fs-6 text-secondary'>Whole Nut Rate Sold</span>
-                                </center>
-                            </motion.div>
-                        </div> */}
 
-                        <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 1.3,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                        <div className="row mb-3">
-                            {/* <div className="col-lg-12 col-sm-12 mb-2">
-                                <TableRecords />
-                            </div> */}
-                            <div className="col-lg-3 col-sm-12 mb-2">
-                                <PieChartdata />
-                            </div>
-                        </div>
-                    </motion.div>
-
+                        <Panel>
                         <div className="row mb-3">
                             <div className="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <LineChart />
+                            
+                               <CourseData />
+                            {/* </motion.div> */}
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-12 mb-2">
-                                <BarChartdata />
+                                <Ranking />
+                            </div>
+                            <div className="col-lg-6 mx-5 col-md-6 col-sm-12 mb-2">
+                                {/* <Knob value={value} size={200} valueColor={"SlateGray"} rangeColor={"MediumTurquoise"} onChange={(e) => setValue(value)} /> */}
                             </div>
                             <div className="col-lg-12 col-md-6 col-sm-12 mb-2">
-                                <LineChart />
+                                <AllUsers />
                             </div>
                         </div>
+                        </Panel>
                     </div>
             }
 

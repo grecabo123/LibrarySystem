@@ -10,6 +10,8 @@ import swal from 'sweetalert'
 import { Skeleton } from 'primereact/skeleton'
 import { Toast } from 'primereact/toast'
 import Course from './Course'
+import { ColorPicker } from 'primereact/colorpicker';
+ 
 
 
 function CreateDepartment() {
@@ -19,6 +21,7 @@ function CreateDepartment() {
     const [loading, setloading] = useState(true);
     const [visibleCourse, setvisibleCourse] = useState(false);
     const toast = useRef();
+    const [color, setColor] = useState([]);
     const [DepartmentName, setDepartmentName] = useState({
         department: "",
         code: "",
@@ -60,6 +63,7 @@ function CreateDepartment() {
         const data = {
             department: DepartmentName.department,
             code: DepartmentName.code,
+            color_code: color,
             user_id: localStorage.getItem('auth_id'),
         };
 
@@ -110,6 +114,8 @@ function CreateDepartment() {
 
     ]
 
+    // console.log(color);
+
     return (
         <div className='container-fluid'>
             <Toast ref={toast} />
@@ -142,6 +148,10 @@ function CreateDepartment() {
                                     Department Code
                                 </label>
                                 <InputText className='w-100' name='code' onChange={handleInput} />
+                            </div>
+                            <div className="col-lg-12 mb-2">
+                                <ColorPicker value={color} onChange={(e) => setColor(e.value)} className='p-colorpicker-hue' /> <br />
+                                 <span>{color}</span>   
                             </div>
                             <div className="mt-2 d-flex justify-content-start">
                                 <Button className='p-button-sm p-button-info' label='Register Department' />

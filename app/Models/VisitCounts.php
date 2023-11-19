@@ -5,15 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class VisitCounts extends Model
 {
     use HasFactory;
-    protected $table = "tbl_department";
-
+    protected $table = "tbl_count";
     protected $fillable = [
-        "department",
-        "department_code",
-        'color_code',
+        'document_access_code',
+        'visit_count',
     ];
-
 }

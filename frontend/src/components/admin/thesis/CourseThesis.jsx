@@ -8,9 +8,9 @@ import { useState } from 'react'
 import DataTable from 'react-data-table-component'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import swal from 'sweetalert'
-import { FcFolder } from "react-icons/fc";
+import { FcFolder, FcOpenedFolder } from "react-icons/fc";
 
-function ListDocument() {
+function CourseThesis() {
 
     const [loading, setloading] = useState(true);
     const [Document, setDocument] = useState([])
@@ -32,18 +32,18 @@ function ListDocument() {
 
     const column = [
         {
-            name: <span> Department </span>,
-            selector: row => <><FcFolder size={20} className='me-2' />{row.department}</>,
+            name: <span> Courses </span>,
+            selector: row => <><FcOpenedFolder size={20} className='me-2' />{row.department}</>,
             sortable: true,
         },
         {
-            name: "Number of Thesis",
+            name: "Total Thesis ",
             selector: row => row.total,
             sortable: true,
         },
         {
             name: "Actions",
-            selector: row => <Link to={`/admin/list/course=${row.id}`}><Button className='p-button-sm p-button-info' label='Open' /></Link>,
+            selector: row => <Button className='p-button-sm p-button-info' label='Open' />,
             sortable: true,
         },
         // {
@@ -59,17 +59,19 @@ function ListDocument() {
                     title="List of Thesis"
                     selectableRows
                     pagination
+                    
+                
                     columns={column}
                     data={Document}
                     progressPending={loading}
                     progressComponent={<Skeleton className='w-100' borderRadius='50' />}
                     subHeader
                     subHeaderAlign='right'
-                    subHeaderComponent={<Link to="/admin/upload"><Button className='p-button-sm p-button-info' label='Upload Thesis' /></Link>}
+                    subHeaderComponent={<Link to="/admin/list"><Button className='p-button-sm p-button-info' label='Back' /></Link>}
                 />
             </Card>
         </div>
     )
 }
 
-export default ListDocument
+export default CourseThesis

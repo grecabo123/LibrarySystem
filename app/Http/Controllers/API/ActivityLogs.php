@@ -11,7 +11,7 @@ class ActivityLogs extends Controller
     //
     public function Logs($id){
 
-        $logs = AcitivityLogs::where('user_logs_fk',$id)->get();
+        $logs = AcitivityLogs::where('user_logs_fk',$id)->orderBy('created_at','DESC')->get();
 
         return response()->json([
             "status"        =>      200,

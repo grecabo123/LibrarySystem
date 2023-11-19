@@ -14,7 +14,8 @@ function NonStudent() {
     const [loading, setloading] = useState(true);
 
     useEffect(() => {
-        axios.get(`/api/registered`).then(res => {
+        const id = 3;
+        axios.get(`/api/registered/${id}`).then(res => {
             if (res.data.status === 200) {
                 setRegister(res.data.accounts);
             }
