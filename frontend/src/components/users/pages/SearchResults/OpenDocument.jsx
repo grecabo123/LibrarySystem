@@ -145,7 +145,7 @@ function OpenDocument(props) {
 
     ]
 
-    const header = <Menubar model={item} end={<Button className='w-100 p-button-sm p-button-raised' icon={PrimeIcons.FOLDER} onClick={AddArchive} value={ResearchData.details.id} title="Add Archive" />} />
+    const header = <Menubar model={item} />
 
     return (
         <div>
