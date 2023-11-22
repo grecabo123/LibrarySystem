@@ -1,6 +1,30 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 
 function Ranking() {
+
+    const [ListData, setListData] = useState([])
+
+    useEffect(() => {
+        axios.get(`/api/MostVvisited`).then(res => {
+            if(res.data.status === 200) {
+                setListData(res.data.data)
+            }
+            else{
+
+            }
+        }).catch((error) => {
+            if(error.response.status === 500){
+                swal("Warning",error.response.statusText,'warning');
+
+            }
+        })
+    },[]);
+
+    console.log(ListData);
+
+
     return (
         <div className='mt-4'>
             <div className="mt-4">
@@ -9,26 +33,16 @@ function Ranking() {
                 </center>
             </div>
             <ul className="list-group border-0">
-                <li className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
-                    <span className=''>Fire Related</span> 
-                    <span className="badge bg-primary rounded-pill">82</span>
-                </li>
-                <li className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
-                    Eye Contact  
-                    <span className="badge bg-primary rounded-pill">72</span>
-                </li>
-                 <li className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
-                    Cooking  
-                    <span className="badge bg-primary rounded-pill">62</span>
-                </li>
-                <li className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
-                    DTR with Payroll System 
-                    <span className="badge bg-primary rounded-pill">52</span>
-                </li>
-                <li className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
-                    School System
-                    <span className="badge bg-primary rounded-pill">42</span>
-                </li>
+                {
+                    ListData.map((data,idx) => {
+                        return (
+                            <li key={idx} className="list-group-item border-0 bg-transparent mb-3 d-flex justify-content-between align-items-center">
+                                <span className=''>{data.title}</span> 
+                                <span className="badge bg-primary rounded-pill">{data.total}</span>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </div>
     )

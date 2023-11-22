@@ -10,12 +10,12 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import swal from 'sweetalert'
 import { FcFolder, FcOpenedFolder } from "react-icons/fc";
 
-function CourseThesis() {
+function CourseThesis(props) {
 
     const [loading, setloading] = useState(true);
     const [Document, setDocument] = useState([])
     useEffect(() => {
-        axios.get(`/api/ThesisData`).then(res => {
+        axios.get(`/api/CourseThesis/${props.match.params.id}`).then(res => {
             if(res.data.status === 200) {
                 setDocument(res.data.data);
             }
@@ -33,7 +33,7 @@ function CourseThesis() {
     const column = [
         {
             name: <span> Courses </span>,
-            selector: row => <><FcOpenedFolder size={20} className='me-2' />{row.department}</>,
+            selector: row => <><Link to={`/admin/list/thesis=${row.id}`}><FcOpenedFolder size={20} className='me-2' />{row.CourseName}</Link></>,
             sortable: true,
         },
         {
@@ -41,11 +41,11 @@ function CourseThesis() {
             selector: row => row.total,
             sortable: true,
         },
-        {
-            name: "Actions",
-            selector: row => <Button className='p-button-sm p-button-info' label='Open' />,
-            sortable: true,
-        },
+        // {
+        //     name: "Actions",
+        //     selector: row => <Button className='p-button-sm p-button-info' label='Open' />,
+        //     sortable: true,
+        // },
         // {
         //     name: "Created",
         //     selector: row => moment(row.created_at).format("MMM DD YYYY"),
@@ -56,11 +56,9 @@ function CourseThesis() {
         <div className='container-fluid'>
             <Card>
                 <DataTable 
-                    title="List of Thesis"
+                    title="List of Thesis By Program"
                     selectableRows
                     pagination
-                    
-                
                     columns={column}
                     data={Document}
                     progressPending={loading}

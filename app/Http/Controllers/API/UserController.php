@@ -180,4 +180,9 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function AddArchives(Request $request){
+
+        // $data = 
+    }
 }

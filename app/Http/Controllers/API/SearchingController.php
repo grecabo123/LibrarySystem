@@ -170,7 +170,7 @@ class SearchingController extends Controller
                         ->where('tbl_documentinfo.docu_fk',$docs->id)->first();
         $document = DB::table('tbl_document')
             ->join('tbl_documentinfo','tbl_documentinfo.docu_fk','=','tbl_document.id')
-                ->selectRaw('tbl_document.title,tbl_document.keywords,
+                ->selectRaw('tbl_document.id,tbl_document.title,tbl_document.keywords,
                 tbl_document.description,tbl_document.uniquecode,
                 tbl_documentinfo.file,tbl_document.created_at,
                 tbl_document.year_published')

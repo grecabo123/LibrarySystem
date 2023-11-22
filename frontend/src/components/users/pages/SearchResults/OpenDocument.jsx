@@ -5,12 +5,16 @@ import { Badge } from 'primereact/badge';
 import { Divider } from 'primereact/divider';
 import { Menubar } from 'primereact/menubar';
 import { Panel } from 'primereact/panel'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaFilePdf } from 'react-icons/fa';
 import swal from 'sweetalert';
 import ReactReadMoreReadLess from 'react-read-more-read-less'
 import { useHistory } from 'react-router-dom';
 import VisitsChart from './VisitChart';
+import { Button } from 'primereact/button';
+import { ConfirmDialog } from 'primereact/confirmdialog';
+import { confirmDialog } from 'primereact/confirmdialog';
+import { Toast } from 'primereact/toast';
 
 function OpenDocument(props) {
 
@@ -23,11 +27,15 @@ function OpenDocument(props) {
         course: "",
         numbervisits: "",
     });
+    const toast = useRef();
 
     var nf = new Intl.NumberFormat();
 
     const [loading, setloading] = useState(true);
 
+    useEffect(() => {
+        getData()
+    }, [])
 
     const getData = async () => {
         fetch('https://api.ipify.org?format=jsonp?callback=?', {
@@ -56,9 +64,7 @@ function OpenDocument(props) {
         })
 
     }
-    useEffect(() => {
-        getData()
-    }, [])
+   
 
     useEffect(() => {
 
@@ -92,6 +98,44 @@ function OpenDocument(props) {
         )
     }
 
+    const AddArchive = (e) => {
+
+        localStorage.setItem('document_id',e.target.value);
+
+        confirmDialog({
+            message: 'Are you sure you want to save this title ?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => acceptFunc(),
+            reject: () => rejectFunc()
+        });
+    }
+
+    const acceptFunc = () => {
+        const id = localStorage.getItem('document_id');
+
+        const data = {
+            document_id: id,
+            user_fk: localStorage.getItem('user_id'),
+        };
+
+        axios.post(`/api/AddArchives`,data).then(res => {
+            if(res.data.status === 200) {
+
+            }
+        }).catch((error) => {
+            if(error.response.status === 500) {
+
+            }
+        })
+    }
+
+    const rejectFunc = () => {
+        localStorage.removeItem('document_id');
+        toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    }
+    
+
 
     const item = [
         {
@@ -101,10 +145,12 @@ function OpenDocument(props) {
 
     ]
 
-    const header = <Menubar model={item} />
+    const header = <Menubar model={item} end={<Button className='w-100 p-button-sm p-button-raised' icon={PrimeIcons.FOLDER} onClick={AddArchive} value={ResearchData.details.id} title="Add Archive" />} />
 
     return (
         <div>
+            <Toast ref={toast} />
+            <ConfirmDialog draggable={false} breakpoints={{'960px': '75vw', '640px': '100vw'}} style={{width: '50vw'}} accept={acceptFunc} className='p-confirm-dialog' />
             <Panel headerTemplate={header}>
                 <Divider align='left'>
                     <Badge value={"Research Title Details"} severity="info"></Badge>
@@ -114,7 +160,8 @@ function OpenDocument(props) {
                         {/* <li className='text-color-code mb-3'><span><b>Code</b>:  <span className='text-details'>{ResearchData.details.reference_code}</span></span></li> */}
                         <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
                             <ul className='mt-2'>
-                          {/* {(ResearchData.details.file === "undefinded") ? "" : <li className='list-result'><a href={`http://127.0.0.1:8000/${ResearchData.details.file}`} target="_blank"><FaFilePdf size={20} className="text-danger" /> <span>{ResearchData.details.title + "." + "pdf"}</span></a></li>}       */}
+                                <embed src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0`} height='500' width='100%'></embed>
+                                {/* {(ResearchData.details.file === "undefinded") ? "" : <li className='list-result'><a href={`http://127.0.0.1:8000/${ResearchData.details.file}`} target="_blank"><FaFilePdf size={20} className="text-danger" /> <span>{ResearchData.details.title + "." + "pdf"}</span></a></li>}       */}
                             </ul>
                         </span></li>
                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{ResearchData.details.keywords}</span></span></li>
@@ -139,18 +186,18 @@ function OpenDocument(props) {
                                 {/* <li className='text-color-code mb-3'><span><b>Optional Email</b>:  <span className="text-details">{ResearchData.optional_email}</span></span></li> */}
                                 <li className='text-color-code mb-3'><span><b>Department</b>:  <span className="text-details">{ResearchData.course.department}</span></span></li>
                                 <li className='text-color-code mb-3'><span><b>Course</b>:  <span className="text-details">{ResearchData.course.CourseName}</span></span></li>
-                                
-                                    
-                                        <li className='text-color-code mb-3'><span><b>Cite</b>:  <span className="text-details">{
-                                            ResearchData.authors.map((daauthor) => {
-                                                return (
-                                                    <span>{daauthor.last_name + `,`} {daauthor.first_name.substring(0, 1) + `.`} {daauthor.middle_name.substring(0, 1) + `.`}  </span>
-                                                )
-                                            })
 
-                                        }</span>({ResearchData.details.Year_Published}). {ResearchData.details.title}</span></li>
-                                    
-                                
+
+                                <li className='text-color-code mb-3'><span><b>Cite</b>:  <span className="text-details">{
+                                    ResearchData.authors.map((daauthor) => {
+                                        return (
+                                            <span>{daauthor.last_name + `,`} {daauthor.first_name.substring(0, 1) + `.`} {daauthor.middle_name.substring(0, 1) + `.`}  </span>
+                                        )
+                                    })
+
+                                }</span>({ResearchData.details.Year_Published}). {ResearchData.details.title}</span></li>
+
+
                                 <li className='text-color-code mb-3'><span><b>Published</b>:  <span className='text-info'>{moment(ResearchData.details.created_at).format("MMM DD YYYY")}</span></span></li>
                             </ul>
                         </div>

@@ -3,15 +3,17 @@ import { Badge } from 'primereact/badge'
 import { Button } from 'primereact/button'
 import { Card } from 'primereact/card'
 import { InputText } from 'primereact/inputtext'
+import { Panel } from 'primereact/panel'
 import { Skeleton } from 'primereact/skeleton'
 import React, { useEffect, useState } from 'react'
+import DataTable from 'react-data-table-component'
 import { FaArrowDown, FaArrowUp, FaSearch } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import swal from 'sweetalert'
 
 function Dashboard() {
 
-    
+    const [AnnoucementData,setAnnoucementData] = useState([]);
     const [loading, setloading] = useState(true);
     const [searchkey, setsearch] = useState({
         keyword: "",
@@ -20,9 +22,16 @@ function Dashboard() {
     const history = useHistory();
 
     useEffect(() => {
-        setTimeout(() => {
-            setloading(false);
-        }, 2000);
+       axios.get(`/api/AnnoucmentData`).then(res => {
+            if(res.data.status === 200) {
+                setAnnoucementData(res.data.data);
+            }
+            setloading(false)
+       }).catch((error) => {
+            if(error.response.status === 500) {
+
+            }
+       })
     }, [])
 
     const handleinput = (e) => {
@@ -61,6 +70,17 @@ function Dashboard() {
         }
     }
 
+    const column = [
+        {
+            name: "Date",
+            selector: row => row.date_annoucment,
+        },
+        {
+            name: "Event",
+            selector: row => row.description,
+        },
+    ]
+
 
 
     return (
@@ -71,11 +91,22 @@ function Dashboard() {
                     <div className='container-fluid'>
                         <form onSubmit={Search}>
                             <h4 className='text-details text-secondary'><FaSearch /> Search Document </h4>
-                            <div className="p-inputgroup">                                
+                            <div className="p-inputgroup">
                                 <InputText onChange={handleinput} name='keyword' placeholder="Keyword, Title" />
                                 <Button icon="pi pi-search" className="p-button-info me-1" />
                             </div>
                         </form>
+                        <div className="mt-4">
+                            <Panel header="Announcement">
+                                <DataTable 
+                                    title=""
+                                    data={AnnoucementData}
+                                    columns={column}
+                                    pagination
+                                    selectableRows
+                                />
+                            </Panel>
+                        </div>
                     </div>
             }
         </>

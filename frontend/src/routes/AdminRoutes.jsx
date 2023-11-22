@@ -2,9 +2,11 @@ import Course from "../components/admin/Department/Course";
 import CreateDepartment from "../components/admin/Department/CreateDepartment";
 import AccountPending from "../components/admin/accounts/AccountPending";
 import Accounts from "../components/admin/accounts/Accounts";
+import Announcement from "../components/admin/announcement/Announcement";
 import ActivityLogs from "../components/admin/pages/ActivityLogs";
 import Dashboard from "../components/admin/pages/Dashboard";
 import SchoolYear from "../components/admin/schoolyear/SchoolYear";
+import CourseListThesis from "../components/admin/thesis/CourseListThesis";
 import CourseThesis from "../components/admin/thesis/CourseThesis";
 import ListDocument from "../components/admin/thesis/ListDocument";
 import Upload from "../components/admin/thesis/Upload";
@@ -21,6 +23,8 @@ const AdminRoutes = [
     {path: '/admin/schoolyear', exact: true, name: "SchoolYear", component: SchoolYear},
     {path: '/admin/list', exact: true, name: "SchoolYear", component: ListDocument},
     {path: '/admin/list/course=:id', exact: true, name: "SchoolYear", component: CourseThesis},
+    {path: '/admin/list/thesis=:id', exact: true, name: "SchoolYear", component: CourseListThesis},
+    {path: '/admin/announcement', exact: true, name: "SchoolYear", component: Announcement},
  
 ];
 

@@ -53,12 +53,10 @@ function User() {
                         <FaSearch className='nav-icon' />Search Thesis</a></li>
                         
                     
-                    <li class="nav-item"><Link class="nav-link" to="/user/product">
-                        <FcFolder className='nav-icon' />Archives</Link></li>
-                    <li class="nav-item"><a class="nav-link">
-                        <FaDesktop className='nav-icon' /> Activity Logs  </a></li>
-
-                    
+                    {/* <li class="nav-item"><Link class="nav-link" to="/user/product">
+                        <FcFolder className='nav-icon' />Archives</Link></li> */}
+                    <li class="nav-item"><Link class="nav-link" to="/user/logs">
+                        <FaDesktop className='nav-icon' /> Activity Logs  </Link></li>
                 </ul>
             </div>
             <div class="wrapper d-flex flex-column min-vh-100">

@@ -33,7 +33,7 @@ function ListDocument() {
     const column = [
         {
             name: <span> Department </span>,
-            selector: row => <><FcFolder size={20} className='me-2' />{row.department}</>,
+            selector: row => <><Link to={`/admin/list/course=${row.id}`}><FcFolder size={20} className='me-2' />{row.department}</Link></>,
             sortable: true,
         },
         {
@@ -41,15 +41,11 @@ function ListDocument() {
             selector: row => row.total,
             sortable: true,
         },
-        {
-            name: "Actions",
-            selector: row => <Link to={`/admin/list/course=${row.id}`}><Button className='p-button-sm p-button-info' label='Open' /></Link>,
-            sortable: true,
-        },
         // {
-        //     name: "Created",
-        //     selector: row => moment(row.created_at).format("MMM DD YYYY"),
-        // }
+        //     name: "Actions",
+        //     selector: row => <Link to={`/admin/list/course=${row.id}`}><Button className='p-button-sm p-button-info' label='Open' /></Link>,
+        //     sortable: true,
+        // },
     ]
 
     return (
