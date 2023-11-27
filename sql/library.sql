@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 23, 2023 at 01:59 PM
+-- Generation Time: Nov 27, 2023 at 04:16 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -109,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -121,7 +122,9 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (16, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '512b977291f845fe6ddeb34df90c3b005f0c0356aae14707d72a8d504fc07c84', '[\"server:admin\"]', NULL, '2023-11-21 03:34:10', '2023-11-21 03:34:10'),
 (17, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '2e988c11b603c512e3890fe2f593786ddeafb244f7d499e8193039dec7349bff', '[\"server:admin\"]', '2023-11-22 07:48:37', '2023-11-21 03:34:22', '2023-11-22 07:48:37'),
 (18, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', 'a3f9efdde4b2947ab10b43e669c9929d35b9826e652f4b32b4c141b511f5f20d', '[\"server:user\"]', '2023-11-21 05:54:05', '2023-11-21 04:46:17', '2023-11-21 05:54:05'),
-(19, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '61cd3b8e6460ce2bb704fe94c0360062cc09c083b98176919383302bc5a695b1', '[\"server:user\"]', '2023-11-22 08:09:45', '2023-11-22 05:41:17', '2023-11-22 08:09:45');
+(19, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '61cd3b8e6460ce2bb704fe94c0360062cc09c083b98176919383302bc5a695b1', '[\"server:user\"]', '2023-11-22 08:09:45', '2023-11-22 05:41:17', '2023-11-22 08:09:45'),
+(20, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '5bf5d8da19348fae8ebd77e9cb59b4d849ef3ab383fe9eb757ed18a5276be703', '[\"server:admin\"]', '2023-11-24 07:40:13', '2023-11-24 07:40:05', '2023-11-24 07:40:13'),
+(21, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', 'dee67bfe74c0dc95c2af3050537ac3faafc5195039f96d3e8154880b550ed221', '[\"server:admin\"]', '2023-11-24 07:40:17', '2023-11-24 07:40:12', '2023-11-24 07:40:17');
 
 -- --------------------------------------------------------
 
