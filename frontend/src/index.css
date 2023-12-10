@@ -221,3 +221,7 @@ a {
     color: #1f2027 !important;
     fill:  #1f2027 !important;
 }
+
+.react-pdf__Page__textContent {
+    user-select: none;
+  }

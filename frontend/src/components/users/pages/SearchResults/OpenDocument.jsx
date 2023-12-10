@@ -15,6 +15,7 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
+import { Document, Page, pdfjs } from 'react-pdf';
 
 function OpenDocument(props) {
 
@@ -28,7 +29,8 @@ function OpenDocument(props) {
         numbervisits: "",
     });
     const toast = useRef();
-
+    const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
+   
     var nf = new Intl.NumberFormat();
 
     const [loading, setloading] = useState(true);
@@ -64,7 +66,7 @@ function OpenDocument(props) {
         })
 
     }
-   
+
 
     useEffect(() => {
 
@@ -92,6 +94,20 @@ function OpenDocument(props) {
         })
     }, [])
 
+    const handleContextMenu = (e) => {
+        if (isContextMenuDisabled) {
+            e.preventDefault();
+        }
+    };
+
+    const handleLoadSuccess = ({ numPages }) => {
+        console.log(`Document loaded with ${numPages} pages`);
+    };
+
+    const handleError = (error) => {
+        console.error('Error loading PDF:', error);
+    };
+
     if (loading) {
         return (
             <h4></h4>
@@ -100,7 +116,7 @@ function OpenDocument(props) {
 
     const AddArchive = (e) => {
 
-        localStorage.setItem('document_id',e.target.value);
+        localStorage.setItem('document_id', e.target.value);
 
         confirmDialog({
             message: 'Are you sure you want to save this title ?',
@@ -119,12 +135,12 @@ function OpenDocument(props) {
             user_fk: localStorage.getItem('user_id'),
         };
 
-        axios.post(`/api/AddArchives`,data).then(res => {
-            if(res.data.status === 200) {
+        axios.post(`/api/AddArchives`, data).then(res => {
+            if (res.data.status === 200) {
 
             }
         }).catch((error) => {
-            if(error.response.status === 500) {
+            if (error.response.status === 500) {
 
             }
         })
@@ -134,7 +150,7 @@ function OpenDocument(props) {
         localStorage.removeItem('document_id');
         toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
     }
-    
+
 
 
     const item = [
@@ -150,18 +166,31 @@ function OpenDocument(props) {
     return (
         <div>
             <Toast ref={toast} />
-            <ConfirmDialog draggable={false} breakpoints={{'960px': '75vw', '640px': '100vw'}} style={{width: '50vw'}} accept={acceptFunc} className='p-confirm-dialog' />
+            <ConfirmDialog draggable={false} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '50vw' }} accept={acceptFunc} className='p-confirm-dialog' />
             <Panel headerTemplate={header}>
                 <Divider align='left'>
                     <Badge value={"Research Title Details"} severity="info"></Badge>
                 </Divider>
                 <div className='mb-3'>
                     <ul>
-                        {/* <li className='text-color-code mb-3'><span><b>Code</b>:  <span className='text-details'>{ResearchData.details.reference_code}</span></span></li> */}
                         <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
                             <ul className='mt-2'>
-                                <embed src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0`} height='500' width='100%'></embed>
-                                {/* {(ResearchData.details.file === "undefinded") ? "" : <li className='list-result'><a href={`http://127.0.0.1:8000/${ResearchData.details.file}`} target="_blank"><FaFilePdf size={20} className="text-danger" /> <span>{ResearchData.details.title + "." + "pdf"}</span></a></li>}       */}
+                                <embed onContextMenu={handleContextMenu} 
+                                src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`} 
+                                style={{ userSelect: 'none' }}
+                                height='700' 
+                                width='100%'
+                                controlsList="nodownload"
+                                ></embed>
+                                {/* <div onContextMenu={handleContextMenu}>
+                                    <Document
+                                        file={`http://127.0.0.1:8000/${ResearchData.details.file}`}
+                                        onLoadSuccess={handleLoadSuccess}
+                                        onLoadError={handleError}
+                                    >
+                                        <Page pageNumber={1} />
+                                    </Document>
+                                </div> */}
                             </ul>
                         </span></li>
                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{ResearchData.details.keywords}</span></span></li>

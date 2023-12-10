@@ -162,8 +162,10 @@ function CreateDepartment() {
             </Dialog>
 
             <Dialog header={`Courses Data -  ${localStorage.getItem('department_name') === null ? "" : localStorage.getItem('department_name') }`} visible={visibleCourse} onHide={onHideCourse} position='top' draggable={false} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '70vw' }}>
-                <Course />
+                {/* <Course {...DepartmentName} /> */}
+                <Course departmentName={DepartmentData} />
             </Dialog>
+            
             
         </div>
     )

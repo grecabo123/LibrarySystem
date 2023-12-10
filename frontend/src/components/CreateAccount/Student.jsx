@@ -111,7 +111,7 @@ function Student() {
         if(robot){
             axios.post(`/api/CreateAccount`,data).then(res => {
                 if(res.data.status === 200) {
-                    swal("Success","Created Successfully",'success');
+                    swal("Success",res.data.success,'success');
                     document.getElementById('resetform').reset();
                     setTimeout(() => {
                         history.push('/login');
@@ -120,6 +120,8 @@ function Student() {
                     
                 }
                 else{
+                    setdata({...userdata, error: res.data.error})
+                    setbtndis(false)
 
                 }
             }).catch((error) => {

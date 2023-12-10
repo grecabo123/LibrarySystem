@@ -29,6 +29,7 @@ class SearchingController extends Controller
 
     public function AllRegistered () {
         $users = User::all();
+       
 
         return response()->json([
             "status"            =>          200,

@@ -51,7 +51,8 @@ function User() {
                     <li class="nav-title">Pages</li>
                     <li class="nav-item"><a class="nav-link" href="/user">
                         <FaSearch className='nav-icon' />Search Thesis</a></li>
-                        
+                        <li class="nav-item"><Link class="nav-link" to="/user/list">
+                        <FcFolder className='nav-icon' /> List of Thesis  </Link></li>
                     
                     {/* <li class="nav-item"><Link class="nav-link" to="/user/product">
                         <FcFolder className='nav-icon' />Archives</Link></li> */}

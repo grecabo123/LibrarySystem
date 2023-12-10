@@ -14,6 +14,7 @@ use App\Models\BiddingInfo;
 use App\Models\BiddingItem;
 use App\Models\MessageForm;
 use App\Models\PriceUpdate;
+use App\Models\Visits;
 use Illuminate\Http\Request;
 use App\Models\AcitivityLogs;
 use App\Models\ReportMessage;
@@ -41,7 +42,7 @@ class AdminController extends Controller
     public function RegisteredAccount($id){
 
         $data = User::selectRaw('id,name,student_no,email,status,role')
-            ->where('status', 1)
+            ->whereIn('status', [0,1])
                 ->where('role',$id)
                     ->get();
 
@@ -289,6 +290,7 @@ class AdminController extends Controller
     public function posted(Request $request){
 
         $validate = Validator::make($request->all(), [
+            "title"                 =>          "required",
             "description"           =>          "required",
         ]);
 
@@ -300,14 +302,14 @@ class AdminController extends Controller
         else{
 
             $post = new Announcement;
-
+            $post->title = $request->title;
             $post->date_annoucment = $request->date_post;
             $post->description = $request->description;
             $post->save();
 
             $logs = new AcitivityLogs;
 
-            $logs->activity = "Posted an Announcement";
+            $logs->activity = "Craete an Announcement";
             $logs->user_logs_fk = $request->user_fk;
 
             $logs->save();
@@ -319,12 +321,9 @@ class AdminController extends Controller
         }
     }
     
-
     public function AnnoucmentData(){
 
         $data = Announcement::orderBy('created_at','DESC')->get();
-
-
         return response()->json([
             "status"        =>      200,
             "data"          =>      $data,
@@ -346,4 +345,98 @@ class AdminController extends Controller
             "data"              =>          $visits,
         ]);
     }
+
+
+    public function TransferCourse(Request $request){
+        $course = Courses::find($request->id);
+
+        if($course){
+            $course->department_fk = $request->department_id;
+            $course->update();
+
+            return response()->json([
+                "status"            =>          200,
+                "data"              =>          "Transffered",
+            ]);
+        }
+        else{
+            return response()->json([
+                "status"            =>          505,
+                "error"             =>          "Data Not Found"
+            ]);
+        }
+    }
+
+    public function CourseDetails($id){
+        $course = Courses::find($id);
+
+        if($course){
+            return response()->json([
+                "status"            =>          200,
+                "course"            =>          $course,
+            ]);
+        }
+    }
+
+    public function UpdateCourseName (Request $request){
+        $course_update = Courses::find($request->id);
+        if($course_update){
+
+            $course_update->CourseName = $request->CourseName;
+            $course_update->update();
+
+            return response()->json([
+                "status"            =>          200,
+            ]);
+        }
+    }
+
+    public function DepartmentFilterThesis($id){
+
+        $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
+            ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits')
+                ->leftJoin('tbl_visit', 'tbl_visit.document_code', '=', 'tbl_document.uniquecode')
+                    ->where('tbl_documentinfo.department_fk',$id)
+                        ->groupBy('tbl_document.title', 'tbl_document.uniquecode')
+                            ->get();
+        $department = Department::find($id);    
+
+        return response()->json([
+            "status"            =>          200,
+            "data"              =>          $data,
+            "department"        =>          $department,
+        ]);
+    }
+
+    public function AccountDeactivate($id, Request $request){
+        
+        $user_update = User::find($id);
+
+        if($user_update) {
+            $user_update->status = 0;
+            $user_update->update();
+
+            return response()->json([
+                "status"                =>              200,
+                "succss"               =>              "Change Status",
+            ]);
+        }
+    }
+
+    public function Accountactivate($id, Request $request){
+        
+        $user_update = User::find($id);
+
+        if($user_update) {
+            $user_update->status = 1;
+            $user_update->update();
+
+            return response()->json([
+                "status"                =>              200,
+                "succss"               =>              "Change Status",
+            ]);
+        }
+    }
+
+    
 }

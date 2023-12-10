@@ -60,22 +60,17 @@ function Admin() {
                     <div class="collapse" id='collapseOne'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/accounts"> <span className='nav-icon'></span> Registered Account</Link></li>
                     </div>
-
-
-
                     {/* Chart */}
                     <li class="nav-title">Chart</li>
-                    <li class="nav-item"><Link class="nav-link" to="/admin/issue">
+                    <li class="nav-item"><Link class="nav-link" to="/admin/reports">
                         <FaChartLine className='nav-icon' /> Reports</Link></li>
-
-
                     {/* History */}
                     <li class="nav-title">Manage</li>
                     <li class="nav-group"><a class="nav-link nav-group-toggle" data-bs-toggle="collapse" data-bs-target="#price">
                         <FaFile className='nav-icon' />Thesis Files</a>
                     </li>
                     <div class="collapse" id='price'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/upload"> <span  className='nav-icon'></span> Upload Thesis Files</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/upload"> <span className='nav-icon'></span> Upload Thesis Files</Link></li>
                         <li class="nav-item"><Link class="nav-link" to="/admin/list" ><span className='nav-icon'></span>List of Thesis</Link></li>
                     </div>
 
@@ -83,7 +78,7 @@ function Admin() {
                         <FaBuilding className='nav-icon' />Add</a>
                     </li>
                     <div class="collapse" id='department'>
-                        <li class="nav-item"><Link class="nav-link" to="/admin/department"> <span  className='nav-icon'></span>Department</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/department"> <span className='nav-icon'></span>Department</Link></li>
                         <li class="nav-item"><Link class="nav-link" to="/admin/schoolyear" ><span className='nav-icon'></span>School Year</Link></li>
                     </div>
 
@@ -93,8 +88,6 @@ function Admin() {
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">
                         <FaDesktop className='nav-icon' /> Activity Logs</Link></li>
-
-                
                 </ul>
             </div>
 
@@ -102,15 +95,12 @@ function Admin() {
             <Sidebar visible={visible} onHide={() => setVisible(false)}>
                 Content
             </Sidebar>
-
             {/* End of sidebar */}
 
             <div class="wrapper d-flex flex-column min-vh-100">
                 <header class="header  mb-4">
                     <div class="container-fluid">
                         <FaBars className='text-white d-md-none' style={{ cursor: "pointer" }} size={25} onClick={(e) => setVisible(true)} />
-
-
                         <ul class="header-nav ms-auto">
                         </ul>
                         <ul class="header-nav ms-3">

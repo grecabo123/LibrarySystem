@@ -10,20 +10,20 @@ function Landing() {
 
 
 
-    const items = [
-        {
-            label: <><span>Search Titles</span></>,
-            icon: PrimeIcons.BOOK,
-            url: "/search/product",
-        },
-    ];
+    // const items = [
+    //     {
+    //         label: <><span>Search Titles</span></>,
+    //         icon: PrimeIcons.BOOK,
+    //         url: "/search/product",
+    //     },
+    // ];
 
 
 
     return (
         <>
 
-            <Menubar model={items} className='w-100' start={<a href='/'><img src={img1} width={50}></img></a>} end={<>
+            <Menubar  className='w-100' start={<a href='/'><img src={img1} width={50}></img></a>} end={<>
                 <div className="d-flex justify-content-end">
                     <div className="p-ripple">
                         <Ripple />

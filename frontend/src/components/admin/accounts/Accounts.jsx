@@ -25,13 +25,13 @@ function Accounts() {
         <div className=' p-3'>
             <Card title="Accounts" >
                 <TabView activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}>
-                    <TabPanel header="Admin">
+                    <TabPanel header="Admin Account">
                         <AdminAccounts />
                     </TabPanel>
-                    <TabPanel header="Students">
+                    <TabPanel header="Student Account">
                         <Students />
                     </TabPanel>
-                    <TabPanel header="Non Student">
+                    <TabPanel header="Guest Account">
                         <NonStudent />
                     </TabPanel>
                 </TabView>

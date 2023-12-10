@@ -41,7 +41,7 @@ class DepartmentController extends Controller
             $department->save();
 
             $logs = new AcitivityLogs;
-            $logs->activity = $request->department;
+            $logs->activity = "Create New Department"." ".$request->department;
             $logs->user_logs_fk = $request->user_id;
             $logs->save();
             

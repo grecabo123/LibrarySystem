@@ -13,8 +13,17 @@ use App\Http\Controllers\API\SearchingController;
 use App\Http\Controllers\API\DepartmentController;
 
 Route::post('Login',[AuthControll::class, 'Login']);
+
+// Student Account
 Route::post('CreateAccount', [AuthControll::class, 'CreateAccount']);
+
+// Non Student
+Route::post('CreateNonStudent', [AuthControll::class, 'CreateNonStudent']);
+
+
+
 Route::get('BarangayData', [BarangayController::class, 'ListBarangay']);
+
 
 Route::post('SearchEngine',[SearchingController::class, 'SearchEngine']);
 Route::post('SearchEngineResult/{id}',[SearchingController::class, 'SearchEngineResult']);
@@ -41,6 +50,9 @@ Route::get('DepartmentDataFetch',[DepartmentController::class, 'DepartmentData']
 Route::get('CourseDataFetch',[DepartmentController::class, 'CourseDataFetch']);
 Route::post('AddDepartment',[DepartmentController::class, 'AddDepartment']);
 
+Route::get('ThesisData', [AdminController::class, 'ThesisData']);
+Route::get('CourseThesis/{id}',[AdminController::class,'CourseThesis']);
+Route::get('CourseThesisData/{id}',[AdminController::class,'CourseThesisData']);
 
 // Admin router
 Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
@@ -57,13 +69,17 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::post('AddCourse', [AdminController::class, 'AddCourse']);
     Route::post('AddSchoolYear', [AdminController::class, 'AddSchoolYear']);
     Route::get('SchoolYearData', [AdminController::class, 'SchoolYearData']);
-    Route::get('ThesisData', [AdminController::class, 'ThesisData']);
     Route::post('UploadDocument',[AdminController::class,'UploadDocument']);
     Route::get('AllData',[AdminController::class,'AllData']);
-    Route::get('CourseThesis/{id}',[AdminController::class,'CourseThesis']);
-    Route::get('CourseThesisData/{id}',[AdminController::class,'CourseThesisData']);
     Route::post('posted',[AdminController::class,'posted']);
     Route::get('MostVvisited',[AdminController::class, 'MostVvisited']);
+    Route::put('TransferCourse',[AdminController::class, 'TransferCourse']);
+    Route::put('UpdateCourseName',[AdminController::class, 'UpdateCourseName']);
+    Route::get('CourseDetails/{id}',[AdminController::class, 'CourseDetails']);
+    Route::get('DepartmentFilterThesis/{id}',[AdminController::class, 'DepartmentFilterThesis']);
+    Route::put('AccountDeactivate/{id}',[AdminController::class, 'AccountDeactivate']);
+    Route::put('Accountactivate/{id}',[AdminController::class, 'Accountactivate']);
+    
 });
 
 

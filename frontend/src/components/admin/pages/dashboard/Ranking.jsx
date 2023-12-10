@@ -22,14 +22,13 @@ function Ranking() {
         })
     },[]);
 
-    console.log(ListData);
 
 
     return (
         <div className='mt-4'>
             <div className="mt-4">
                 <center>
-                    <h4 className='text-secondary'>List of 5 Most Visited Page</h4>
+                    <h4 className='text-secondary'>List of 5 Most Visited Thesis</h4>
                 </center>
             </div>
             <ul className="list-group border-0">

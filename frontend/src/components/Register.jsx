@@ -140,7 +140,7 @@ function Register() {
                             <TabPanel header="Student">
                                 <Student />
                             </TabPanel>
-                            <TabPanel header="Non Student">
+                            <TabPanel header="Guest">
                                 <NonStudent />
                             </TabPanel>
                           

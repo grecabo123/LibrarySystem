@@ -41,11 +41,6 @@ function ListDocument() {
             selector: row => row.total,
             sortable: true,
         },
-        // {
-        //     name: "Actions",
-        //     selector: row => <Link to={`/admin/list/course=${row.id}`}><Button className='p-button-sm p-button-info' label='Open' /></Link>,
-        //     sortable: true,
-        // },
     ]
 
     return (

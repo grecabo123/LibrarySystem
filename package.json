@@ -17,6 +17,7 @@
         "resolve-url-loader": "^3.1.0"
     },
     "dependencies": {
+        "@react-pdf/renderer": "^3.1.14",
         "moment": "^2.29.4"
     }
 }

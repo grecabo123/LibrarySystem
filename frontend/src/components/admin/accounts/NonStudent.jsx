@@ -3,7 +3,8 @@ import { PrimeIcons } from 'primereact/api';
 import { Button } from 'primereact/button';
 import { Skeleton } from 'primereact/skeleton';
 import { Tag } from 'primereact/tag';
-import React, { useEffect, useState } from 'react'
+import { Toast } from 'primereact/toast';
+import React, { useEffect, useRef, useState } from 'react'
 import DataTable,{createTheme} from 'react-data-table-component'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -12,8 +13,13 @@ function NonStudent() {
 
     const [RegisteredData, setRegister] = useState([]);
     const [loading, setloading] = useState(true);
+    const toast = useRef();
 
     useEffect(() => {
+        GuestAccount();
+    }, []);
+
+    const GuestAccount = () => {
         const id = 3;
         axios.get(`/api/registered/${id}`).then(res => {
             if (res.data.status === 200) {
@@ -26,12 +32,38 @@ function NonStudent() {
 
             }
         })
-    }, []);
+    }
+
+    const Deactivate = (e) => {
+        axios.put(`/api/AccountDeactivate/${e}`).then(res => {
+            if(res.data.status === 200) {
+                toast.current.show({severity: "success", summary: res.data.succss, details: "Account Update"});
+                GuestAccount();
+            }
+        }).catch((error) => {
+            if(error.response.status === 500) {
+                swal("Warning",error.response.statusText,'warning');
+            }
+        })
+    }
+
+    const Activate = (e) => {
+        axios.put(`/api/Accountactivate/${e}`).then(res => {
+            if(res.data.status === 200) {
+                toast.current.show({severity: "success", summary: res.data.succss, details: "Account Update"});
+                GuestAccount();
+            }
+        }).catch((error) => {
+            if(error.response.status === 500) {
+                swal("Warning",error.response.statusText,'warning');
+            }
+        })
+    }
 
     const columns = [
         {
             name: "Name",
-            selector: row => row.name_user,
+            selector: row => row.name,
             sortable: true,
         },
         {
@@ -40,15 +72,17 @@ function NonStudent() {
             sortable: true,
         },
         {
-            name: "Role",
-            selector: row => row.role === 1 ? <Tag severity={'info'} value="Admin" /> : <Tag severity={'success'} value='User type' />,
+            name: "Status",
+            selector: row => row.status === 1 ? <Tag severity={'success'} value="Active" /> : <Tag severity={'danger'} value='Not Active' />,
         },
         {
             name: "Actions",
             cell: row => <div>
 
                 <Link className="me-2" to={`/admin/account/refid=${row.id}`}><Button className='p-button-sm p-button-info' icon={PrimeIcons.USER} label='Details' /> </Link>
-                <Link className="me-2" to={`/admin/account/id=${row.id}`}> <Button className='p-button-sm p-button-danger' icon={PrimeIcons.TRASH} label='Details' /> </Link>
+                {
+                    row.status === 1 ? <Button className='p-button-sm p-button-danger' value={row.id} icon={PrimeIcons.POWER_OFF} label='Deacivate' onClick={(e) => Deactivate(e.target.value)} /> : <Button className='p-button-sm p-button-primary' value={row.id} icon={PrimeIcons.POWER_OFF} label='Activate' onClick={(e) => Activate(e.target.value)} />
+                }
             </div>,
             sortable: true,
         },
@@ -57,6 +91,7 @@ function NonStudent() {
 
     return (
         <div>
+            <Toast ref={toast} />
              <DataTable
                     title=" "
                     columns={columns}

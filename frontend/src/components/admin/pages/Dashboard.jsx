@@ -6,7 +6,7 @@ import BarChart from '../analytics/BarChartdata';
 import BarChartdata from '../analytics/BarChartdata';
 import TableRecords from '../analytics/TableRecords';
 import PieChartdata from '../analytics/PieChartdata';
-import { FcApproval, FcApprove, FcContacts, FcDisapprove } from 'react-icons/fc';
+import { FcApproval, FcApprove, FcCalendar, FcContacts, FcDisapprove } from 'react-icons/fc';
 import { TieredMenu } from 'primereact/tieredmenu';
 import { Badge } from 'primereact/badge';
 import { Knob } from 'primereact/knob';
@@ -63,7 +63,7 @@ function Dashboard() {
                 loading ? <Skeleton />
                     :
                     <div className="row">
-                        <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <div className="col-lg-6 col-md-6 col-sm-12 mb-4">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -74,51 +74,23 @@ function Dashboard() {
                                 }}
                             >
                                 <Card title="All Accounts" className='zoom' >
-                                    <div className="d-flex justify-content-between">
+                                    <div className="d-flex justify-content-between mb-3">
                                         <span>Total </span>
                                         <Badge severity={'info'} value={CountData.allcount} />
+                                        
                                     </div>
-                                </Card>
-                            </motion.div>
-                        </div>
-                        <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.5,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                                <Card title="Student's Account" className='zoom' >
-                                    <div className="d-flex justify-content-between">
-                                        <span>Total </span>
+                                    <div className="d-flex justify-content-between mb-2">
+                                        <span>Students </span>
                                         <Badge severity={'success'} value={CountData.students} />
                                     </div>
-                                </Card>
-                            </motion.div>
-
-                        </div>
-                        <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: 0.6,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }}
-                            >
-                                <Card title={<><span><small>Non Student Account</small></span></>} className='zoom' >
-                                    <div className="d-flex justify-content-between">
-                                        <span>Total </span>
+                                    <div className="d-flex justify-content-between mb-2">
+                                        <span>Non Student </span>
                                         <Badge value={CountData.non_students} />
                                     </div>
                                 </Card>
                             </motion.div>
                         </div>
-                        <div className="col-lg-3 col-md-6 col-sm-12 mb-4">
+                        <div className="col-lg-6 col-md-6 col-sm-12 mb-4">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -151,6 +123,7 @@ function Dashboard() {
                                 {/* <Knob value={value} size={200} valueColor={"SlateGray"} rangeColor={"MediumTurquoise"} onChange={(e) => setValue(value)} /> */}
                             </div>
                             <div className="col-lg-12 col-md-6 col-sm-12 mb-2">
+                                <center><h4 className='text-secondary'>Annoucement  <FcCalendar/> </h4></center>
                                 <AllUsers />
                             </div>
                         </div>

@@ -16,6 +16,7 @@ class Author extends Model
         "author_user_fk",
     ];
 
+    
     public function useraccount(){
         return $this->belongsTo(User::class, 'author_user_fk','id');
     }

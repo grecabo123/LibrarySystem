@@ -281,7 +281,11 @@ function Upload() {
                             {
                                 NameTags.map((NameChip, index) => {
                                     return (
-                                        <Badge className='me-3' key={index} value={NameChip} severity="info" onClick={() => RemoveTagName(NameChip)}>{NameChip}</Badge>
+                                        <>
+                                        <Badge  className='me-3 ' key={index} value={NameChip} severity="info">{NameChip}</Badge>
+                                        <button className='me-5 border-0' onClick={() => RemoveTagName(NameChip)}>X</button>
+                                        </>
+                                        // <Badge className='me-3' key={index} value={NameChip} severity="info" onClick={() => RemoveTagName(NameChip)}>{NameChip}</Badge>
                                     )
                                 })
                             }
@@ -333,8 +337,7 @@ function Upload() {
                                 Tags.map((tagChip, index) => {
                                     return (
 
-                                        <span key={index} className='me-3' onClick={() => RemoveTag(tagChip)}><Badge key={index} value={tagChip}></Badge></span>
-
+                                        <span key={index} className='me-3' onClick={() => RemoveTag(tagChip)}><Badge key={index} value={tagChip}></Badge> X</span>
                                     )
                                 })
                             }
