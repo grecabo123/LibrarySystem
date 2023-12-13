@@ -12,6 +12,8 @@ import Results from './components/ProductsSearch/Results';
 import DetailsItem from './components/Bidding/Details/DetailsItem';
 import PrimeReact from 'primereact/api';
 import Frontpage from './components/frontpage/Frontpage';
+import SearchResult from './components/SearchResult';
+import OpenDocument from './components/OpenDocument';
 
 // default laravel url
 axios.defaults.baseURL = "http://127.0.0.1:8000/";
@@ -44,7 +46,9 @@ function App() {
                     <Route path="/" name="landing" exact={true} component={Frontpage} />
                     <Route path="/register" name="landing" exact={true} component={Register} />
                     <Route path='/login' name='login' exact={true} component={Login} />
-                    <Route path='/search/product' name="Search" exact={true} component={SearchProduct} />
+                    <Route path='/search/thesis' name="Search" exact={true} component={SearchProduct} />
+                    <Route path='/search=:id' name="Search" exact={true} component={SearchResult} />
+                    <Route path='/document/refid=:id' name="Search" exact={true} component={OpenDocument} />
                     <Route path='/search/results=:id' name="Search" exact={true} component={Results} />
                     <Route path="/details/product/refid=:id" name="Details" exact={true} component={DetailsItem} />
                     {/* Private Routes */}

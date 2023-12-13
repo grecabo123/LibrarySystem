@@ -63,7 +63,7 @@ function Dashboard() {
                 loading ? <Skeleton />
                     :
                     <div className="row">
-                        <div className="col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div className="col-lg-4 col-md-6 col-sm-12 mb-4">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -79,24 +79,36 @@ function Dashboard() {
                                         <Badge severity={'info'} value={CountData.allcount} />
                                         
                                     </div>
-                                    <div className="d-flex justify-content-between mb-2">
-                                        <span>Students </span>
-                                        <Badge severity={'success'} value={CountData.students} />
-                                    </div>
-                                    <div className="d-flex justify-content-between mb-2">
-                                        <span>Non Student </span>
-                                        <Badge value={CountData.non_students} />
-                                    </div>
+                                 
                                 </Card>
                             </motion.div>
                         </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <div className="col-lg-4 col-md-6 col-sm-12 mb-4">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.5 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{
                                     duration: 0.6,
-                                    delay: 0.7,
+                                    delay: 0.6,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }}
+                            >
+                                <Card title="All Accounts" className='zoom' >
+                                <div className="d-flex justify-content-between mb-2">
+                                        <span>Students </span>
+                                        <Badge severity={'success'} value={CountData.students} />
+                                    </div>
+                                 
+                                </Card>
+                            </motion.div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{
+                                    duration: 0.8,
+                                    delay: 0.8,
                                     ease: [0, 0.71, 0.2, 1.01]
                                 }}
                             >

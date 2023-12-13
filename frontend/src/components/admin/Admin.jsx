@@ -105,7 +105,7 @@ function Admin() {
                         </ul>
                         <ul class="header-nav ms-3">
                             <Menu model={items} id="popup_menu" popup ref={menu} />
-                            <Avatar className='text-white fw-bold' onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup shape='square' label='A' size='large' />
+                            <Avatar className='text-dark fw-bold' onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup shape='square' label='A' size='large' />
                         </ul>
                     </div>
 

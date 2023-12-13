@@ -13,7 +13,7 @@ import { Skeleton } from "primereact/skeleton";
 function Student() {
     const UsercaptchaRef = useRef(null);
     const [date, setDate] = useState(null);
-    const [btndis, setbtndis] = useState(false);
+    const [btndis, setbtndis] = useState(true);
     const [userdata, setdata] = useState({
         fname: "",
         mname: "",
@@ -87,6 +87,12 @@ function Student() {
 
         )
     });
+
+    const CheckEmail = (e) => {
+         if(e.target.value.endsWith("@nmsc.edu.ph")){
+            setbtndis(false)
+         }
+    }
 
     const handleinput = (e) => {
         e.persist();
@@ -194,7 +200,7 @@ function Student() {
                             <label htmlFor="first" className="form-label">
                                 <span className='text-danger text-error'>*</span>Email Address
                             </label>
-                            <InputText className='w-100 p-inputtext-sm' placeholder="Email Address"  onChange={handleinput} keyfilter={'email'} name='email' />
+                            <InputText className='w-100 p-inputtext-sm' placeholder="Email Address"  onChange={handleinput} onKeyUp={CheckEmail} keyfilter={'email'} name='email' />
                             <span className='text-danger text-error'>{userdata.error.email}</span>
                         </div>
                     </div>

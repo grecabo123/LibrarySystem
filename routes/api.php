@@ -54,6 +54,7 @@ Route::get('ThesisData', [AdminController::class, 'ThesisData']);
 Route::get('CourseThesis/{id}',[AdminController::class,'CourseThesis']);
 Route::get('CourseThesisData/{id}',[AdminController::class,'CourseThesisData']);
 
+Route::post('AddArchives', [UserController::class, 'AddArchives']);
 // Admin router
 Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::get('/checking',function () {
@@ -94,7 +95,6 @@ Route::middleware(['auth:sanctum', 'isAPIUser'])->group(function () {
     Route::post('AddProducts', [UserController::class,  'AddProducts']);
     Route::get('ProductDetails', [UserController::class,  'ProductDetails']);
     Route::delete('RemoveProducts/{id}', [UserController::class,  'RemoveProducts']);
-    Route::post('AddArchives', [UserController::class, 'AddArchives']);
     Route::get('ProductInformation/{id}', [UserController::class, 'ProductInformation']);
     Route::put('UpdateProductData/{$id}',[UserController::class, 'UpdateProductData']);
     Route::get('ProductDetailsInformation/{id}', [UserController::class,  'ProductDetailsInformation']);

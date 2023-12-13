@@ -48,7 +48,7 @@ class SearchingController extends Controller
         if($output->count() > 0){
             $logs = new AcitivityLogs;
             $logs->activity = "Search"." ".$request->search." "."Using SearchEngine";
-            $logs->user_logs_fk = $request->user_id;
+            $logs->user_logs_fk = $request->user_id != "" ? $request->user_id : null;
             $logs->save();
             return response()->json([
                 "status"            =>          200,

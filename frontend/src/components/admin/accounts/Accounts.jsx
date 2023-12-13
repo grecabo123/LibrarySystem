@@ -31,9 +31,9 @@ function Accounts() {
                     <TabPanel header="Student Account">
                         <Students />
                     </TabPanel>
-                    <TabPanel header="Guest Account">
+                    {/* <TabPanel header="Guest Account">
                         <NonStudent />
-                    </TabPanel>
+                    </TabPanel> */}
                 </TabView>
 
             </Card>

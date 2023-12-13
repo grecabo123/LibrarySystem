@@ -140,9 +140,9 @@ function Register() {
                             <TabPanel header="Student">
                                 <Student />
                             </TabPanel>
-                            <TabPanel header="Guest">
+                            {/* <TabPanel header="Guest">
                                 <NonStudent />
-                            </TabPanel>
+                            </TabPanel> */}
                           
                         </TabView>
 {/* 
