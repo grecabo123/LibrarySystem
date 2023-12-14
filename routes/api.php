@@ -13,6 +13,7 @@ use App\Http\Controllers\API\SearchingController;
 use App\Http\Controllers\API\DepartmentController;
 
 Route::post('Login',[AuthControll::class, 'Login']);
+Route::post('LoginWithGoogle',[AuthControll::class, 'LoginWithGoogle']);
 
 // Student Account
 Route::post('CreateAccount', [AuthControll::class, 'CreateAccount']);
@@ -63,6 +64,7 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
             "role"          =>      auth()->user()->role,
         ],200);
     });
+    Route::post('AddEmail',[AdminController::class, 'AddEmail']);
     Route::get('registered/{id}',[AdminController::class, 'RegisteredAccount']);
     Route::get('nonregistered', [AdminController::class, 'NonRegistered']);
     Route::get('AccountInformation/{id}', [AdminController::class, 'AccountInformation']);

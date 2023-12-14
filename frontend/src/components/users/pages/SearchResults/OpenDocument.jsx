@@ -16,8 +16,11 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Document, Page, pdfjs } from 'react-pdf';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function OpenDocument(props) {
+
+    pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
     const keyword = localStorage.getItem("keyword")
     const [visits, setvisits] = useState([]);
@@ -30,7 +33,7 @@ function OpenDocument(props) {
     });
     const toast = useRef();
     const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
-   
+
     var nf = new Intl.NumberFormat();
 
     const [loading, setloading] = useState(true);
@@ -67,6 +70,13 @@ function OpenDocument(props) {
 
     }
 
+    useEffect(() => {
+        right_click();
+    },[]);
+
+    const right_click = (evt) => {
+        
+    }
 
     useEffect(() => {
 
@@ -77,6 +87,8 @@ function OpenDocument(props) {
             document_code: tmpid,
             user_fk: localStorage.getItem("auth_id"),
         }
+        
+
         axios.post(`/api/DocumentData`, data).then(res => {
             if (res.data.status === 200) {
                 setResearch({
@@ -100,13 +112,7 @@ function OpenDocument(props) {
         }
     };
 
-    const handleLoadSuccess = ({ numPages }) => {
-        console.log(`Document loaded with ${numPages} pages`);
-    };
-
-    const handleError = (error) => {
-        console.error('Error loading PDF:', error);
-    };
+  
 
     if (loading) {
         return (
@@ -163,6 +169,9 @@ function OpenDocument(props) {
 
     const header = <Menubar model={item} />
 
+
+    
+
     return (
         <div>
             <Toast ref={toast} />
@@ -173,26 +182,21 @@ function OpenDocument(props) {
                 </Divider>
                 <div className='mb-3'>
                     <ul>
-                        <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
-                            <ul className='mt-2'>
-                                <embed onContextMenu={handleContextMenu} 
-                                src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`} 
-                                style={{ userSelect: 'none' }}
-                                height='700' 
-                                width='100%'
-                                controlsList="nodownload"
-                                ></embed>
-                                {/* <div onContextMenu={handleContextMenu}>
-                                    <Document
-                                        file={`http://127.0.0.1:8000/${ResearchData.details.file}`}
-                                        onLoadSuccess={handleLoadSuccess}
-                                        onLoadError={handleError}
-                                    >
-                                        <Page pageNumber={1} />
-                                    </Document>
-                                </div> */}
-                            </ul>
-                        </span></li>
+                        <li className='text-color-code mb-3'>
+                            <span><b>Title</b>:  <a href={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`} target='_blank'><span className="text-details">{ResearchData.details.title}</span></a>
+                                <ul className='mt-2'>
+                                    <embed
+                                        src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
+                                        style={{ userSelect: 'none !important;' }}
+                                        id='norightclick'
+                                        type='application/pdf'
+                                        height='700'
+                                        width='100%'
+                                        controlsList="nodownload"
+                                        onContextMenu={(e) => e.preventDefault()}
+                                    />
+                                </ul>
+                            </span></li>
                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{ResearchData.details.keywords}</span></span></li>
                         <li className='text-color-code mb-3'><span><b>Abstract</b>:  <p className='text-details'><ReactReadMoreReadLess
                             charLimit={200} readMoreText={"Read more ▼"}

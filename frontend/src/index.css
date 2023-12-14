@@ -1,6 +1,7 @@
-body{
+body {
     background-color: #e6e6e6b6 !important;
 }
+
 footer {
     background-color: #2E3440 !important;
 }
@@ -213,15 +214,42 @@ a {
     color: #fff;
 }
 
+
+.pdf-viewer {
+    user-select: none !important;
+    /* Remove this line or set it to 'auto' to enable text selection */
+}
+
+.embed-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    /* Just for demonstration, remove this part */
+    opacity: 0.25;
+    background-color: red;
+}
+iframe {  
+    pointer-events: none;  
+  }
+
+.wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
 .pagination .active {
     background-color: #3e8144;
     /* color: white; */
 }
-.cofJRH{
+
+.cofJRH {
     color: #1f2027 !important;
-    fill:  #1f2027 !important;
+    fill: #1f2027 !important;
 }
 
 .react-pdf__Page__textContent {
     user-select: none;
-  }
+}

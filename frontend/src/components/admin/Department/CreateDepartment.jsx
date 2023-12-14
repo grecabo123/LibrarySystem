@@ -86,7 +86,7 @@ function CreateDepartment() {
 
     const DisplayData = (e,department) => {
         setvisibleCourse(true);
-        localStorage.setItem('department_id',e);
+        localStorage.setItem('department_id',e.currentTarget.getAttribute('data-department-id'));
         localStorage.setItem('department_name',department);
     }
     const onHideCourse = () =>{
@@ -108,7 +108,7 @@ function CreateDepartment() {
         },
         {
             name: "Action",
-            selector: row => <Button className='p-button-sm p-button-info' data-department_name={row.department} value={row.id} onClick={(e) => DisplayData(e.target.value, row.department)} label='Courses'  />,
+            selector: row => <Button className='p-button-sm p-button-info' data-department_name={row.department} data-department-id={row.id} onClick={(e) => DisplayData(e,row.department)} label='Courses'  />,
             sortable: true,
         },
 

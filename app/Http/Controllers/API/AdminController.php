@@ -25,6 +25,36 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
 
+    public function AddEmail (Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            "email"             =>          "required|email|unique:users,email",
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                "error"         =>          $validator->messages(),
+            ]);
+        }
+        else{
+
+            $user = new User;
+
+            $user->email = $request->email;
+            $user->role = $request->role >=2 ? 2 : 1;
+            $user->status = 1;
+
+            $user->save();
+
+            return response()->json([
+                "status"            =>          200,
+                "success"           =>          "Added Email",
+            ]);
+
+
+        }
+    }
+
     public function AllData(){
         $allaccounts = User::all();
         $students = User::where('role',2)->get();
@@ -66,12 +96,10 @@ class AdminController extends Controller
 
     public function AccountInformation($id){
 
-        $data = DB::table('users')
-            ->join('tbl_contact','tbl_contact.contact_user_fk','=','users.id')
-                ->join('tbl_barangay_coordinates','tbl_barangay_coordinates.id','=','users.user_brgy_fk')
-                    ->selectRaw('users.name_user,users.email,users.birthdate,users.files,tbl_contact.contact_number,tbl_contact.home_address,tbl_contact.zipcode,tbl_barangay_coordinates.brgy_name')
-                        ->where('users.id',$id)
-                            ->first();
+       $data = User::join('tbl_department','tbl_department.id','=','users.department_fk')
+        ->join('tbl_course','tbl_course.id','=','users.course_fk')
+            ->where('users.id',$id)
+                ->first();
 
         if($data){
             return response()->json([
@@ -394,11 +422,15 @@ class AdminController extends Controller
     public function DepartmentFilterThesis($id){
 
         $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
-            ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits')
-                ->leftJoin('tbl_visit', 'tbl_visit.document_code', '=', 'tbl_document.uniquecode')
-                    ->where('tbl_documentinfo.department_fk',$id)
-                        ->groupBy('tbl_document.title', 'tbl_document.uniquecode')
-                            ->get();
+        ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
+        ->leftJoin('tbl_visit', function($join) {
+            $join->on('tbl_visit.document_code', '=', 'tbl_document.uniquecode')
+                 ->where('tbl_visit.document_code', '=', 'tbl_document.uniquecode');
+        })
+        ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department')
+        ->where('tbl_documentinfo.department_fk', $id)
+        ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department')
+        ->get();
         $department = Department::find($id);    
 
         return response()->json([

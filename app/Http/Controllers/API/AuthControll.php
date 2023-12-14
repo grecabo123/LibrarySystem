@@ -165,4 +165,39 @@ class AuthControll extends Controller
             }
         }
     }
+
+    public function LoginWithGoogle(Request $request){
+        
+        $user = User::where('email',$request->email)->first();
+
+        if($user) {
+            if($user->status == 1){
+                // Admin
+                if($user->role == 1){
+                    $token = $user->createToken($user->email.'_Admin',['server:admin'])->plainTextToken;
+                }
+                else{
+                    // user
+                    $token = $user->createToken($user->email.'_User',['server:user'])->plainTextToken;
+                }
+                return response()->json([
+                    "status"            =>      200,
+                    "role"              =>      $user->role,
+                    "id"                =>      $user->id,
+                    "token"             =>      $token,
+                    "message"           =>      "Logged In Successfuly",
+                ]);
+            }
+            else{
+                // check if the account is not verified
+                return response()->json([
+                    "status"        =>          501,
+                    "message"       =>          "Your Account is not verified",
+                ]);
+            }
+        }
+        else{
+
+        }
+    }
 }

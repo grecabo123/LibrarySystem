@@ -69,6 +69,10 @@ function ReportsThesis() {
 
     const column = [
         {
+            name: "Department",
+            selector: row => row.department,
+        },
+        {
             name: "Thesis Title",
             selector: row => row.title,
         },
@@ -131,6 +135,7 @@ function ReportsThesis() {
                                                 <table className="table table-striped" width="100%">
                                                     <thead>
                                                         <tr>
+                                                        <th scope="col">Department</th>
                                                             <th scope="col">Research Title</th>
                                                             <th scope="col">Total Visits</th>
                                                         </tr>
@@ -141,6 +146,7 @@ function ReportsThesis() {
                                                                 return (
                                                                     <>
                                                                         <tr>
+                                                                            <td>{data.department}</td>
                                                                             <td>{data.title}</td>
                                                                             <td>{data.total_visits}</td>
                                                                         </tr>

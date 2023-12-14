@@ -58,12 +58,12 @@ function Course(props) {
 
     const TransferCourse = (e) => {
         settransferdata(true)
-        setCourseDataId(e.target.value)
+        setCourseDataId(e.currentTarget.getAttribute('data-course-id'))
     }
     const CourseEdit = (e) =>{
         setCourseEdit(true)
         // e.currentTarget.getAttribute('data-department')
-        setFilterCourse(e.target.value);
+        setFilterCourse(e.currentTarget.getAttribute('data-course-id'));
         
     }   
     const onHidesettransferdata = () => {
@@ -87,8 +87,8 @@ function Course(props) {
         {
             name: "Action",
             selector: row => <>
-                <Button className='p-button-sm p-button-info me-2' label='Edit' data-department={row.CourseName} value={row.id} onClick={CourseEdit} />
-                <Button className='p-button-sm p-button-danger' label='Transfer' value={row.id} onClick={TransferCourse} />
+                <Button className='p-button-sm p-button-info me-2' label='Edit' data-department={row.CourseName} data-course-id={row.id} onClick={CourseEdit} />
+                <Button className='p-button-sm p-button-danger' label='Transfer' data-course-id={row.id} onClick={TransferCourse} />
                 {/* {row.status_course === 1 ?  <Button className='p-button-sm p-button-danger' label='Deactivate'/> :  <Button className='p-button-sm p-button-success' label='Active'/>} */}
             </>,
             sortable: true,

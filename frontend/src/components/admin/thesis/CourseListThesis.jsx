@@ -76,7 +76,7 @@ function CourseListThesis(props) {
                                                                 <Badge value={"Research Title Details"} severity="info"></Badge>
                                                                 <div className="mb-3">
                                                                     <ul className='mt-3'>
-                                                                        <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{data.title}</span><ul className='mt-2'></ul></span></li>
+                                                                        <li className='text-color-code mb-3'><span><b>Title</b>:  <a href={`http://127.0.0.1:8000/${data.file}`} target='_blank'><span className="text-details">{data.title}</span></a><ul className='mt-2'></ul></span></li>
                                                                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{data.keywords}</span></span></li>
                                                                         <li className='text-color-code mb-3'><span><b>PDF</b>:   </span></li>
                                                                         <li className='text-color-code mb-3'><span><b>Abstract</b>:  <p className='text-secondary'><ReactReadMoreReadLess

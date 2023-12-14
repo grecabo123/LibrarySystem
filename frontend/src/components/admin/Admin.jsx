@@ -59,6 +59,7 @@ function Admin() {
                     </li>
                     <div class="collapse" id='collapseOne'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/accounts"> <span className='nav-icon'></span> Registered Account</Link></li>
+                        {/* <li class="nav-item"><Link class="nav-link" to="/admin/accounts/add"> <span className='nav-icon'></span>Register Email</Link></li> */}
                     </div>
                     {/* Chart */}
                     <li class="nav-title">Chart</li>
