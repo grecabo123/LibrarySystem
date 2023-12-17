@@ -33,6 +33,10 @@ function CourseListThesis(props) {
         })
     }, []);
 
+    const handleContextMenu = (event) => {
+        event.preventDefault();
+    };
+
     const template = (options) => {
         const toggleIcon = options.collapsed ? 'pi pi-chevron-down' : 'pi pi-chevron-up';
         const className = `${options.className} justify-content-start`;
@@ -75,6 +79,18 @@ function CourseListThesis(props) {
                                                             <div className="col-lg-12 col-md-12 mb-2">
                                                                 <Badge value={"Research Title Details"} severity="info"></Badge>
                                                                 <div className="mb-3">
+                                                                    <ul className='mt-2' onContextMenu={handleContextMenu}>
+                                                                        <embed
+                                                                            src={`http://127.0.0.1:8000/${data.file}#toolbar=0&view=FitH`}
+                                                                            // style={{ userSelect: 'none !important;' }}
+                                                                            id='norightclick'
+                                                                            type='application/pdf'
+                                                                            height='700'
+                                                                            width='100%'
+                                                                            controlsList="nodownload"
+                                                                            onContextMenu={handleContextMenu}
+                                                                        />
+                                                                    </ul>
                                                                     <ul className='mt-3'>
                                                                         <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{data.title}</span><ul className='mt-2'></ul></span></li>
                                                                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{data.keywords}</span></span></li>

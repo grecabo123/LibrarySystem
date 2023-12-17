@@ -12,7 +12,7 @@ function Ranking() {
                 setListData(res.data.data)
             }
             else{
-
+                
             }
         }).catch((error) => {
             if(error.response.status === 500){

@@ -213,7 +213,12 @@ a {
 .pagination .page-num:hover {
     color: #fff;
 }
-
+#norightclick{
+    pointer-events: none !important;
+}
+.disabled {
+    pointer-events: none !important;
+}
 
 .pdf-viewer {
     user-select: none !important;

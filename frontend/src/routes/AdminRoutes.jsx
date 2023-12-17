@@ -11,12 +11,14 @@ import SchoolYear from "../components/admin/schoolyear/SchoolYear";
 import CourseListThesis from "../components/admin/thesis/CourseListThesis";
 import CourseThesis from "../components/admin/thesis/CourseThesis";
 import ListDocument from "../components/admin/thesis/ListDocument";
+import NoAccount from "../components/admin/thesis/NoAccount";
 import Upload from "../components/admin/thesis/Upload";
 
 
 const AdminRoutes = [
     {path: '/admin/dashboard', exact: true, name: "Dashbaord", component: Dashboard},
     {path: '/admin/upload', exact: true, name: "Accounts", component: Upload},
+    {path: '/admin/noaccount', exact: true, name: "Accounts", component: NoAccount},
     {path: '/admin/pending', exact: true, name: "Pending", component: AccountPending},
     {path: '/admin/logs', exact: true, name: "Logs", component: ActivityLogs},
     {path: '/admin/accounts', exact: true, name: "Logs", component: Accounts},

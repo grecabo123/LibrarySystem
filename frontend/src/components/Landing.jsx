@@ -39,6 +39,7 @@ function Landing() {
             ID: response.profileObj.googleId,
         };
 
+
         axios.post(`/api/LoginWithGoogle`, data).then(res => {
             if (res.data.status === 200) {
                 if (res.data.role === 1) {

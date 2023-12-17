@@ -14,6 +14,17 @@ use App\Http\Controllers\API\ActivityLogs;
 
 class SearchingController extends Controller
 {
+
+    public function AllNonUsers(){
+        $users = User::where('role',3)
+                ->get();
+
+            return response()->json([
+                "status"            =>          200,
+                "email"             =>          $users,
+            ]);
+    }
+
     public function AllUsers(){
         $users = User::join('tbl_department','tbl_department.id','users.department_fk')
             ->join('tbl_course','tbl_course.id','=','users.course_fk')

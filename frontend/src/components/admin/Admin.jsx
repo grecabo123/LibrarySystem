@@ -33,8 +33,8 @@ function Admin() {
         });
     }
     let items = [
-        { label: 'Settings', icon: 'pi pi-fw pi-cog' },
-        { label: 'My Account', icon: 'pi pi-fw pi-user' },
+        // { label: 'Settings', icon: 'pi pi-fw pi-cog' },
+        // { label: 'My Account', icon: 'pi pi-fw pi-user' },
         // { label: <span>Sidebar</span>, icon: 'pi pi-fw pi-user' },
         { label: <span className='text-danger fw-bold' onClick={Logout}>Logout</span>, icon: 'pi pi-fw pi-power-off' },
     ];
@@ -72,6 +72,7 @@ function Admin() {
                     </li>
                     <div class="collapse" id='price'>
                         <li class="nav-item"><Link class="nav-link" to="/admin/upload"> <span className='nav-icon'></span> Upload Thesis Files</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/noaccount" ><span className='nav-icon'></span>Upload No Account</Link></li>
                         <li class="nav-item"><Link class="nav-link" to="/admin/list" ><span className='nav-icon'></span>List of Thesis</Link></li>
                     </div>
 

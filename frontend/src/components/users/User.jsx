@@ -31,8 +31,8 @@ function User() {
     }
 
     let items = [
-        { label: 'Settings', icon: 'pi pi-fw pi-cog' },
-        { label: 'My Account', icon: 'pi pi-fw pi-user' },
+        // { label: 'Settings', icon: 'pi pi-fw pi-cog' },
+        // { label: 'My Account', icon: 'pi pi-fw pi-user' },
         // { label: <span>Sidebar</span>, icon: 'pi pi-fw pi-user' },
         // { label: <span className='text-primary fw-bold' onClick={Logout}>Account Rating</span>, icon: 'pi pi-fw pi-power-off' },
         { label: <span className='text-danger fw-bold' onClick={Logout}>Logout</span>, icon: 'pi pi-fw pi-power-off' },

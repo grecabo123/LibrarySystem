@@ -93,7 +93,6 @@ function Upload() {
     const fileHandler = (e) => {
         e.persist();
         setFile({ file: e.target.files[0] });
-
     }
 
     const FormSubmit = (e) => {

@@ -39,7 +39,7 @@ class AdminController extends Controller
         else{
 
             $user = new User;
-
+            
             $user->email = $request->email;
             $user->role = $request->role >=2 ? 2 : 1;
             $user->status = 1;
@@ -423,10 +423,11 @@ class AdminController extends Controller
 
         $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
         ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
-        ->leftJoin('tbl_visit', function($join) {
-            $join->on('tbl_visit.document_code', '=', 'tbl_document.uniquecode')
-                 ->where('tbl_visit.document_code', '=', 'tbl_document.uniquecode');
-        })
+        ->leftjoin('tbl_visit','tbl_visit.document_code','tbl_document.uniquecode')
+        // ->leftJoin('tbl_visit', function($join) {
+        //     $join->on('tbl_visit.document_code', '=', 'tbl_document.uniquecode')
+        //          ->where('tbl_visit.document_code', '=', 'tbl_document.uniquecode');
+        // })
         ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department')
         ->where('tbl_documentinfo.department_fk', $id)
         ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department')
@@ -467,6 +468,105 @@ class AdminController extends Controller
                 "status"                =>              200,
                 "succss"               =>              "Change Status",
             ]);
+        }
+    }
+
+    public function UploadNonAccount (Request $request) {
+
+
+        $validate = Validator::make($request->all(), [
+            "title"               =>          "required",
+            "description"         =>          "required",
+            "year"                =>          "required",
+            "department"          =>          "required",
+            "program"             =>          "required",
+            "names"               =>          "required",
+            "keywords"            =>          "required",
+            "month"               =>          "required",
+            "file"                =>          "required|mimes:pdf",
+        ]);
+        
+
+        if($validate->fails()){
+            return response()->json([
+                    "error"         =>          $validate->messages(),
+            ]);
+        }
+        else{
+
+            $year = SchoolYear::get()->last();
+
+            $document = new Document;
+            $document->title = $request->title;
+            $document->uniquecode = md5($request->title);
+            $document->description = $request->description;
+            $document->year_published = $request->year;
+            $document->keywords = $request->keywords;
+            $document->save();
+            $account_email = User::select('*')->whereIn('name',explode(',',$request->namee))->pluck('id');
+            $pk = $account_email;
+
+            foreach($pk as $key){
+                $data = array(
+                    "document_fk"       =>      $document->id,
+                    "author_user_fk"    =>      $key,
+                );
+                Author::insert($data);
+            }
+            $documentinfo = new DocumentInformation;
+            $documentinfo->adviser =  $request->adviser;
+            $documentinfo->department_fk = $request->department;
+            $documentinfo->course_fk = $request->program;
+            $documentinfo->docu_fk = $document->id;
+            $documentinfo->year_fk = $year->id;
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $extension = $file->getClientOriginalExtension();
+                $filename = $request->input('title').".".$extension;
+                $file->move('Uploads/Files/',$filename);
+                $documentinfo->file = "Uploads/Files/".$filename;
+            }
+            $documentinfo->save();
+
+            $logs = new AcitivityLogs;
+            $logs->activity = "Uploading"." ".$request->title;
+            $logs->user_logs_fk = $request->admin_key;
+            $logs->save();
+
+            return response()->json([
+                "status"            =>          200,
+                "data"              =>          $request->user_name,
+            ]);
+        }
+    }
+
+    public function AddName(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            "first_name"            =>          "required",
+            "last_name"            =>          "required",
+        ]);
+
+        if($validator->fails()) {
+            return response()->json([
+                "error"         =>          $validator->messages(),
+            ]);
+        }
+        else{
+            $user = new User;
+            
+            $user->name = $request->first_name." ".$request->middle_name." ".$request->last_name;
+            $user->first_name = $request->first_name;
+            $user->middle_name = $request->middle_name;
+            $user->last_name = $request->last_name;
+            $user->role = 3;
+            $user->save();
+    
+            return response()->json([
+                "status"            =>          200,
+                "data"              =>          "Added",
+            ]);
+
         }
     }
 

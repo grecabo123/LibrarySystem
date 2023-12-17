@@ -42,6 +42,22 @@ function OpenDocument(props) {
         getData()
     }, [])
 
+    useEffect(() => {
+        const disableRightClick = () => {
+
+            // Get the embed tag
+            // const embedTag = document.getElementById('norightclick');
+            let pdfViewer = document.getElementById('norightclick');
+            if (pdfViewer) {
+                pdfViewer.addEventListener('contextmenu', (ev) => {
+                    console.log("Right click disabled");
+                    ev.preventDefault();
+                }, false);
+            }
+        };
+        disableRightClick();
+    }, []);
+
     const getData = async () => {
         fetch('https://api.ipify.org?format=jsonp?callback=?', {
             method: "GET",
@@ -70,13 +86,6 @@ function OpenDocument(props) {
 
     }
 
-    useEffect(() => {
-        right_click();
-    },[]);
-
-    const right_click = (evt) => {
-        
-    }
 
     useEffect(() => {
 
@@ -87,7 +96,7 @@ function OpenDocument(props) {
             document_code: tmpid,
             user_fk: localStorage.getItem("auth_id"),
         }
-        
+
 
         axios.post(`/api/DocumentData`, data).then(res => {
             if (res.data.status === 200) {
@@ -106,13 +115,11 @@ function OpenDocument(props) {
         })
     }, [])
 
-    const handleContextMenu = (e) => {
-        if (isContextMenuDisabled) {
-            e.preventDefault();
-        }
+    const handleContextMenu = (event) => {
+        event.preventDefault();
     };
 
-  
+
 
     if (loading) {
         return (
@@ -167,10 +174,8 @@ function OpenDocument(props) {
 
     ]
 
+
     const header = <Menubar model={item} />
-
-
-    
 
     return (
         <div>
@@ -183,8 +188,8 @@ function OpenDocument(props) {
                 <div className='mb-3'>
                     <ul>
                         <li className='text-color-code mb-3'>
-                            <span><b>Title</b>:  <a href={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`} target='_blank'><span className="text-details">{ResearchData.details.title}</span></a>
-                                <ul className='mt-2'>
+                            <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
+                                <ul className='mt-2' onContextMenu={handleContextMenu}>
                                     <embed
                                         src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
                                         style={{ userSelect: 'none !important;' }}
@@ -193,7 +198,7 @@ function OpenDocument(props) {
                                         height='700'
                                         width='100%'
                                         controlsList="nodownload"
-                                        onContextMenu={(e) => e.preventDefault()}
+                                        onContextMenu={handleContextMenu}
                                     />
                                 </ul>
                             </span></li>

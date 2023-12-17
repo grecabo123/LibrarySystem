@@ -118,7 +118,7 @@ function Login() {
                                                 Password
                                             </label>
                                             {/* <InputText className='w-100' type='password' onChange={handleinput} name='password' /> */}
-                                            <Password footer={suggestions} toggleMask className='w-100  p-inputtext-sm' value={value} onChange={(e) => setValue(e.target.value)} />
+                                            <Password  className='w-100  p-inputtext-sm'  value={value} onChange={(e) => setValue(e.target.value)} />
                                             <span className='text-danger'>{LoginData.error.password}</span>
                                         </div>
                                         <div className="mt-3">
@@ -127,7 +127,7 @@ function Login() {
                                         <div className="mt-3">
                                             <div className="d-flex justify-content-around">
                                                 <Link to="/register"><small>Create an Account</small></Link>
-                                                <a href=""><small>Forgot password</small></a>
+                                                {/* <a href=""><small>Forgot password</small></a> */}
                                             </div>
                                         </div>
                                     </div>

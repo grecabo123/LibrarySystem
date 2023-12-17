@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 10, 2023 at 01:26 PM
+-- Generation Time: Dec 17, 2023 at 06:28 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.5
 
@@ -111,25 +111,16 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(13, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '7987fd3bb26049b573a68972db83739312f8a050e7b4df43f16f3bb3a2f8e65f', '[\"server:user\"]', '2023-11-19 05:33:25', '2023-11-18 22:14:29', '2023-11-19 05:33:25'),
-(18, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', 'a3f9efdde4b2947ab10b43e669c9929d35b9826e652f4b32b4c141b511f5f20d', '[\"server:user\"]', '2023-11-21 05:54:05', '2023-11-21 04:46:17', '2023-11-21 05:54:05'),
-(19, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '61cd3b8e6460ce2bb704fe94c0360062cc09c083b98176919383302bc5a695b1', '[\"server:user\"]', '2023-11-22 08:09:45', '2023-11-22 05:41:17', '2023-11-22 08:09:45'),
 (24, 'App\\Models\\User', 3, 'dennis.pitogo@nmsc.edu.ph_User', 'bf3dde679dc398619edc582ab96e36e52c96e1ec110ebbd617e0bd91e0ba24a0', '[\"server:user\"]', '2023-12-02 22:47:58', '2023-12-02 10:39:59', '2023-12-02 22:47:58'),
-(26, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '3d0e472f6f755da43173ee126686d2f1d64f8d3aa69ca532c1ba8d550fcdff78', '[\"server:user\"]', '2023-12-04 08:53:59', '2023-12-04 01:31:14', '2023-12-04 08:53:59'),
-(27, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '0a04105d620902ab6a90902924a7c1fd303e247bdb233bd276074de305c648e9', '[\"server:admin\"]', '2023-12-04 11:39:46', '2023-12-04 03:16:38', '2023-12-04 11:39:46'),
-(28, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '4c9b04041910b89372a4d3355f10168bf9af0d04555c7cb25cedb80787b89008', '[\"server:admin\"]', '2023-12-05 10:33:40', '2023-12-04 19:14:51', '2023-12-05 10:33:40'),
-(29, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', 'b8279656710652a08feb797b7260f2dd26d00071d35ae2db06fb0c3a4a0b6303', '[\"server:user\"]', '2023-12-04 22:15:01', '2023-12-04 21:46:14', '2023-12-04 22:15:01'),
-(30, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', 'e6c2413bceb3d4dee9e9233de97aa29019e0833a1bcb83eef0e3fa74d0bf8d31', '[\"server:user\"]', '2023-12-05 10:39:47', '2023-12-05 10:29:44', '2023-12-05 10:39:47'),
-(31, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '2ca383e73b95f9ffd3b5d1ef69ef7c758716623c54cdd9de7fc5963909866800', '[\"server:admin\"]', '2023-12-09 12:29:24', '2023-12-09 00:42:25', '2023-12-09 12:29:24'),
-(32, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '0b1b9d6cfe827c2aaddae4871c5df085548ec4a2dce33ed85d45a8f45a85819e', '[\"server:user\"]', '2023-12-10 05:22:53', '2023-12-09 11:57:46', '2023-12-10 05:22:53'),
-(33, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '0d620c29990d367d15eb2f7cc43935621eca4d9c04a56342e111f5043eaf9bed', '[\"server:admin\"]', '2023-12-10 05:18:53', '2023-12-09 23:07:45', '2023-12-10 05:18:53');
+(52, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '8e44d9d889a87c521afd925ce2790baf65b8ac7957b6eb1743822cd52265dc63', '[\"server:admin\"]', '2023-12-17 10:21:59', '2023-12-17 02:12:44', '2023-12-17 10:21:59'),
+(55, 'App\\Models\\User', 4, 'artamay1@gmail.com_User', 'caeb02a7c84dfaff6e5cd65c45fe9fb8b00bb4cd449ee2a584d3f811829e82f3', '[\"server:user\"]', '2023-12-17 10:26:06', '2023-12-17 10:25:18', '2023-12-17 10:26:06');
 
 -- --------------------------------------------------------
 
@@ -220,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `tbl_count` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_count`
@@ -231,7 +222,10 @@ INSERT INTO `tbl_count` (`id`, `document_access_code`, `visit_count`, `created_a
 (2, '3906a54ce4f98c032d3c36d746230c45', 1, '2023-11-19 01:31:44', '2023-11-19 01:31:44'),
 (3, '3906a54ce4f98c032d3c36d746230c45', 1, '2023-11-19 01:32:37', '2023-11-19 01:32:37'),
 (4, '21b6106cff66445848b215687fe4a9b4', 1, '2023-11-19 05:26:15', '2023-11-19 05:26:15'),
-(5, '561463a3f1f8a25b1ff3d10a237d4f35', 1, '2023-12-02 10:40:21', '2023-12-02 10:40:21');
+(5, '561463a3f1f8a25b1ff3d10a237d4f35', 1, '2023-12-02 10:40:21', '2023-12-02 10:40:21'),
+(6, '3906a54ce4f98c032d3c36d746230c45', 1, '2023-12-11 10:51:02', '2023-12-11 10:51:02'),
+(7, '21b6106cff66445848b215687fe4a9b4', 1, '2023-12-15 10:28:12', '2023-12-15 10:28:12'),
+(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', 1, '2023-12-17 10:21:17', '2023-12-17 10:21:17');
 
 -- --------------------------------------------------------
 
@@ -310,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `tbl_document` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_document`
@@ -319,7 +313,8 @@ CREATE TABLE IF NOT EXISTS `tbl_document` (
 INSERT INTO `tbl_document` (`id`, `title`, `uniquecode`, `description`, `year_published`, `keywords`, `is_active_docu`, `created_at`, `updated_at`) VALUES
 (1, '5G Technology', '561463a3f1f8a25b1ff3d10a237d4f35', '5G is almost around the corner. 5G as a buzzword has been knocking on our doors for some time\r\nnow sans a lot of action on the ground. However, that’s about to change as the Department of\r\nTelecom (DOT) recently approved applications from Telecom Service Providers (TSPs) to conduct\r\ntrials for the use and application of 5G technology. While field trials begin here in India, 5G as\r\na technology has been commercially available in just over 50 countries such as France, South\r\nKorea, the US, etc. for a few years and there are valuable lessons that we can take from launches,\r\nsuccesses, and failures in these markets. Indian operators could learn from their counterparts’\r\nexperience and avoid or rather not repeat the same mistake which their counterparts might have\r\nmade.\r\nLet’s take the case of 5G in France that has been commercially available since November 2020.\r\nA recent study done by us showed that there exists a gap in the quality of experience delivered by\r\nTSPs on 5G. The study was the first of its kind, measured experience on real devices placed in\r\nactual customer locations across nine major French cities. It revealed that while the incumbent\r\noperator provided average speeds of 146 Mbps, the newer operator is left far behind at 28 Mbps,\r\nwhich is a speed one would expect on 4G. These discrepancies between operators could be a result\r\nof different deployment strategies.\r\nSuch discrepancies can be problematic as they finally impact end customers. And in today’s time\r\nwhen the nation is grappling a devastating second wave of the Covid-19 pandemic, providing\r\nseamless digital experience so that digital applications ranging from education and work to\r\nentertainment and dining can continue remotel', '2021', '5G,New Technology,Support', 1, '2023-11-18 23:28:24', '2023-11-18 23:28:24'),
 (2, '5G Technology and Future of Architecture', '3906a54ce4f98c032d3c36d746230c45', 'Architecture is the true expression of people’s lives within a framework of different aspects, including socio-economic, cultural,\r\ntraditional, spiritual, and technological. Throughout history, technology has a significant impact on the development of architectural\r\nforms and structures. Nowadays, the progress of advanced technology began to reach an unprecedented level in the age of the\r\ninternet and its related technologies. Since the appearance of the wireless connectivity, architecture, and urban design began to take\r\nanother dimension in the design process to adopt the new technology and integrated it within its envelope. At the beginning of the\r\n21st century, new approaches began to take place in the city, such as the Internet of Things (IoT) and, more recently, the 4G and\r\n5G wireless technology. However, the effectiveness of these advanced technologies depends on both the wireless signal coverage\r\nand the deployment of their equipment. In this context, these technologies impose a new challenge for architects, urban designers,\r\nand the construction industry to embrace them within the concept of the smart city. This study focuses on the analysis of 5G\r\ntechnology and highlighting its advantages and disadvantages, which impact the visual appearance and aesthetics of both buildings\r\nand the city. The study also intends to explore the various possible solutions to overcome the predicament of the wireless signal.', '2023', '5g,Smart City,Building Materials,Urban Design', 0, '2023-11-19 00:33:08', '2023-11-19 00:33:08'),
-(3, 'Example Project', '21b6106cff66445848b215687fe4a9b4', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod impedit at animi eius minima unde nulla sapiente. Laboriosam hic eius consequuntur maxime odit explicabo eos animi maiores, non aspernatur temporibus magnam cum ducimus mollitia? Porro, reiciendis pariatur facilis voluptatum laudantium saepe et hic unde cupiditate! Aliquam iure voluptas perspiciatis quaerat?', '2024', 'Crops,Coconut,grass,soil', 0, '2023-11-19 05:25:42', '2023-11-19 05:25:42');
+(3, 'Example Project', '21b6106cff66445848b215687fe4a9b4', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod impedit at animi eius minima unde nulla sapiente. Laboriosam hic eius consequuntur maxime odit explicabo eos animi maiores, non aspernatur temporibus magnam cum ducimus mollitia? Porro, reiciendis pariatur facilis voluptatum laudantium saepe et hic unde cupiditate! Aliquam iure voluptas perspiciatis quaerat?', '2024', 'Crops,Coconut,grass,soil', 0, '2023-11-19 05:25:42', '2023-11-19 05:25:42'),
+(4, 'Eye Contact Radiation', '0bc6dfcfab87f358bf6705a3bd91fd3d', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like', '2021', 'Eye,monitor,technology', 0, '2023-12-17 10:19:37', '2023-12-17 10:19:37');
 
 -- --------------------------------------------------------
 
@@ -343,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `tbl_documentinfo` (
   KEY `tbl_documentinfo_course_fk_foreign` (`course_fk`),
   KEY `tbl_documentinfo_docu_fk_foreign` (`docu_fk`),
   KEY `tbl_documentinfo_year_fk_foreign` (`year_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_documentinfo`
@@ -352,7 +347,8 @@ CREATE TABLE IF NOT EXISTS `tbl_documentinfo` (
 INSERT INTO `tbl_documentinfo` (`id`, `adviser`, `department_fk`, `course_fk`, `file`, `docu_fk`, `year_fk`, `created_at`, `updated_at`) VALUES
 (1, NULL, 4, 1, 'Uploads/Files/5G Technology.pdf', 1, 2, '2023-11-18 23:28:24', '2023-11-18 23:28:24'),
 (2, NULL, 2, 6, 'Uploads/Files/5G Technology and Future of Architecture.pdf', 2, 2, '2023-11-19 00:33:08', '2023-11-19 00:33:08'),
-(3, NULL, 4, 7, 'Uploads/Files/Example Project.pdf', 3, 2, '2023-11-19 05:25:42', '2023-11-19 05:25:42');
+(3, NULL, 4, 7, 'Uploads/Files/Example Project.pdf', 3, 2, '2023-11-19 05:25:42', '2023-11-19 05:25:42'),
+(4, NULL, 2, 6, 'Uploads/Files/Eye Contact Radiation.pdf', 4, 2, '2023-12-17 10:19:37', '2023-12-17 10:19:37');
 
 -- --------------------------------------------------------
 
@@ -364,12 +360,12 @@ DROP TABLE IF EXISTS `tbl_logs`;
 CREATE TABLE IF NOT EXISTS `tbl_logs` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `activity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_logs_fk` bigint(20) UNSIGNED NOT NULL,
+  `user_logs_fk` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_logs_user_logs_fk_foreign` (`user_logs_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_logs`
@@ -431,7 +427,29 @@ INSERT INTO `tbl_logs` (`id`, `activity`, `user_logs_fk`, `created_at`, `updated
 (53, 'Search 5g Using SearchEngine', 2, '2023-12-09 12:06:16', '2023-12-09 12:06:16'),
 (54, 'Craete an Announcement', 1, '2023-12-10 04:37:36', '2023-12-10 04:37:36'),
 (55, 'Search 5g Using SearchEngine', 2, '2023-12-10 04:49:14', '2023-12-10 04:49:14'),
-(56, 'Create New Department Computer Studies Program', 1, '2023-12-10 04:50:58', '2023-12-10 04:50:58');
+(56, 'Create New Department Computer Studies Program', 1, '2023-12-10 04:50:58', '2023-12-10 04:50:58'),
+(57, 'Search 5g Using SearchEngine', 2, '2023-12-10 22:26:20', '2023-12-10 22:26:20'),
+(58, 'Search 5g Using SearchEngine', NULL, '2023-12-11 10:23:44', '2023-12-11 10:23:44'),
+(59, 'Search 5g Using SearchEngine', 2, '2023-12-11 10:24:29', '2023-12-11 10:24:29'),
+(60, 'Search 5g Using SearchEngine', NULL, '2023-12-11 10:26:20', '2023-12-11 10:26:20'),
+(61, 'Search 5g Using SearchEngine', NULL, '2023-12-11 10:50:04', '2023-12-11 10:50:04'),
+(62, 'Search 5g Using SearchEngine', NULL, '2023-12-11 10:51:23', '2023-12-11 10:51:23'),
+(63, 'Search 5g Using SearchEngine', NULL, '2023-12-11 11:14:38', '2023-12-11 11:14:38'),
+(64, 'Search 5g Using SearchEngine', NULL, '2023-12-11 12:19:55', '2023-12-11 12:19:55'),
+(65, 'Search 5g Using SearchEngine', 2, '2023-12-14 12:38:15', '2023-12-14 12:38:15'),
+(66, 'Search 5g Using SearchEngine', 2, '2023-12-14 12:48:27', '2023-12-14 12:48:27'),
+(67, 'Search 5g Using SearchEngine', 2, '2023-12-14 12:50:11', '2023-12-14 12:50:11'),
+(68, 'Search 5g Using SearchEngine', 2, '2023-12-14 12:51:24', '2023-12-14 12:51:24'),
+(69, 'Search 5g Using SearchEngine', 4, '2023-12-15 02:09:57', '2023-12-15 02:09:57'),
+(70, 'Search 5g Using SearchEngine', 4, '2023-12-15 10:24:06', '2023-12-15 10:24:06'),
+(71, 'Search crops Using SearchEngine', 4, '2023-12-15 10:28:02', '2023-12-15 10:28:02'),
+(72, 'Search 5g Using SearchEngine', 2, '2023-12-17 02:04:58', '2023-12-17 02:04:58'),
+(73, 'Search 5g Using SearchEngine', 4, '2023-12-17 02:15:19', '2023-12-17 02:15:19'),
+(74, 'Search 5g Using SearchEngine', 4, '2023-12-17 02:41:09', '2023-12-17 02:41:09'),
+(75, 'Uploading Eye Contact Radiation', 1, '2023-12-17 10:19:37', '2023-12-17 10:19:37'),
+(76, 'Search eye Using SearchEngine', 4, '2023-12-17 10:21:12', '2023-12-17 10:21:12'),
+(77, 'Search eye Using SearchEngine', NULL, '2023-12-17 10:23:40', '2023-12-17 10:23:40'),
+(78, 'Search 5g Using SearchEngine', 4, '2023-12-17 10:25:23', '2023-12-17 10:25:23');
 
 -- --------------------------------------------------------
 
@@ -505,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visit` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_visit_user_fk_foreign` (`user_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_visit`
@@ -516,7 +534,10 @@ INSERT INTO `tbl_visit` (`id`, `document_code`, `IP`, `user_fk`, `created_at`, `
 (2, '3906a54ce4f98c032d3c36d746230c45', '49.145.106.100', 2, '2023-11-19 01:31:44', '2023-11-19 01:31:44'),
 (3, '3906a54ce4f98c032d3c36d746230c45', '49.145.106.109', 2, '2023-11-18 01:32:37', '2023-11-19 01:32:37'),
 (4, '21b6106cff66445848b215687fe4a9b4', '49.145.106.109', 2, '2023-11-19 05:26:15', '2023-11-19 05:26:15'),
-(5, '561463a3f1f8a25b1ff3d10a237d4f35', '49.145.96.210', 3, '2023-12-02 10:40:21', '2023-12-02 10:40:21');
+(5, '561463a3f1f8a25b1ff3d10a237d4f35', '49.145.96.210', 3, '2023-12-02 10:40:21', '2023-12-02 10:40:21'),
+(6, '3906a54ce4f98c032d3c36d746230c45', '49.145.96.210', 2, '2023-12-11 10:51:02', '2023-12-11 10:51:02'),
+(7, '21b6106cff66445848b215687fe4a9b4', '49.145.96.210', 4, '2023-12-15 10:28:12', '2023-12-15 10:28:12'),
+(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', '49.145.96.210', 4, '2023-12-17 10:21:17', '2023-12-17 10:21:17');
 
 -- --------------------------------------------------------
 
@@ -527,20 +548,20 @@ INSERT INTO `tbl_visit` (`id`, `document_code`, `IP`, `user_fk`, `created_at`, `
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `middle_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `student_no` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `student_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` tinyint(4) NOT NULL,
   `department_fk` bigint(20) UNSIGNED DEFAULT NULL,
   `course_fk` bigint(20) UNSIGNED DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '1',
   `birthdate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `secret` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -548,7 +569,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `department_fk` (`department_fk`),
   KEY `course_fk` (`course_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -558,7 +579,7 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `middle_name`, `last_name`, `st
 (1, 'Admin', 'Library', ' ', ' ', '202323321', 'admin@gmail.com', 1, 1, 2, 1, NULL, NULL, '$2y$10$qsFKTQZmw6Fx.7teuFIwMuxdqPYb7gbdOHVJcNNdPNRl7vo1LLHAq', 'hackfb123', NULL, NULL, '2023-12-09 11:51:07'),
 (2, 'Georgie Mordeno Recabo', 'Georgie', 'Mordeno', 'Recabo', '2020-00649', 'hannakaye.redondo@nmsc.edu.ph', 2, 4, 4, 1, NULL, NULL, '$2y$10$Eyut9cJyhYxkeWK2XJ.zjufYjcBdTclEWCDCFIJvMjr/s9CcmOsmK', '2020-00649', NULL, '2023-11-18 18:26:46', '2023-11-18 18:26:46'),
 (3, 'Dennis Estor Pitogo', 'Dennis', 'Estor', 'Pitogo', '2020-00377', 'dennis.pitogo@nmsc.edu.ph', 2, 4, 1, 1, NULL, NULL, '$2y$10$4/YPKrL/JrP62xso7ONYbO5hxT.nxbeLpvBlYMc47/HUTOswNTkSu', '2020-00377', NULL, '2023-11-19 05:17:09', '2023-11-19 05:17:09'),
-(4, 'siahdasiodh eaiofh efihsef', 'siahdasiodh', 'eaiofh', 'efihsef', '23434', 'sample12@gmail.com', 2, 4, 3, 1, NULL, NULL, '$2y$10$Pif/eSFB0PJpfuNUN20.fOy96ADUGlcnEKXLkMMOjNg3fqGx3JcA6', '2343440eb8fd1', NULL, '2023-12-01 23:47:00', '2023-12-09 11:49:06'),
+(4, 'siahdasiodh eaiofh efihsef', 'siahdasiodh', 'eaiofh', 'efihsef', '23434', 'artamay1@gmail.com', 2, 4, 3, 1, NULL, NULL, '$2y$10$Pif/eSFB0PJpfuNUN20.fOy96ADUGlcnEKXLkMMOjNg3fqGx3JcA6', '2343440eb8fd1', NULL, '2023-12-01 23:47:00', '2023-12-09 11:49:06'),
 (5, 'pofjada ejfeoifheifh ihefiseohf', 'pofjada', 'ejfeoifheifh', 'ihefiseohf', '21936', 'dwadaw12@gmail.com', 2, 2, 6, 1, NULL, NULL, '$2y$10$atLdWhEdzpR.0GTQRgKe.OuVBgERnDmdjtz5dW0eyxGDIuXg5F8zG', '21936aaaccdb1', NULL, '2023-12-01 23:49:10', '2023-12-01 23:49:10'),
 (6, 'ifhseohf duwahdusief dwuiagdu', 'ifhseohf', 'duwahdusief', 'dwuiagdu', '7667', 'loamwd@gmail.com', 2, 3, 7, 1, NULL, NULL, '$2y$10$XXXW/PHYWaF9jxzjsdnCq.4IKurFi3SNoyIl4tKMU8KrE2u0FwERy', '7667ccc0d49c', NULL, '2023-12-01 23:50:54', '2023-12-10 04:36:07'),
 (7, 'hjk fghj ghjk', 'hjk', 'fghj', 'ghjk', '45678', 'loadwa@gmail.com', 2, 4, 4, 1, NULL, NULL, '$2y$10$CGXAqnzI.g44ddj/XxPUFe6OAOeaXJSy8AeMqvBHnwpKXdnnqetHq', '456786f57f3d0', NULL, '2023-12-01 23:53:26', '2023-12-09 11:48:48'),
@@ -566,7 +587,11 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `middle_name`, `last_name`, `st
 (9, 'Sherilyn  Briones', 'Sherilyn', NULL, 'Briones', '2341', 'artamay13@gmail.com', 2, 2, 6, 1, NULL, NULL, '$2y$10$FywarUL6VfrqyOIYlid/vuo6BfD.WNed.ndvUyZtOiYvqIg7Q6AuS', '23414cf0e1d7', NULL, '2023-12-01 23:56:48', '2023-12-01 23:56:48'),
 (10, 'Georgie  Recabo', 'Georgie', NULL, 'Recabo', '14100001017', 'artamay14@gmail.com', 2, 4, 3, 1, NULL, NULL, '$2y$10$V0XLbK5xijc470UtQDZXROhrFbrEbJ.m7N0/nirFTYHILbUDQasv6', '1410000101786415513', NULL, '2023-12-02 00:00:42', '2023-12-02 00:00:42'),
 (11, 'Jonelo Rama Cajeta', 'Jonelo', 'Rama', 'Cajeta', '2020-00654', 'jonelocajeta@gmail.com', 2, 4, 1, 1, NULL, NULL, '$2y$10$VUW32VGtzfNPs7la3vprI.i8aanuL.TJi7v9gsLUv2sEpdbdLw0M2', '2020-00654808261f3', NULL, '2023-12-04 01:16:44', '2023-12-04 01:16:44'),
-(12, 'Lucian Akeem Alexa', 'Lucian', 'Akeem', 'Alexa', '', 'rygetah@gmail.com', 3, NULL, NULL, 1, NULL, NULL, '$2y$10$6q3xXe13N59CPUJ0SDGk1e/7cu8fSpx.gTNgIPf2yE9L65FBXANZW', 'alexa123', NULL, '2023-12-05 09:52:37', '2023-12-09 11:50:36');
+(12, 'Lucian Akeem Alexa', 'Lucian', 'Akeem', 'Alexa', '', 'rygetah@gmail.com', 2, NULL, NULL, 1, NULL, NULL, '$2y$10$6q3xXe13N59CPUJ0SDGk1e/7cu8fSpx.gTNgIPf2yE9L65FBXANZW', 'alexa123', NULL, '2023-12-05 09:52:37', '2023-12-09 11:50:36'),
+(13, NULL, NULL, NULL, NULL, NULL, 'jepexuv12@mailinator.com', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-14 12:01:10', '2023-12-14 12:01:10'),
+(14, NULL, NULL, NULL, NULL, NULL, 'jepex321uv@mailinator.com', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-14 12:02:29', '2023-12-14 12:02:29'),
+(15, 'Reybert Badang', 'Reybert', NULL, 'Badang', NULL, NULL, 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-17 09:35:11', '2023-12-17 09:35:11'),
+(16, 'Hazel la Lamq', 'Hazel la', NULL, 'Lamq', NULL, NULL, 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-17 09:36:11', '2023-12-17 09:36:11');
 
 --
 -- Constraints for dumped tables

@@ -35,6 +35,7 @@ Route::get('AnnoucmentData',[AdminController::class, 'AnnoucmentData']);
 
 // Searching Controller
 Route::get('AllUsers',[SearchingController::class, 'AllUsers']);
+Route::get('AllNonUsers',[SearchingController::class, 'AllNonUsers']);
 Route::get('AllRegistered',[SearchingController::class, 'AllRegistered']);
 Route::get('Logs/{id}', [ActivityLogs::class, 'Logs']);
 
@@ -73,6 +74,8 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::post('AddSchoolYear', [AdminController::class, 'AddSchoolYear']);
     Route::get('SchoolYearData', [AdminController::class, 'SchoolYearData']);
     Route::post('UploadDocument',[AdminController::class,'UploadDocument']);
+    Route::post('UploadNonAccount',[AdminController::class,'UploadNonAccount']);
+    Route::post('AddName',[AdminController::class,'AddName']);
     Route::get('AllData',[AdminController::class,'AllData']);
     Route::post('posted',[AdminController::class,'posted']);
     Route::get('MostVvisited',[AdminController::class, 'MostVvisited']);
