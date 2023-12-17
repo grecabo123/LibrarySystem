@@ -374,7 +374,7 @@ function NoAccount() {
                         </div>
                                 <div className="col-lg-12 col-sm-12 mb-2 mt-4">
                                     <label htmlFor="" className="form-label">
-                                        Email Student<span className='text-danger'>*</span>
+                                        Name Student<span className='text-danger'>*</span>
                                     </label>
                                     <div className="p-inputgroup">
                                         <Mention placeholder='Type @ to search student' autoresize={false} scrollHeight='400px' onSelect={SelectDataEmail} field="name" trigger="@" itemTemplate={itemTemplate} suggestions={suggestions} id='email_user' name="names" onChange={EmailInput} onSearch={onSearch} className='w-100 p-mention-items p-mention' value={emailchoose} rows={2} cols={1} autoResize={false} />
