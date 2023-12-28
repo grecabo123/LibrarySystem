@@ -10,6 +10,8 @@ import { PDFViewer } from '@react-pdf/renderer';
 import GeneratePDF from '../../../Report/GeneratePDF';
 import logo from '../../../../assets/icon/iocn.png'
 import moment from 'moment';
+import { InputText } from 'primereact/inputtext';
+import { Calendar } from 'primereact/calendar';
 
 function ReportsThesis() {
 
@@ -69,8 +71,8 @@ function ReportsThesis() {
 
     const column = [
         {
-            name: "Department",
-            selector: row => row.department,
+            name: "Course",
+            selector: row => row.CourseName,
         },
         {
             name: "Thesis Title",
@@ -85,8 +87,8 @@ function ReportsThesis() {
     const handleGeneratePdf = () => {
         const filename = moment().format('MMM DD YYYY');
         const htmlContent = document.getElementById('myComponent').innerHTML;
-        GeneratePDF(htmlContent, 'Report'+'-'+DepartmentFilter.title.department+'-'+filename+'.'+'pdf');
-        
+        GeneratePDF(htmlContent, 'Report' + '-' + DepartmentFilter.title.department + '-' + filename + '.' + 'pdf');
+
     };
 
     return (
@@ -97,12 +99,29 @@ function ReportsThesis() {
                         <div className="col-lg-11">
                             <div className="row">
                                 <form onSubmit={Filter}>
-                                    <label htmlFor="" className="form-label">
-                                        Department
-                                    </label>
-                                    <Dropdown className='w-100' value={DepartmentPick} options={Dept} onChange={(e) => setDepartmentPick(e.target.value)} placeholder='Choose Department' />
-                                    <div className="mt-3">
-                                        <Button className='p-button-info p-button-sm me-2' label='Filter' icon={PrimeIcons.FILTER} />
+                                    <div className="row">
+                                        <div className="col-lg-6 mb-2">
+                                            <label htmlFor="" className="form-label">
+                                                Department
+                                            </label>
+                                            <Dropdown className='w-100' value={DepartmentPick} options={Dept} onChange={(e) => setDepartmentPick(e.target.value)} placeholder='Choose Department' />
+                                            <div className="mt-3">
+                                                <Button className='p-button-info p-button-sm me-2' label='Filter' icon={PrimeIcons.FILTER} />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-3 mb-2">
+                                            <label htmlFor="" className="form-label">
+                                                From
+                                            </label>
+                                            <Calendar className='w-100' placeholder='From' />
+                                        </div>
+                                        <div className="col-lg-3 mb-2">
+                                            <label htmlFor="" className="form-label">
+                                                End
+                                            </label>
+                                            <Calendar className='w-100' placeholder='End' />
+ 
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -119,7 +138,7 @@ function ReportsThesis() {
                                                 pagination
                                                 subHeader
                                                 subHeaderComponent={
-                                                    <Button  className='p-button-sm p-button-danger' label='Generate PDF' icon={PrimeIcons.FILE_PDF} onClick={handleGeneratePdf} />
+                                                    <Button className='p-button-sm p-button-danger' label='Generate PDF' icon={PrimeIcons.FILE_PDF} onClick={handleGeneratePdf} />
 
                                                 }
                                                 subHeaderAlign='right'
@@ -128,6 +147,7 @@ function ReportsThesis() {
 
                                             <div id="myComponent" style={{ display: "none" }}>
                                                 <center><img src={logo} alt="" width={80} /></center>
+                                                <center><span>{DepartmentFilter.title.department}</span></center>
 
                                                 <div className="mt-3">
                                                     <h5 className='text-dark'>Report Thesis</h5>
@@ -135,7 +155,7 @@ function ReportsThesis() {
                                                 <table className="table table-striped" width="100%">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col">Department</th>
+                                                            <th scope="col">Courses</th>
                                                             <th scope="col">Research Title</th>
                                                             <th scope="col">Total Visits</th>
                                                         </tr>
@@ -146,7 +166,7 @@ function ReportsThesis() {
                                                                 return (
                                                                     <>
                                                                         <tr>
-                                                                            <td>{data.department}</td>
+                                                                            <td>{data.CourseName}</td>
                                                                             <td>{data.title}</td>
                                                                             <td>{data.total_visits}</td>
                                                                         </tr>

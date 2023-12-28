@@ -84,8 +84,8 @@ function Admin() {
                         <li class="nav-item"><Link class="nav-link" to="/admin/schoolyear" ><span className='nav-icon'></span>School Year</Link></li>
                     </div>
 
-                    <li class="nav-item"><Link class="nav-link" to={`/admin/announcement`}>
-                        <FcCalendar className='nav-icon' /> Annoucement</Link></li>
+                    {/* <li class="nav-item"><Link class="nav-link" to={`/admin/announcement`}>
+                        <FcCalendar className='nav-icon' /> Annoucement</Link></li> */}
 
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">

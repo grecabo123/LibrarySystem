@@ -428,9 +428,10 @@ class AdminController extends Controller
         //     $join->on('tbl_visit.document_code', '=', 'tbl_document.uniquecode')
         //          ->where('tbl_visit.document_code', '=', 'tbl_document.uniquecode');
         // })
-        ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department')
+        ->join('tbl_course','tbl_course.id','=','tbl_documentinfo.course_fk')
+        ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department,tbl_course.CourseName')
         ->where('tbl_documentinfo.department_fk', $id)
-        ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department')
+        ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department','tbl_course.id')
         ->get();
         $department = Department::find($id);    
 

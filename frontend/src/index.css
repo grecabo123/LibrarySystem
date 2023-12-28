@@ -214,7 +214,9 @@ a {
     color: #fff;
 }
 #norightclick{
-    pointer-events: none !important;
+    /* overflow-x: hidden !important; */
+    /* pointer-events: none !important; */
+    user-select: none !important;
 }
 .disabled {
     pointer-events: none !important;
@@ -237,7 +239,7 @@ a {
     background-color: red;
 }
 iframe {  
-    pointer-events: none;  
+    /* pointer-events: none;   */
   }
 
 .wrapper {

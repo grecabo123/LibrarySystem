@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "@react-pdf/renderer": "^3.1.14",
-        "moment": "^2.29.4"
+        "moment": "^2.29.4",
+        "pdfjs-dist": "^3.4.120"
     }
 }

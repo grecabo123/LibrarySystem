@@ -116,6 +116,7 @@ function OpenDocument(props) {
     }, [])
 
     const handleContextMenu = (event) => {
+        console.log("123x")
         event.preventDefault();
     };
 
@@ -189,18 +190,20 @@ function OpenDocument(props) {
                     <ul>
                         <li className='text-color-code mb-3'>
                             <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
-                                <ul className='mt-2' onContextMenu={handleContextMenu}>
+                                {/* <ul className='mt-2'> */}
                                     <embed
                                         src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
-                                        style={{ userSelect: 'none !important;' }}
                                         id='norightclick'
                                         type='application/pdf'
                                         height='700'
+                                        style={{ userSelect: 'none !important', PointerEvent: 'none !important'  }}
                                         width='100%'
+                                        onContextMenu={(e) => e.preventDefault()}
                                         controlsList="nodownload"
-                                        onContextMenu={handleContextMenu}
                                     />
-                                </ul>
+                                
+
+                                {/* </ul> */}
                             </span></li>
                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{ResearchData.details.keywords}</span></span></li>
                         <li className='text-color-code mb-3'><span><b>Abstract</b>:  <p className='text-details'><ReactReadMoreReadLess
