@@ -38,6 +38,21 @@ function OpenDocument(props) {
 
     const [loading, setloading] = useState(true);
 
+
+    useEffect(() => {
+
+        let pdfViewer = document.getElementById('norightclick');
+
+
+        document.addEventListener('contextmenu',handleContextMenu)
+
+        return () => {
+        document.removeEventListener('contextmenu',handleContextMenu)
+            
+        }
+    }, [])
+
+
     useEffect(() => {
         getData()
     }, [])
@@ -45,8 +60,6 @@ function OpenDocument(props) {
     useEffect(() => {
         const disableRightClick = () => {
 
-            // Get the embed tag
-            // const embedTag = document.getElementById('norightclick');
             let pdfViewer = document.getElementById('norightclick');
             if (pdfViewer) {
                 pdfViewer.addEventListener('contextmenu', (ev) => {
@@ -191,17 +204,17 @@ function OpenDocument(props) {
                         <li className='text-color-code mb-3'>
                             <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
                                 {/* <ul className='mt-2'> */}
-                                    <embed
-                                        src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
-                                        id='norightclick'
-                                        type='application/pdf'
-                                        height='700'
-                                        style={{ userSelect: 'none !important', PointerEvent: 'none !important'  }}
-                                        width='100%'
-                                        onContextMenu={(e) => e.preventDefault()}
-                                        controlsList="nodownload"
-                                    />
-                                
+                                <embed
+                                    src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
+                                    id='norightclick'
+                                    type='application/pdf'
+                                    height='700'
+                                    style={{ userSelect: 'none !important', PointerEvent: 'none !important' }}
+                                    width='100%'
+                                    onContextMenu={handleContextMenu}
+                                    controlsList="nodownload"
+                                />
+
 
                                 {/* </ul> */}
                             </span></li>
