@@ -82,7 +82,7 @@ Route::middleware(['auth:sanctum', 'isAPIAdmin'])->group(function () {
     Route::put('TransferCourse',[AdminController::class, 'TransferCourse']);
     Route::put('UpdateCourseName',[AdminController::class, 'UpdateCourseName']);
     Route::get('CourseDetails/{id}',[AdminController::class, 'CourseDetails']);
-    Route::get('DepartmentFilterThesis/{id}',[AdminController::class, 'DepartmentFilterThesis']);
+    Route::post('DepartmentFilterThesis',[AdminController::class, 'DepartmentFilterThesis']);
     Route::put('AccountDeactivate/{id}',[AdminController::class, 'AccountDeactivate']);
     Route::put('Accountactivate/{id}',[AdminController::class, 'Accountactivate']);
     

@@ -419,21 +419,18 @@ class AdminController extends Controller
         }
     }
 
-    public function DepartmentFilterThesis($id){
+    public function DepartmentFilterThesis(Request $request){
 
         $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
         ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
         ->leftjoin('tbl_visit','tbl_visit.document_code','tbl_document.uniquecode')
-        // ->leftJoin('tbl_visit', function($join) {
-        //     $join->on('tbl_visit.document_code', '=', 'tbl_document.uniquecode')
-        //          ->where('tbl_visit.document_code', '=', 'tbl_document.uniquecode');
-        // })
         ->join('tbl_course','tbl_course.id','=','tbl_documentinfo.course_fk')
         ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department,tbl_course.CourseName')
-        ->where('tbl_documentinfo.department_fk', $id)
+        ->where('tbl_documentinfo.department_fk', $request->id)
+        ->whereBetween('tbl_documentinfo.created_at', [$request->from, $request->end])
         ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department','tbl_course.id')
         ->get();
-        $department = Department::find($id);    
+        $department = Department::find($request->id);    
 
         return response()->json([
             "status"            =>          200,

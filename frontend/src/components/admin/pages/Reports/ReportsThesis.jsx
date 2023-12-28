@@ -18,6 +18,8 @@ function ReportsThesis() {
     const [loading, setloading] = useState(true)
     const [DepartmentData, setDepartmentData] = useState([]);
     const [DepartmentPick, setDepartmentPick] = useState([]);
+    const [Fromdate, setFromdate] = useState([]);
+    const [Enddate, setEnddate] = useState([]);
     const [DepartmentFilter, setDepartmentFilter] = useState({
         title: "",
     });
@@ -48,11 +50,19 @@ function ReportsThesis() {
     });
 
 
-
+    // console.log(DepartmentPick);
 
     const Filter = (e) => {
         e.preventDefault();
-        axios.get(`/api/DepartmentFilterThesis/${DepartmentPick}`).then(res => {
+
+        const data = {
+            id: DepartmentPick,
+            from: moment(Fromdate).format('YYYY-MM-DD'),
+            end: moment(Enddate).format('YYYY-MM-DD'),
+        };
+
+        // console.log(data);
+        axios.post(`/api/DepartmentFilterThesis`,data).then(res => {
             if (res.data.status === 200) {
                 setDepartmentFilter({
                     title: res.data.department,
@@ -113,13 +123,13 @@ function ReportsThesis() {
                                             <label htmlFor="" className="form-label">
                                                 From
                                             </label>
-                                            <Calendar className='w-100' placeholder='From' />
+                                            <Calendar className='w-100' value={Fromdate} placeholder='From' onChange={(e) => setFromdate(e.value)}  />
                                         </div>
                                         <div className="col-lg-3 mb-2">
                                             <label htmlFor="" className="form-label">
                                                 End
                                             </label>
-                                            <Calendar className='w-100' placeholder='End' />
+                                            <Calendar className='w-100' placeholder='End' value={Enddate} onChange={(e) => setEnddate(e.value)} />
  
                                         </div>
                                     </div>
