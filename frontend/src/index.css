@@ -213,11 +213,11 @@ a {
 .pagination .page-num:hover {
     color: #fff;
 }
-#norightclick{
+/* embed{ */
     /* overflow-x: hidden !important; */
     /* pointer-events: none !important; */
-    user-select: none !important;
-}
+    /* user-select: none !important; */
+/* } */
 .disabled {
     pointer-events: none !important;
 }

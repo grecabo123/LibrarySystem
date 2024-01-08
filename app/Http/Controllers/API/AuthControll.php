@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\History;
 use App\Models\User;
 use App\Models\Contacts;
 use Illuminate\Http\Request;
@@ -81,6 +82,14 @@ class AuthControll extends Controller
             $user = User::where('email',$request->username)->first();
             if($user || Hash::check($request->password, $user->password)){   
                 if($user->status == 1){
+
+                    $history = new History;
+
+                    $history->email = $user->email;
+                    $history->status = 1;
+
+                    $history->save();
+
                     // Admin
                     if($user->role == 1){
                         $token = $user->createToken($user->email.'_Admin',['server:admin'])->plainTextToken;
@@ -116,8 +125,17 @@ class AuthControll extends Controller
         }
     }
 
-    public function Logout(){
+    public function Logout(Request $request){
         auth()->user()->tokens()->delete();
+
+        $user = User::find($request->id);
+
+        $history = new History;
+
+        $history->email = $user->email;
+        $history->status = 0;
+
+        $history->save();
 
         return response()->json([
             "status"        =>      200,

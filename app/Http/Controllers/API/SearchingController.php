@@ -49,11 +49,16 @@ class SearchingController extends Controller
     }
     public function SearchEngine(Request $request){
         
-        $output = Document::where('is_active_docu','!=',2)
+        $output = Document::join('tbl_author','tbl_author.document_fk','=','tbl_document.id')
+            ->join('users','users.id','=','tbl_author.author_user_fk')
+            ->where('is_active_docu','!=',2)
                 ->where(function($query) use ($request){
                     $query->where('tbl_document.title','like',"%$request->search%")
-                        ->orWhere('tbl_document.keywords','like',"%$request->search%");
+                        ->orWhere('tbl_document.keywords','like',"%$request->search%")
+                            ->orWhere('users.name','like',"%$request->search%");
             })->get();
+
+        
         
         
         if($output->count() > 0){

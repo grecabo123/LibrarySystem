@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Announcement;
 use App\Models\Department;
 use App\Models\DocumentInformation;
+use App\Models\History;
 use App\Models\User;
 use App\Models\Author;
 use App\Models\Courses;
@@ -309,9 +310,18 @@ class AdminController extends Controller
                 ->where('tbl_documentinfo.course_fk',$id)
                     ->get();
 
+        $author = Author::join('users','users.id','=','tbl_author.author_user_fk') 
+            ->join('tbl_documentinfo','tbl_documentinfo.docu_fk','=','tbl_author.document_fk')
+                ->where('tbl_documentinfo.course_fk',$id)
+                    ->selectRaw('users.name,users.email')
+                        ->groupBy('tbl_author.author_user_fk')
+                            ->get();
+                // ->join('')
+
         return response()->json([
             "status"            =>      200,
             "data"              =>      $data,
+            "author"            =>      $author,
         ]);     
     }
     
@@ -566,6 +576,63 @@ class AdminController extends Controller
             ]);
 
         }
+    }
+
+    public function AccountHistory (){
+        $data = History::orderBy('created_at','DESC')->get();
+
+        return response()->json([
+            "status"            =>          200,
+            "data"              =>          $data,
+        ]);
+    }
+
+    public function import(Request $request){
+        $department = Department::select('*')->where('department',$request->department)->first();
+        $course = Courses::select('*')->where('CourseName',$request->course)->first();
+
+        $user = new User;
+        $name = $request->first." ".$request->middle." ".$request->last;
+        $user->name = $name;
+        $user->first_name = $request->first;
+        $user->middle_name = $request->middle;
+        $user->last_name = $request->last;
+        $user->student_no = $request->IDNumber;
+        $user->email = $request->email;
+        $user->role = 1;
+        $user->department_fk = $department->id;
+        $user->course_fk = $course->id;
+        $user->status = 1;
+        $user->save();
+
+        return response()->json([
+            "status"                =>          200,
+            "Info"                  =>          $request->email." "."Imported Data",
+        ]);
+    }
+
+    public function importstudent(Request $request){
+        $department = Department::select('*')->where('department',$request->department)->first();
+        $course = Courses::select('*')->where('CourseName',$request->course)->first();
+
+        $user = new User;
+        $name = $request->first." ".$request->middle." ".$request->last;
+        $user->name = $name;
+        $user->first_name = $request->first;
+        $user->middle_name = $request->middle;
+        $user->last_name = $request->last;
+        $user->student_no = $request->IDNumber;
+        $user->email = $request->email;
+        $user->role = 2;
+        $user->department_fk = $department->id;
+        $user->course_fk = $course->id;
+        $user->status = $request->accounttype;
+        $user->save();
+
+        return response()->json([
+            "status"                =>          200,
+            "Info"                  =>          $request->email." "."Imported Data",
+        ]);
     }
 
     

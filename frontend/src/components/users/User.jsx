@@ -20,7 +20,12 @@ function User() {
     const history = useHistory();
     const menu = useRef();
     const Logout = () => {
-        axios.post(`/api/logout`).then(res => {
+
+        const data = {
+            id: localStorage.getItem('auth_id'),
+        }
+
+        axios.post(`/api/logout`,data).then(res => {
             if (res.data.status === 200) {
                 localStorage.removeItem('auth_token');
                 localStorage.removeItem('auth_id');

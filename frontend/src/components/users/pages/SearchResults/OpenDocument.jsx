@@ -17,10 +17,8 @@ import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
 function OpenDocument(props) {
 
-    pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
     const keyword = localStorage.getItem("keyword")
     const [visits, setvisits] = useState([]);
@@ -44,11 +42,11 @@ function OpenDocument(props) {
         let pdfViewer = document.getElementById('norightclick');
 
 
-        document.addEventListener('contextmenu',handleContextMenu)
+        document.addEventListener('contextmenu', handleContextMenu)
 
         return () => {
-        document.removeEventListener('contextmenu',handleContextMenu)
-            
+            document.removeEventListener('contextmenu', handleContextMenu)
+
         }
     }, [])
 
@@ -129,8 +127,8 @@ function OpenDocument(props) {
     }, [])
 
     const handleContextMenu = (event) => {
-        console.log("123x")
-        event.preventDefault();
+        // event.preventDefault();
+        return false;
     };
 
 
@@ -193,6 +191,19 @@ function OpenDocument(props) {
 
     return (
         <div>
+          
+            {/* <embed
+                style={{ pointerEvents: "auto" }}
+                src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
+                id='norightclick'
+                type='application/pdf'
+                height='700'
+                width='100%'
+                onMouseDown={handleContextMenu}
+                onContextMenu={handleContextMenu}
+                controlsList="nodownload"
+            /> */}
+
             <Toast ref={toast} />
             <ConfirmDialog draggable={false} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '50vw' }} accept={acceptFunc} className='p-confirm-dialog' />
             <Panel headerTemplate={header}>
@@ -203,17 +214,8 @@ function OpenDocument(props) {
                     <ul>
                         <li className='text-color-code mb-3'>
                             <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
-                                {/* <ul className='mt-2'> */}
-                                <embed
-                                    src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
-                                    id='norightclick'
-                                    type='application/pdf'
-                                    height='700'
-                                    style={{ userSelect: 'none !important', PointerEvent: 'none !important' }}
-                                    width='100%'
-                                    onContextMenu={handleContextMenu}
-                                    controlsList="nodownload"
-                                />
+                                {/* <ul className='mt-2' onMouseDown={handleContextMenu}> */}
+
 
 
                                 {/* </ul> */}
@@ -253,12 +255,13 @@ function OpenDocument(props) {
 
 
                                 <li className='text-color-code mb-3'><span><b>Published</b>:  <span className='text-info'>{moment(ResearchData.details.created_at).format("MMM DD YYYY")}</span></span></li>
+                                <li className='text-color-code mb-3'><b>Views</b>:  <Badge value={ResearchData.numbervisits} /></li>
+                                {/* <h6 className='text-secondary'><b>Views</b>: {ResearchData.numbervisits}</h6> */}
                             </ul>
                         </div>
                         <div className="col-lg-6">
-                            <h6 className='text-secondary'><b>Times you visited</b>: {ResearchData.numbervisits}</h6>
                             {/* <VisitsChart uniq={props.match.params.id} /> */}
-                            <VisitsChart uniq={props.match.params.id} />
+                            {/* <VisitsChart uniq={props.match.params.id} /> */}
                         </div>
                     </div>
                 </div>

@@ -65,6 +65,7 @@ function Course(props) {
         // e.currentTarget.getAttribute('data-department')
         setFilterCourse(e.currentTarget.getAttribute('data-course-id'));
         
+        
     }   
     const onHidesettransferdata = () => {
         settransferdata(false)

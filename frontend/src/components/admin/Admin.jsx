@@ -4,7 +4,7 @@ import AdminRoutes from '../../routes/AdminRoutes'
 import { Divider } from 'primereact/divider';
 import { Menubar } from 'primereact/menubar';
 import { FcCalendar, FcSurvey, FcOpenedFolder, FcHome, FcSms, FcPositiveDynamic, FcManager, FcHighPriority, FcCheckmark, FcFolder, FcFeedback, FcSpeaker } from 'react-icons/fc'
-import { FaBars, FaBox, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaChartLine, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaEnvelope, FaFile, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaUserAlt, FaUsers } from 'react-icons/fa'
+import { FaBars, FaBox, FaBuilding, FaCalculator, FaCalendar, FaCalendarCheck, FaCalendarPlus, FaCaretDown, FaCaretRight, FaChartLine, FaClock, FaCogs, FaDatabase, FaDeskpro, FaDesktop, FaDollarSign, FaEnvelope, FaFile, FaFolder, FaFolderOpen, FaHeart, FaHome, FaMoneyBill, FaPen, FaPenAlt, FaUser, FaUserAlt, FaUsers } from 'react-icons/fa'
 import { Button } from 'primereact/button';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -90,6 +90,8 @@ function Admin() {
                     <li class="nav-title">History</li>
                     <li class="nav-item"><Link class="nav-link" to="/admin/logs">
                         <FaDesktop className='nav-icon' /> Activity Logs</Link></li>
+                        <li class="nav-item"><Link class="nav-link" to="/admin/history">
+                        <FaUser className='nav-icon' /> Account History</Link></li>
                 </ul>
             </div>
 

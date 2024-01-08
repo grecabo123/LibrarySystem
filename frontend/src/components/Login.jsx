@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import axios from 'axios';
 import { Password } from 'primereact/password';
 import Landing from './Landing';
+import swal from 'sweetalert';
 
 
 function Login() {
@@ -51,6 +52,9 @@ function Login() {
                         history.push('/user');
                     }
                 }
+                else if(res.data.status === 501) {
+                    swal("Warning",res.data.message, 'warning');
+                }
                 else{
                     setLogin({...LoginData, error: res.data.error});
                 }
@@ -58,7 +62,6 @@ function Login() {
                 console.log(error)
                 if (error.response.status === 500) {
                     swal("Warning", error.response.statusText, 'warning');
-                    // setChecked(false)       
                     // UsercaptchaRef.current.reset();
                 }
             })

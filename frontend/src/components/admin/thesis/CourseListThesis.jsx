@@ -19,11 +19,13 @@ function CourseListThesis(props) {
 
     const [loading, setLoading] = useState(true)
     const [ThesisData, setThesisData] = useState([])
+    const [authors, setauthor] = useState([]);
 
     useEffect(() => {
         axios.get(`/api/CourseThesisData/${props.match.params.id}`).then(res => {
             if (res.data.status === 200) {
                 setThesisData(res.data.data);
+                setauthor(res.data.author)
             }
             setLoading(false);
         }).catch((error) => {
@@ -97,7 +99,19 @@ function CourseListThesis(props) {
 
                                                                         <li className='text-color-code mb-3'><span><b>Title</b>:  <a href={`http://127.0.0.1:8000/${data.file}`} target='_blank'><span className="text-details">{data.title}</span></a><ul className='mt-2'></ul></span></li>
                                                                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{data.keywords}</span></span></li>
-                                                                        <li className='text-color-code mb-3'><span><b>PDF</b>:   </span></li>
+                                                                        <li className='text-color-code mb-3'><span><b>Authors</b>:  <span className="text-details">
+                                                                            <ul className=''>
+                                                                                {
+                                                                                    authors.map((data) => {
+                                                                                        return (
+                                                                                            <>
+                                                                                                <li>{data.name} - {data.email}</li>
+                                                                                            </>
+                                                                                        )
+                                                                                    })
+                                                                                }
+                                                                            </ul>
+                                                                        </span></span></li>
                                                                         <li className='text-color-code mb-3'><span><b>Abstract</b>:  <p className='text-secondary'><ReactReadMoreReadLess
                                                                             charLimit={200} readMoreText={"Read more ▼"}
                                                                             readLessText={"Read less ▲"}
@@ -106,8 +120,8 @@ function CourseListThesis(props) {
 
 
                                                                         </ReactReadMoreReadLess></p></span></li>
-
-                                                                        <li className='text-color-code mb-3'><span><b>Published</b>:  <span className='text-info'>{moment(data.created_at).format("MMM DD YYYY")}</span></span></li>
+                                                                        <li className='text-color-code mb-3'><span><b>Date Upload</b>:  <span className='text-info'>{moment(data.created_at).format("MMM DD YYYY")}</span></span></li>
+                                                                        <li className='text-color-code mb-3'><span><b>Year Published</b>:  <span className='text-info'>{data.year_published}</span></span></li>
 
                                                                     </ul>
                                                                 </div>

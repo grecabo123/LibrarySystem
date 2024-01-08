@@ -3,6 +3,7 @@ import CreateDepartment from "../components/admin/Department/CreateDepartment";
 import AccountDetails from "../components/admin/accounts/AccountDetails";
 import AccountPending from "../components/admin/accounts/AccountPending";
 import Accounts from "../components/admin/accounts/Accounts";
+import History from "../components/admin/accounts/History";
 import Announcement from "../components/admin/announcement/Announcement";
 import ActivityLogs from "../components/admin/pages/ActivityLogs";
 import Dashboard from "../components/admin/pages/Dashboard";
@@ -24,6 +25,7 @@ const AdminRoutes = [
     {path: '/admin/accounts', exact: true, name: "Logs", component: Accounts},
     {path: '/admin/department', exact: true, name: "Logs", component: CreateDepartment},
     {path: '/admin/course', exact: true, name: "Logs", component: Course},
+    {path: '/admin/history', exact: true, name: "Logs", component: History},
     {path: '/admin/schoolyear', exact: true, name: "SchoolYear", component: SchoolYear},
     {path: '/admin/list', exact: true, name: "SchoolYear", component: ListDocument},
     {path: '/admin/reports', exact: true, name: "SchoolYear", component: ReportsThesis},

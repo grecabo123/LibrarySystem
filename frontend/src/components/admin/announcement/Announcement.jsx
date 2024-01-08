@@ -99,7 +99,7 @@ function Announcement() {
                 <div className="col-lg-12">
                     <Panel>
                         <DataTable
-                            title="Annoucement"
+                            title="Most Recent"
                             pagination
                             selectableRows
                             data={Posted}
