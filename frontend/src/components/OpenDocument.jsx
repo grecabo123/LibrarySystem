@@ -199,9 +199,9 @@ function OpenDocument(props) {
                                     url: filepdf,
                                     base64: pdf2base64(filepdf)
                                 }}
-                                withCredentials={true}
+                                withCredentials={false}
                                 loader={true}
-                                page={18}
+                                // page={18}
                             />
                         </div>
                     </ul>

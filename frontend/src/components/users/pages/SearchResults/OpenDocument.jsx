@@ -179,7 +179,9 @@ function OpenDocument(props) {
                     base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                     // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                  }}
-                 page={4}
+                 loader
+                //  page={4}
+                page
                  scale={2}
                  
                  
