@@ -18,7 +18,7 @@ import Landing from './Landing';
 import PDFViewer from 'pdf-viewer-reactjs'
 import pdf2base64 from 'pdf-to-base64';
 import { Skeleton } from 'primereact/skeleton';
-import filepdf from '../../public/Files/lawdoawd.pdf'
+import filepdf from '../../public/Files/Eye Contact Radiation.pdf'
 import CustomNavigation, { CustomPrevButton, CustomPages, CustomNextButton } from '../Navigation';
 
 
@@ -197,19 +197,21 @@ function OpenDocument(props) {
                             <PDFViewer
                                 document={{
                                     url: filepdf,
+                                    base64: pdf2base64(filepdf)
                                 }}
-                                withCredentials
-                                loader={<Skeleton />}
-                                page={2}
-                                css="customViewer"
-                                navigation={{
-                                    css: {
-                                        previousPageBtn: 'customPrevBtn',
-                                        nextPageBtn: 'customNextBtn',
-                                        pages: 'customPages',
-                                        wrapper: 'customWrapper'
-                                    }
-                                }}
+                                withCredentials={true}
+                                loader={false}
+                                page={18}
+
+                                // css="customViewer"
+                                // navigation={{
+                                //     css: {
+                                //         previousPageBtn: 'customPrevBtn',
+                                //         nextPageBtn: 'customNextBtn',
+                                //         pages: 'customPages',
+                                //         wrapper: 'customWrapper'
+                                //     }
+                                // }}
                             />
                         </div>
                     </ul>
