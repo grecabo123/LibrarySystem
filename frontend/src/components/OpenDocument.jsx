@@ -197,11 +197,10 @@ function OpenDocument(props) {
                             <PDFViewer
                                 document={{
                                     url: filepdf,
-                                    base64: pdf2base64(filepdf)
+                                    // base64: pdf2base64(filepdf)
                                 }}
-                                withCredentials={false}
-                                loader={true}
-                                // page={18}
+                                // withCredentials={false}
+                                // loader={false}
                             />
                         </div>
                     </ul>

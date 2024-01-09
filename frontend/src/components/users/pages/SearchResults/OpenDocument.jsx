@@ -17,7 +17,7 @@ import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 // import PDFViewer from 'mgr-pdf-viewer-react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import PDFViewer from 'pdf-viewer-reactjs';
+import PDFViewer from 'mgr-pdf-viewer-react';
 import pdf2base64 from 'pdf-to-base64';
 
 function OpenDocument(props) {
@@ -166,30 +166,21 @@ function OpenDocument(props) {
 
 
     const header = <Menubar model={item} />
-
-
-
+    
     return (
         <div>
 
             <PDFViewer 
                 document={{ 
+                    url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf'
                     // url: pdf_file,
-                    url: `http://127.0.0.1:8000/${ResearchData.details.file}`,
-                    base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
+                    // file: `http://127.0.0.1:8000/${ResearchData.details.file}`,
+                    // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                     // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                  }}
-                 loader
-                //  page={4}
-                // page
-                externalInput={false}
-                 scale={2}
-                 navbarOnTop
-                 
-                 
+                //  withCredentials={false}
+
             />
-            
-          
             {/* <embed
                 style={{ pointerEvents: "auto" }}
                 src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
