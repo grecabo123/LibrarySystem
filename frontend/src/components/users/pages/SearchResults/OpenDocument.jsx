@@ -181,8 +181,10 @@ function OpenDocument(props) {
                  }}
                  loader
                 //  page={4}
-                page
+                // page
+                externalInput={false}
                  scale={2}
+                 navbarOnTop
                  
                  
             />

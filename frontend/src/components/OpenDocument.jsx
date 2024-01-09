@@ -15,7 +15,7 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import Landing from './Landing';
-import PDFViewer from 'pdf-viewer-reactjs'
+import PDFViewer from 'mgr-pdf-viewer-react'
 import pdf2base64 from 'pdf-to-base64';
 import { Skeleton } from 'primereact/skeleton';
 import filepdf from '../../public/Files/Eye Contact Radiation.pdf'
