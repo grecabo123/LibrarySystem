@@ -200,18 +200,8 @@ function OpenDocument(props) {
                                     base64: pdf2base64(filepdf)
                                 }}
                                 withCredentials={true}
-                                loader={false}
+                                loader={true}
                                 page={18}
-
-                                // css="customViewer"
-                                // navigation={{
-                                //     css: {
-                                //         previousPageBtn: 'customPrevBtn',
-                                //         nextPageBtn: 'customNextBtn',
-                                //         pages: 'customPages',
-                                //         wrapper: 'customWrapper'
-                                //     }
-                                // }}
                             />
                         </div>
                     </ul>

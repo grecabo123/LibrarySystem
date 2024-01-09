@@ -19,7 +19,6 @@ import { Toast } from 'primereact/toast';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import PDFViewer from 'pdf-viewer-reactjs';
 import pdf2base64 from 'pdf-to-base64';
-import pdf_file from '../../../../../../public/Uploads/Files/5G Technology.pdf'
 
 function OpenDocument(props) {
 
@@ -175,8 +174,9 @@ function OpenDocument(props) {
 
             <PDFViewer 
                 document={{ 
-                    url: pdf_file,
-                    // url: `http://127.0.0.1:8000/${ResearchData.details.file}`,
+                    // url: pdf_file,
+                    url: `http://127.0.0.1:8000/${ResearchData.details.file}`,
+                    base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                     // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                  }}
                  page={4}
