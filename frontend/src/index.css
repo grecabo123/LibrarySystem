@@ -1,3 +1,7 @@
+@import url('../node_modules/bulma/css/bulma.css');
+/* @import url('material-design-icons/iconfont/material-icons.css'); */
+@import url('../node_modules/material-design-icons/iconfont/material-icons.css');
+
 body {
     background-color: #e6e6e6b6 !important;
 }
