@@ -1,6 +1,5 @@
 import axios from 'axios';
 import moment from 'moment';
-import { PrimeIcons } from 'primereact/api';
 import { Badge } from 'primereact/badge';
 import { Divider } from 'primereact/divider';
 import { Menubar } from 'primereact/menubar';
@@ -15,8 +14,12 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
-import { Document, Page, pdfjs } from 'react-pdf';
 import Landing from './Landing';
+import PDFViewer from 'pdf-viewer-reactjs'
+import pdf2base64 from 'pdf-to-base64';
+import { Skeleton } from 'primereact/skeleton';
+import filepdf from '../../public/Files/lawdoawd.pdf'
+
 
 function OpenDocument(props) {
 
@@ -31,8 +34,8 @@ function OpenDocument(props) {
     });
     const toast = useRef();
     const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
-   
-    var nf = new Intl.NumberFormat();
+
+    // var nf = new Intl.NumberFormat();
 
     const [loading, setloading] = useState(true);
 
@@ -164,6 +167,8 @@ function OpenDocument(props) {
 
     const header = <Menubar model={item} />
 
+    console.log(filepdf);
+
     return (
         <div>
             <Landing />
@@ -176,7 +181,7 @@ function OpenDocument(props) {
                 <div className='mb-3'>
                     <ul>
                         <li className='text-color-code mb-3'><span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
-                           
+
                         </span></li>
                         <li className='text-color-code mb-3'><span><b>Keywords</b>:  <span className="text-details">{ResearchData.details.keywords}</span></span></li>
                         <li className='text-color-code mb-3'><span><b>Abstract</b>:  <p className='text-details'><ReactReadMoreReadLess
@@ -187,6 +192,16 @@ function OpenDocument(props) {
 
 
                         </ReactReadMoreReadLess></p></span></li>
+                        <div className='w-100'>
+                        <PDFViewer
+                            document={{
+                                url: filepdf,
+                            }}
+                            withCredentials
+                            loader={<Skeleton />}
+                            page={2}
+                        />
+                        </div>
                     </ul>
                 </div>
                 <Divider align='left'>

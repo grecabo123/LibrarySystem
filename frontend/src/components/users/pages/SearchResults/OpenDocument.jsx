@@ -15,8 +15,12 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
-import { Document, Page, pdfjs } from 'react-pdf';
+// import PDFViewer from 'mgr-pdf-viewer-react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import PDFViewer from 'pdf-viewer-reactjs';
+import pdf2base64 from 'pdf-to-base64';
+import pdf_file from '../../../../../../public/Uploads/Files/5G Technology.pdf'
+
 function OpenDocument(props) {
 
 
@@ -33,41 +37,16 @@ function OpenDocument(props) {
     const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
 
     var nf = new Intl.NumberFormat();
-
     const [loading, setloading] = useState(true);
+    // const pdf2base64 = require('pdf-to-base64');
 
-
-    useEffect(() => {
-
-        let pdfViewer = document.getElementById('norightclick');
-
-
-        document.addEventListener('contextmenu', handleContextMenu)
-
-        return () => {
-            document.removeEventListener('contextmenu', handleContextMenu)
-
-        }
-    }, [])
 
 
     useEffect(() => {
         getData()
     }, [])
 
-    useEffect(() => {
-        const disableRightClick = () => {
-
-            let pdfViewer = document.getElementById('norightclick');
-            if (pdfViewer) {
-                pdfViewer.addEventListener('contextmenu', (ev) => {
-                    console.log("Right click disabled");
-                    ev.preventDefault();
-                }, false);
-            }
-        };
-        disableRightClick();
-    }, []);
+   
 
     const getData = async () => {
         fetch('https://api.ipify.org?format=jsonp?callback=?', {
@@ -189,8 +168,23 @@ function OpenDocument(props) {
 
     const header = <Menubar model={item} />
 
+
+
     return (
         <div>
+
+            <PDFViewer 
+                document={{ 
+                    url: pdf_file,
+                    // url: `http://127.0.0.1:8000/${ResearchData.details.file}`,
+                    // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
+                 }}
+                 page={4}
+                 scale={2}
+                 
+                 
+            />
+            
           
             {/* <embed
                 style={{ pointerEvents: "auto" }}

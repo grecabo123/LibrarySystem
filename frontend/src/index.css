@@ -238,9 +238,7 @@ a {
     opacity: 0.25;
     background-color: red;
 }
-iframe {  
-    /* pointer-events: none;   */
-  }
+
 
 .wrapper {
     position: relative;

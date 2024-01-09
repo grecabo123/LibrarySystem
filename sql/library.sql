@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 17, 2023 at 06:28 PM
+-- Generation Time: Jan 09, 2024 at 08:38 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.5
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -75,7 +75,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2023_11_19_085014_create_tbl_visit_table', 7),
 (15, '2023_11_19_085339_create_tbl_count_table', 8),
 (16, '2023_11_21_145406_create_tbl_announcement_table', 9),
-(17, '2023_12_04_105345_create_tbl_sample_table', 10);
+(17, '2023_12_04_105345_create_tbl_sample_table', 10),
+(18, '2024_01_08_042356_create_tbl_history_table', 11),
+(19, '2024_01_08_204311_create_tbl_authors_table', 12);
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `personal_access_tokens`
@@ -120,7 +122,11 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
 (24, 'App\\Models\\User', 3, 'dennis.pitogo@nmsc.edu.ph_User', 'bf3dde679dc398619edc582ab96e36e52c96e1ec110ebbd617e0bd91e0ba24a0', '[\"server:user\"]', '2023-12-02 22:47:58', '2023-12-02 10:39:59', '2023-12-02 22:47:58'),
 (52, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '8e44d9d889a87c521afd925ce2790baf65b8ac7957b6eb1743822cd52265dc63', '[\"server:admin\"]', '2023-12-17 10:21:59', '2023-12-17 02:12:44', '2023-12-17 10:21:59'),
-(55, 'App\\Models\\User', 4, 'artamay1@gmail.com_User', 'caeb02a7c84dfaff6e5cd65c45fe9fb8b00bb4cd449ee2a584d3f811829e82f3', '[\"server:user\"]', '2023-12-17 10:26:06', '2023-12-17 10:25:18', '2023-12-17 10:26:06');
+(58, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '351878a70a55f00c0e97cedcf144f88c00929e1935f4a557d6644c5752f7b8de', '[\"server:admin\"]', '2023-12-23 07:09:33', '2023-12-23 07:08:00', '2023-12-23 07:09:33'),
+(59, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', 'a8aa7159e42e4c20fb8f3670f48228589382cacb5b568ea1c1ee99563d5781e9', '[\"server:admin\"]', '2023-12-23 08:14:58', '2023-12-23 07:29:08', '2023-12-23 08:14:58'),
+(60, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', '455dd893eac2213bb41463589c2fd5cb04a53774f6c17224b2336179e7b7dd31', '[\"server:admin\"]', '2023-12-28 04:39:03', '2023-12-27 23:28:44', '2023-12-28 04:39:03'),
+(63, 'App\\Models\\User', 1, 'admin@gmail.com_Admin', 'a3745fa2af77d15042acb0a11b34a6f309d3dedaab563f70e62905e9373f69db', '[\"server:admin\"]', '2024-01-08 21:53:35', '2024-01-07 12:23:59', '2024-01-08 21:53:35'),
+(65, 'App\\Models\\User', 2, 'hannakaye.redondo@nmsc.edu.ph_User', '602e0206f2b74b5bf53d47e037ba0f9617538b58d94f8a9260690377ece6d527', '[\"server:user\"]', '2024-01-08 21:48:55', '2024-01-07 20:41:58', '2024-01-08 21:48:55');
 
 -- --------------------------------------------------------
 
@@ -137,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `tbl_announcement` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_announcement`
@@ -147,7 +153,8 @@ INSERT INTO `tbl_announcement` (`id`, `title`, `date_annoucment`, `description`,
 (1, 'BSIT Event', 'Nov 22 2023', 'Reminder:\n\nNo Open on dawdwa', '2023-11-21 07:12:43', '2023-11-21 07:12:43'),
 (2, 'Library Event', 'Nov 22 2023', 'awhdoiawdaiwdawd', '2023-11-21 07:13:25', '2023-11-21 07:13:25'),
 (3, 'Visit', 'Dec 13 2023', 'lorem awdaw', '2023-12-04 09:56:12', '2023-12-04 09:56:12'),
-(4, 'Example Annoucement', 'Dec 19 2023', 'Sample', '2023-12-10 04:37:36', '2023-12-10 04:37:36');
+(4, 'Example Annoucement', 'Dec 19 2023', 'Sample', '2023-12-10 04:37:36', '2023-12-10 04:37:36'),
+(5, 'Christmas Party', 'Dec 25 2023', 'Holiday', '2023-12-23 07:09:14', '2023-12-23 07:09:14');
 
 -- --------------------------------------------------------
 
@@ -166,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `tbl_author` (
   PRIMARY KEY (`id`),
   KEY `document_fk` (`document_fk`),
   KEY `author_user_fk` (`author_user_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_author`
@@ -176,7 +183,26 @@ INSERT INTO `tbl_author` (`id`, `author_user_fk`, `author`, `document_fk`, `crea
 (1, 2, NULL, 1, NULL, NULL),
 (2, 2, NULL, 2, NULL, NULL),
 (3, 2, NULL, 3, NULL, NULL),
-(4, 3, NULL, 3, NULL, NULL);
+(4, 3, NULL, 3, NULL, NULL),
+(5, 17, NULL, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_authors`
+--
+
+DROP TABLE IF EXISTS `tbl_authors`;
+CREATE TABLE IF NOT EXISTS `tbl_authors` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `author_user_fk` bigint(20) UNSIGNED NOT NULL,
+  `document_fk` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tbl_authors_author_user_fk_foreign` (`author_user_fk`),
+  KEY `tbl_authors_document_fk_foreign` (`document_fk`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -211,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `tbl_count` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_count`
@@ -225,7 +251,8 @@ INSERT INTO `tbl_count` (`id`, `document_access_code`, `visit_count`, `created_a
 (5, '561463a3f1f8a25b1ff3d10a237d4f35', 1, '2023-12-02 10:40:21', '2023-12-02 10:40:21'),
 (6, '3906a54ce4f98c032d3c36d746230c45', 1, '2023-12-11 10:51:02', '2023-12-11 10:51:02'),
 (7, '21b6106cff66445848b215687fe4a9b4', 1, '2023-12-15 10:28:12', '2023-12-15 10:28:12'),
-(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', 1, '2023-12-17 10:21:17', '2023-12-17 10:21:17');
+(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', 1, '2023-12-17 10:21:17', '2023-12-17 10:21:17'),
+(9, '561463a3f1f8a25b1ff3d10a237d4f35', 1, '2024-01-07 20:42:06', '2024-01-07 20:42:06');
 
 -- --------------------------------------------------------
 
@@ -353,6 +380,31 @@ INSERT INTO `tbl_documentinfo` (`id`, `adviser`, `department_fk`, `course_fk`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_history`
+--
+
+DROP TABLE IF EXISTS `tbl_history`;
+CREATE TABLE IF NOT EXISTS `tbl_history` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tbl_history`
+--
+
+INSERT INTO `tbl_history` (`id`, `email`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'hannakaye.redondo@nmsc.edu.ph', 1, '2024-01-07 20:35:53', '2024-01-07 20:35:53'),
+(2, 'hannakaye.redondo@nmsc.edu.ph', 0, '2024-01-07 20:36:05', '2024-01-07 20:36:05'),
+(3, 'hannakaye.redondo@nmsc.edu.ph', 1, '2024-01-07 20:41:58', '2024-01-07 20:41:58');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_logs`
 --
 
@@ -365,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `tbl_logs` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_logs_user_logs_fk_foreign` (`user_logs_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_logs`
@@ -449,7 +501,18 @@ INSERT INTO `tbl_logs` (`id`, `activity`, `user_logs_fk`, `created_at`, `updated
 (75, 'Uploading Eye Contact Radiation', 1, '2023-12-17 10:19:37', '2023-12-17 10:19:37'),
 (76, 'Search eye Using SearchEngine', 4, '2023-12-17 10:21:12', '2023-12-17 10:21:12'),
 (77, 'Search eye Using SearchEngine', NULL, '2023-12-17 10:23:40', '2023-12-17 10:23:40'),
-(78, 'Search 5g Using SearchEngine', 4, '2023-12-17 10:25:23', '2023-12-17 10:25:23');
+(78, 'Search 5g Using SearchEngine', 4, '2023-12-17 10:25:23', '2023-12-17 10:25:23'),
+(79, 'Search 5g Using SearchEngine', 2, '2023-12-20 15:07:48', '2023-12-20 15:07:48'),
+(80, 'Craete an Announcement', 1, '2023-12-23 07:09:14', '2023-12-23 07:09:14'),
+(81, 'Search 5g Using SearchEngine', 2, '2023-12-27 23:41:53', '2023-12-27 23:41:53'),
+(82, 'Search 5g Using SearchEngine', 2, '2023-12-28 00:15:38', '2023-12-28 00:15:38'),
+(83, 'Search 5g Using SearchEngine', 2, '2024-01-07 20:42:03', '2024-01-07 20:42:03'),
+(84, 'Search 5g Using SearchEngine', 2, '2024-01-08 13:39:52', '2024-01-08 13:39:52'),
+(85, 'Search 5g Using SearchEngine', 2, '2024-01-08 20:04:19', '2024-01-08 20:04:19'),
+(86, 'Search 5g Using SearchEngine', 1, '2024-01-09 12:12:59', '2024-01-09 12:12:59'),
+(87, 'Search 5g Using SearchEngine', 1, '2024-01-09 12:13:06', '2024-01-09 12:13:06'),
+(88, 'Search 5g Using SearchEngine', 1, '2024-01-09 12:20:05', '2024-01-09 12:20:05'),
+(89, 'Search 5g Using SearchEngine', 4, '2024-01-09 12:29:46', '2024-01-09 12:29:46');
 
 -- --------------------------------------------------------
 
@@ -523,7 +586,7 @@ CREATE TABLE IF NOT EXISTS `tbl_visit` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `tbl_visit_user_fk_foreign` (`user_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_visit`
@@ -537,7 +600,8 @@ INSERT INTO `tbl_visit` (`id`, `document_code`, `IP`, `user_fk`, `created_at`, `
 (5, '561463a3f1f8a25b1ff3d10a237d4f35', '49.145.96.210', 3, '2023-12-02 10:40:21', '2023-12-02 10:40:21'),
 (6, '3906a54ce4f98c032d3c36d746230c45', '49.145.96.210', 2, '2023-12-11 10:51:02', '2023-12-11 10:51:02'),
 (7, '21b6106cff66445848b215687fe4a9b4', '49.145.96.210', 4, '2023-12-15 10:28:12', '2023-12-15 10:28:12'),
-(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', '49.145.96.210', 4, '2023-12-17 10:21:17', '2023-12-17 10:21:17');
+(8, '0bc6dfcfab87f358bf6705a3bd91fd3d', '49.145.96.210', 4, '2023-12-17 10:21:17', '2023-12-17 10:21:17'),
+(9, '561463a3f1f8a25b1ff3d10a237d4f35', '49.145.109.119', 2, '2024-01-07 20:42:06', '2024-01-07 20:42:06');
 
 -- --------------------------------------------------------
 
@@ -569,7 +633,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `department_fk` (`department_fk`),
   KEY `course_fk` (`course_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -591,7 +655,9 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `middle_name`, `last_name`, `st
 (13, NULL, NULL, NULL, NULL, NULL, 'jepexuv12@mailinator.com', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-14 12:01:10', '2023-12-14 12:01:10'),
 (14, NULL, NULL, NULL, NULL, NULL, 'jepex321uv@mailinator.com', 2, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-14 12:02:29', '2023-12-14 12:02:29'),
 (15, 'Reybert Badang', 'Reybert', NULL, 'Badang', NULL, NULL, 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-17 09:35:11', '2023-12-17 09:35:11'),
-(16, 'Hazel la Lamq', 'Hazel la', NULL, 'Lamq', NULL, NULL, 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-17 09:36:11', '2023-12-17 09:36:11');
+(16, 'Hazel la Lamq', 'Hazel la', NULL, 'Lamq', NULL, NULL, 3, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, '2023-12-17 09:36:11', '2023-12-17 09:36:11'),
+(17, 'Georgie Mordeno Recabo', 'Georgie', 'Mordeno', 'Recabo', '3123123321', 'artamay1331@gmail.com', 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, '2024-01-08 12:10:48', '2024-01-08 12:33:20'),
+(18, 'Georgie Mordeno Recabo', 'Georgie', 'Mordeno', 'Recabo', '3123123321', 'artamay_geo1331@gmail.com', 2, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, '2024-01-08 12:27:21', '2024-01-08 12:31:37');
 
 --
 -- Constraints for dumped tables
@@ -603,6 +669,13 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `middle_name`, `last_name`, `st
 ALTER TABLE `tbl_author`
   ADD CONSTRAINT `tbl_author_ibfk_1` FOREIGN KEY (`document_fk`) REFERENCES `tbl_document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_author_ibfk_2` FOREIGN KEY (`author_user_fk`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_authors`
+--
+ALTER TABLE `tbl_authors`
+  ADD CONSTRAINT `tbl_authors_author_user_fk_foreign` FOREIGN KEY (`author_user_fk`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_authors_document_fk_foreign` FOREIGN KEY (`document_fk`) REFERENCES `tbl_document` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_contact`
