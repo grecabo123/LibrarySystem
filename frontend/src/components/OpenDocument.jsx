@@ -9,13 +9,12 @@ import { FaFilePdf } from 'react-icons/fa';
 import swal from 'sweetalert';
 import ReactReadMoreReadLess from 'react-read-more-read-less'
 import { useHistory } from 'react-router-dom';
-// import VisitsChart from './VisitChart';
 import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import Landing from './Landing';
-import PDFViewer from 'mgr-pdf-viewer-react'
+import PDFViewer from 'pdf-viewer-reactjs'
 import pdf2base64 from 'pdf-to-base64';
 import { Skeleton } from 'primereact/skeleton';
 import filepdf from '../../public/Files/Eye Contact Radiation.pdf'
@@ -36,7 +35,6 @@ function OpenDocument(props) {
     const toast = useRef();
     const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
 
-    // var nf = new Intl.NumberFormat();
 
     const [loading, setloading] = useState(true);
 
@@ -104,6 +102,7 @@ function OpenDocument(props) {
             e.preventDefault();
         }
     };
+    
 
     const handleLoadSuccess = ({ numPages }) => {
         console.log(`Document loaded with ${numPages} pages`);
@@ -197,10 +196,11 @@ function OpenDocument(props) {
                             <PDFViewer
                                 document={{
                                     url: filepdf,
-                                    // base64: pdf2base64(filepdf)
+                                    base64: pdf2base64(filepdf)
                                 }}
-                                // withCredentials={false}
-                                // loader={false}
+                                withCredentials={false}
+                                loader={false}
+                                onError={handleError}
                             />
                         </div>
                     </ul>
