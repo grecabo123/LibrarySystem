@@ -14,8 +14,9 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import Landing from './Landing';
-import PDFViewer from 'pdf-viewer-reactjs'
+import PDFViewer from 'mgr-pdf-viewer-react'
 import pdf2base64 from 'pdf-to-base64';
+// import PDF from "react-pdf-js";
 import { Skeleton } from 'primereact/skeleton';
 import filepdf from '../../public/Files/Eye Contact Radiation.pdf'
 import CustomNavigation, { CustomPrevButton, CustomPages, CustomNextButton } from '../Navigation';
@@ -26,6 +27,7 @@ function OpenDocument(props) {
     const keyword = localStorage.getItem("keyword")
     const [visits, setvisits] = useState([]);
     const history = useHistory();
+    const [pdfInstance, setPdfInstance] = useState(null);
     const [ResearchData, setResearch] = useState({
         details: "",
         authors: "",
@@ -102,6 +104,8 @@ function OpenDocument(props) {
             e.preventDefault();
         }
     };
+
+    
     
 
     const handleLoadSuccess = ({ numPages }) => {
@@ -167,7 +171,7 @@ function OpenDocument(props) {
 
     const header = <Menubar model={item} />
 
-    console.log(filepdf);
+    // console.log(filepdf);
 
     return (
         <div>
@@ -199,7 +203,8 @@ function OpenDocument(props) {
                                     base64: pdf2base64(filepdf)
                                 }}
                                 withCredentials={false}
-                                loader={false}
+                                // loader={false}
+                                // page
                                 onError={handleError}
                             />
                         </div>
