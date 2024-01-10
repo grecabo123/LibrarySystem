@@ -16,9 +16,7 @@ import { Toast } from 'primereact/toast';
 import Landing from './Landing';
 import PDFViewer from 'mgr-pdf-viewer-react'
 import pdf2base64 from 'pdf-to-base64';
-// import PDF from "react-pdf-js";
 import { Skeleton } from 'primereact/skeleton';
-import filepdf from '../../public/Files/Eye Contact Radiation.pdf'
 import CustomNavigation, { CustomPrevButton, CustomPages, CustomNextButton } from '../Navigation';
 
 
@@ -196,18 +194,7 @@ function OpenDocument(props) {
 
 
                         </ReactReadMoreReadLess></p></span></li>
-                        <div className='w-100'>
-                            <PDFViewer
-                                document={{
-                                    url: filepdf,
-                                    base64: pdf2base64(filepdf)
-                                }}
-                                withCredentials={false}
-                                // loader={false}
-                                // page
-                                onError={handleError}
-                            />
-                        </div>
+                        
                     </ul>
                 </div>
                 <Divider align='left'>

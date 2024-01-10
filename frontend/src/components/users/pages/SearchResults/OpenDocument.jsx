@@ -45,7 +45,7 @@ function OpenDocument(props) {
         getData()
     }, [])
 
-   
+
 
     const getData = async () => {
         fetch('https://api.ipify.org?format=jsonp?callback=?', {
@@ -166,32 +166,19 @@ function OpenDocument(props) {
 
 
     const header = <Menubar model={item} />
-    
+
     return (
         <div>
 
-            <PDFViewer 
+            {/* <PDFViewer 
                 document={{ 
-                    url: 'https://arxiv.org/pdf/quant-ph/0410100.pdf'
-                    // url: pdf_file,
-                    // file: `http://127.0.0.1:8000/${ResearchData.details.file}`,
-                    // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
-                    // base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
+                    file: `http://127.0.0.1:8000/${ResearchData.details.file}`,
+                    base64: pdf2base64(`http://127.0.0.1:8000/${ResearchData.details.file}`)
                  }}
-                //  withCredentials={false}
+                 withCredentials={false}
 
-            />
-            {/* <embed
-                style={{ pointerEvents: "auto" }}
-                src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
-                id='norightclick'
-                type='application/pdf'
-                height='700'
-                width='100%'
-                onMouseDown={handleContextMenu}
-                onContextMenu={handleContextMenu}
-                controlsList="nodownload"
             /> */}
+
 
             <Toast ref={toast} />
             <ConfirmDialog draggable={false} breakpoints={{ '960px': '75vw', '640px': '100vw' }} style={{ width: '50vw' }} accept={acceptFunc} className='p-confirm-dialog' />
@@ -205,7 +192,17 @@ function OpenDocument(props) {
                             <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
                                 {/* <ul className='mt-2' onMouseDown={handleContextMenu}> */}
 
-
+                                <embed
+                                    style={{ pointerEvents: "auto" }}
+                                    src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
+                                    id='norightclick'
+                                    type='application/pdf'
+                                    height='700'
+                                    width='100%'
+                                    onMouseDown={handleContextMenu}
+                                    onContextMenu={handleContextMenu}
+                                    controlsList="nodownload"
+                                />
 
                                 {/* </ul> */}
                             </span></li>

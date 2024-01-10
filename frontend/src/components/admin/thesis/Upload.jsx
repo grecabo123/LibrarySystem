@@ -39,7 +39,7 @@ function Upload() {
     const [FileData, setFile] = useState([]);
     const toast = useRef(null);
 
-    const pdf2base64 = require('pdf-to-base64');
+    // const pdf2base64 = require('pdf-to-base64');
 
     // Department
     useEffect(() => {
