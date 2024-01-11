@@ -102,10 +102,14 @@ function ReportsThesis() {
         },
     ]
 
-    const handleGeneratePdf = () => {
+    const handleGeneratePdf = (e) => {
+        // console.log(e.currentTarget.getAttribute('data-checking'));
+
+        const name = e.currentTarget.getAttribute('data-checking') === "All" ? 'All Department' : DepartmentFilter.title.department;
+
         const filename = moment().format('MMM DD YYYY');
         const htmlContent = document.getElementById('myComponent').innerHTML;
-        GeneratePDF(htmlContent, 'Report' + '-' + DepartmentFilter.title.department + '-' + filename + '.' + 'pdf');
+        GeneratePDF(htmlContent, 'Report' + '-' + name+ '-' + filename + '.' + 'pdf');
 
     };
 
@@ -173,7 +177,7 @@ function ReportsThesis() {
                                                 pagination
                                                 subHeader
                                                 subHeaderComponent={
-                                                    <Button className='p-button-sm p-button-danger' label='Generate PDF' icon={PrimeIcons.FILE_PDF} onClick={handleGeneratePdf} />
+                                                    <Button className='p-button-sm p-button-danger' label='Generate PDF' data-checking={DepartmentFilter.checking} icon={PrimeIcons.FILE_PDF} onClick={handleGeneratePdf} />
 
                                                 }
                                                 subHeaderAlign='right'
