@@ -119,7 +119,6 @@ function Students() {
                             course: value[6],
                             accounttype: value[7] === "Activate" ? 1 : 0,
                         }
-                        // console.log(data);
                         axios.post('/api/importstudent', data).then(res => {
                             if (res.data.status === 200) {
                                 setTextBtn("Import Data")

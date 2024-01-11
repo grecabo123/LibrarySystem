@@ -431,22 +431,49 @@ class AdminController extends Controller
 
     public function DepartmentFilterThesis(Request $request){
 
-        $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
-        ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
-        ->leftjoin('tbl_visit','tbl_visit.document_code','tbl_document.uniquecode')
-        ->join('tbl_course','tbl_course.id','=','tbl_documentinfo.course_fk')
-        ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department,tbl_course.CourseName')
-        ->where('tbl_documentinfo.department_fk', $request->id)
-        ->whereBetween('tbl_documentinfo.created_at', [$request->from, $request->end])
-        ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department','tbl_course.id')
-        ->get();
-        $department = Department::find($request->id);    
 
-        return response()->json([
-            "status"            =>          200,
-            "data"              =>          $data,
-            "department"        =>          $department,
-        ]);
+        if($request->id == "all") {
+            $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
+            ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
+            ->leftjoin('tbl_visit','tbl_visit.document_code','tbl_document.uniquecode')
+            ->join('tbl_course','tbl_course.id','=','tbl_documentinfo.course_fk')
+            ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department,tbl_course.CourseName')
+            // ->where('tbl_documentinfo.department_fk', $request->id)
+            ->whereBetween('tbl_documentinfo.created_at', [$request->from, $request->end])
+            ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department','tbl_course.id')
+            ->get();
+
+            $department = Department::all();    
+
+            return response()->json([
+                "status"            =>          200,
+                "data"              =>          $data,
+                "department"        =>          $department,
+                "all"               =>          "All",
+            ]);
+
+        }
+        else{
+
+            $data = DocumentInformation::join('tbl_document','tbl_document.id','=','tbl_documentinfo.docu_fk')
+            ->join('tbl_department','tbl_department.id','=','tbl_documentinfo.department_fk')
+            ->leftjoin('tbl_visit','tbl_visit.document_code','tbl_document.uniquecode')
+            ->join('tbl_course','tbl_course.id','=','tbl_documentinfo.course_fk')
+            ->selectRaw('tbl_document.title, count(tbl_visit.document_code) as total_visits, tbl_department.department,tbl_course.CourseName')
+            ->where('tbl_documentinfo.department_fk', $request->id)
+            ->whereBetween('tbl_documentinfo.created_at', [$request->from, $request->end])
+            ->groupBy('tbl_document.title', 'tbl_document.uniquecode', 'tbl_department.department','tbl_course.id')
+            ->get();
+            $department = Department::find($request->id);    
+            return response()->json([
+                "status"            =>          200,
+                "data"              =>          $data,
+                "department"        =>          $department,
+                "all"               =>          "null"
+            ]);
+        }
+
+
     }
 
     public function AccountDeactivate($id, Request $request){

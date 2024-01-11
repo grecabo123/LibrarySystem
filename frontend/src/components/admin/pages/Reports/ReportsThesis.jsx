@@ -18,13 +18,14 @@ function ReportsThesis() {
     const [loading, setloading] = useState(true)
     const [DepartmentData, setDepartmentData] = useState([]);
     const [DepartmentPick, setDepartmentPick] = useState([]);
-    const [Fromdate, setFromdate] = useState([]);
-    const [Enddate, setEnddate] = useState([]);
+    const [Fromdate, setFromdate] = useState(null);
+    const [Enddate, setEnddate] = useState(null);
     const [DepartmentFilter, setDepartmentFilter] = useState({
         title: "",
+        checking: "",
     });
     const [TitleThesis, setThesis] = useState([]);
-
+    const [Choice, setchoices] = useState(null);
 
     useEffect(() => {
         axios.get(`/api/DepartmentDataFetch`).then(res => {
@@ -45,9 +46,15 @@ function ReportsThesis() {
 
     const Dept = DepartmentData.map((data) => {
         return (
+            // {label: 'All Department', value: 'all'},
             { label: data.department, value: data.id }
         )
     });
+
+    const Choices = [
+        { label: "All Department", value: "All" },
+        { label: "Choose Department", value: "Department" }
+    ]
 
 
     // console.log(DepartmentPick);
@@ -56,16 +63,17 @@ function ReportsThesis() {
         e.preventDefault();
 
         const data = {
-            id: DepartmentPick,
+            id: DepartmentPick === null ? "all" : DepartmentPick,
             from: moment(Fromdate).format('YYYY-MM-DD'),
             end: moment(Enddate).format('YYYY-MM-DD'),
         };
 
         // console.log(data);
-        axios.post(`/api/DepartmentFilterThesis`,data).then(res => {
+        axios.post(`/api/DepartmentFilterThesis`, data).then(res => {
             if (res.data.status === 200) {
                 setDepartmentFilter({
                     title: res.data.department,
+                    checking: res.data.all,
                 });
                 setThesis(res.data.data)
             }
@@ -101,6 +109,13 @@ function ReportsThesis() {
 
     };
 
+    const SelectChoice = (e) => {
+        setchoices(e.value);
+        setDepartmentPick(null)
+    }
+
+    // console.log(DepartmentPick);
+
     return (
         <div>
             <div className="container">
@@ -114,7 +129,13 @@ function ReportsThesis() {
                                             <label htmlFor="" className="form-label">
                                                 Department
                                             </label>
-                                            <Dropdown className='w-100' value={DepartmentPick} options={Dept} onChange={(e) => setDepartmentPick(e.target.value)} placeholder='Choose Department' />
+                                            <Dropdown className='w-100' options={Choices} placeholder='Choose' value={Choice} onChange={SelectChoice} />
+
+                                            {
+                                                Choice === null ? "" : Choice === "All" ? "" :
+                                                    <Dropdown className='w-100 mt-2' value={DepartmentPick} options={Dept} onChange={(e) => setDepartmentPick(e.target.value)} placeholder='Choose Department' />
+                                            }
+
                                             <div className="mt-3">
                                                 <Button className='p-button-info p-button-sm me-2' label='Filter' icon={PrimeIcons.FILTER} />
                                             </div>
@@ -123,14 +144,14 @@ function ReportsThesis() {
                                             <label htmlFor="" className="form-label">
                                                 From
                                             </label>
-                                            <Calendar className='w-100' value={Fromdate} placeholder='From' onChange={(e) => setFromdate(e.value)}  />
+                                            <Calendar className='w-100' value={Fromdate} placeholder='From' onChange={(e) => setFromdate(e.value)} />
                                         </div>
                                         <div className="col-lg-3 mb-2">
                                             <label htmlFor="" className="form-label">
                                                 End
                                             </label>
                                             <Calendar className='w-100' placeholder='End' value={Enddate} onChange={(e) => setEnddate(e.value)} />
- 
+
                                         </div>
                                     </div>
                                 </form>
@@ -139,7 +160,11 @@ function ReportsThesis() {
                                 {
                                     loading ? <Skeleton /> :
                                         <>
-                                            <center><h5 className='text-danger' id='text_title'>{DepartmentFilter.title.department} - {DepartmentFilter.title.department_code}</h5></center>
+                                            {
+                                                DepartmentFilter.checking === "All" ? <center><h5 className='text-danger' id='text_title'></h5> </center> : <center><h5 className='text-danger' id='text_title'>{DepartmentFilter.title.department} - {DepartmentFilter.title.department_code}</h5></center>
+
+                                            }
+
                                             <DataTable
                                                 title="List of Title Reports"
                                                 columns={column}
@@ -154,7 +179,7 @@ function ReportsThesis() {
                                                 subHeaderAlign='right'
                                             />
 
-
+                                            
                                             <div id="myComponent" style={{ display: "none" }}>
                                                 <center><img src={logo} alt="" width={80} /></center>
                                                 <center><span>{DepartmentFilter.title.department}</span></center>
