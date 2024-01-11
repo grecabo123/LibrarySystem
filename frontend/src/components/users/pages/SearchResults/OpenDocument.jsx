@@ -193,7 +193,7 @@ function OpenDocument(props) {
                                 {/* <ul className='mt-2' onMouseDown={handleContextMenu}> */}
 
                                 <embed
-                                    style={{ pointerEvents: "auto" }}
+                                    // style={{ pointerEvents: "auto" }}
                                     src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
                                     id='norightclick'
                                     type='application/pdf'

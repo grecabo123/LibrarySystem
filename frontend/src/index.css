@@ -217,11 +217,11 @@ a {
 .pagination .page-num:hover {
     color: #fff;
 }
-/* embed{ */
+embed{
     /* overflow-x: hidden !important; */
-    /* pointer-events: none !important; */
-    /* user-select: none !important; */
-/* } */
+    pointer-events: none !important;
+    user-select: none !important;
+}
 .disabled {
     pointer-events: none !important;
 }
