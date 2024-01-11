@@ -6,7 +6,6 @@ import { Skeleton } from 'primereact/skeleton';
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
 import swal from 'sweetalert';
-import { PDFViewer } from '@react-pdf/renderer';
 import GeneratePDF from '../../../Report/GeneratePDF';
 import logo from '../../../../assets/icon/iocn.png'
 import moment from 'moment';
@@ -103,10 +102,7 @@ function ReportsThesis() {
     ]
 
     const handleGeneratePdf = (e) => {
-        // console.log(e.currentTarget.getAttribute('data-checking'));
-
         const name = e.currentTarget.getAttribute('data-checking') === "All" ? 'All Department' : DepartmentFilter.title.department;
-
         const filename = moment().format('MMM DD YYYY');
         const htmlContent = document.getElementById('myComponent').innerHTML;
         GeneratePDF(htmlContent, 'Report' + '-' + name+ '-' + filename + '.' + 'pdf');
