@@ -117,7 +117,7 @@ function Students() {
                             email: value[4],
                             department: value[5],
                             course: value[6],
-                            accounttype: value[7] === "Activate" ? 1 : 2,
+                            accounttype: value[7] === "Activate" ? 1 : 0,
                         }
                         // console.log(data);
                         axios.post('/api/importstudent', data).then(res => {
