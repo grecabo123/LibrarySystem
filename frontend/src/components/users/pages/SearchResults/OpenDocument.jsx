@@ -221,15 +221,15 @@ function OpenDocument(props) {
                                 /> */}
 
                                 
-                               <Document file={`http://localhost:8000/${ResearchData.details.file}`}  onLoadSuccess={({ numPages }) => setNumberPage(numPages)}>
+                               {/* <Document file={`http://localhost:8000/${ResearchData.details.file}`}  onLoadSuccess={({ numPages }) => setNumberPage(numPages)}>
                                     <Page  pageNumber={numpage} onContextMenu={(e) => e.preventDefault()} />
-                               </Document>
+                               </Document> */}
 
-                                {/* <div className="pdf-view">
+                                <div className="pdf-view">
                                     <Document file={pdfsample} onLoadSuccess={({ numPages }) => setNumberPage(numPages)}>
                                         <Page pageNumber={numpage} onContextMenu={(e) => e.preventDefault()} />
                                     </Document>
-                                </div> */}
+                                </div>
 
                                 {/* </ul> */}
                             </span></li>
