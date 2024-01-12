@@ -217,17 +217,16 @@ a {
 .pagination .page-num:hover {
     color: #fff;
 }
-embed{
-    /* overflow-x: hidden !important; */
-    pointer-events: none !important;
-    user-select: none !important;
-}
+
 .disabled {
     pointer-events: none !important;
 }
 
 .pdf-viewer {
-    user-select: none !important;
+    padding: 50px;
+    margin-top: 30px;
+    background-color: white;
+    /* user-select: none !important; */
     /* Remove this line or set it to 'auto' to enable text selection */
 }
 

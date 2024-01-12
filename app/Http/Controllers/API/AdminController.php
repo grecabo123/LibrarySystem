@@ -270,6 +270,7 @@ class AdminController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $filename = $request->input('title').".".$extension;
                 $file->move('Uploads/Files/',$filename);
+                // $file->move('C:\wamp64\www\LibrarySystem\frontend\public\Uploads\Files',$filename);
                 $documentinfo->file = "Uploads/Files/".$filename;
             }
             $documentinfo->save();

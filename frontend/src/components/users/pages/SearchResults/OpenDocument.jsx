@@ -15,13 +15,15 @@ import { Button } from 'primereact/button';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
-// import PDFViewer from 'mgr-pdf-viewer-react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import PDFViewer from 'mgr-pdf-viewer-react';
-import pdf2base64 from 'pdf-to-base64';
+import { pdfjs, Document, Page } from 'react-pdf';
+import pdfsample from '../../../../../../public/Uploads/Files/Eye Contact Radiation.pdf'
+
 
 function OpenDocument(props) {
 
+
+    pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
     const keyword = localStorage.getItem("keyword")
     const [visits, setvisits] = useState([]);
@@ -34,6 +36,9 @@ function OpenDocument(props) {
     });
     const toast = useRef();
     const [isContextMenuDisabled, setContextMenuDisabled] = useState(false);
+    const [numpage, setNumberPage] = useState(1)
+    const [pagnum, setpage] = useState()
+    const [getpdf, setpdf] = useState([])
 
     var nf = new Intl.NumberFormat();
     const [loading, setloading] = useState(true);
@@ -77,7 +82,6 @@ function OpenDocument(props) {
 
 
     useEffect(() => {
-
         const id = props.match.params.id;
         const tmpid = id.replace("=", "");
 
@@ -85,8 +89,6 @@ function OpenDocument(props) {
             document_code: tmpid,
             user_fk: localStorage.getItem("auth_id"),
         }
-
-
         axios.post(`/api/DocumentData`, data).then(res => {
             if (res.data.status === 200) {
                 setResearch({
@@ -99,10 +101,23 @@ function OpenDocument(props) {
             setloading(false)
         }).catch((error) => {
             if (error.response.status === 500) {
-                // history.push('/user/search')
             }
         })
+        // OpenData();
     }, [])
+
+    // const OpenData  = async  () => {
+    //     const id = props.match.params.id;
+    //     const tmpid = id.replace("=", "");
+
+    //     const data = {
+    //         document_code: tmpid,
+    //         user_fk: localStorage.getItem("auth_id"),
+    //     }
+    //     const result = await axios.post(`/api/DocumentData`, data);
+    //     console.log(result.data.course.file);
+    //     setpdf(result.data.course.file)
+    // }
 
     const handleContextMenu = (event) => {
         // event.preventDefault();
@@ -164,6 +179,7 @@ function OpenDocument(props) {
 
     ]
 
+    console.log(numpage);
 
     const header = <Menubar model={item} />
 
@@ -192,8 +208,7 @@ function OpenDocument(props) {
                             <span><b>Title</b>:  <span className="text-details">{ResearchData.details.title}</span>
                                 {/* <ul className='mt-2' onMouseDown={handleContextMenu}> */}
 
-                                <embed
-                                    // style={{ pointerEvents: "auto" }}
+                                {/* <embed
                                     src={`http://127.0.0.1:8000/${ResearchData.details.file}#toolbar=0&view=FitH`}
                                     id='norightclick'
                                     type='application/pdf'
@@ -202,7 +217,19 @@ function OpenDocument(props) {
                                     onMouseDown={handleContextMenu}
                                     onContextMenu={handleContextMenu}
                                     controlsList="nodownload"
-                                />
+                                    className='code'
+                                /> */}
+
+                                
+                               <Document file={`http://localhost:8000/${ResearchData.details.file}`}  onLoadSuccess={({ numPages }) => setNumberPage(numPages)}>
+                                    <Page  pageNumber={numpage} onContextMenu={(e) => e.preventDefault()} />
+                               </Document>
+
+                                {/* <div className="pdf-view">
+                                    <Document file={pdfsample} onLoadSuccess={({ numPages }) => setNumberPage(numPages)}>
+                                        <Page pageNumber={numpage} onContextMenu={(e) => e.preventDefault()} />
+                                    </Document>
+                                </div> */}
 
                                 {/* </ul> */}
                             </span></li>

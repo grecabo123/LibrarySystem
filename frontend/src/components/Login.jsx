@@ -31,7 +31,7 @@ function Login() {
 
         const data = {
             username: LoginData.username,
-            password: value,
+            password: LoginData.password,
         };
 
         // console.log(data);
@@ -120,8 +120,8 @@ function Login() {
                                             <label htmlFor="username" className="form-label">
                                                 Password
                                             </label>
-                                            {/* <InputText className='w-100' type='password' onChange={handleinput} name='password' /> */}
-                                            <Password  className='w-100  p-inputtext-sm'  value={value} onChange={(e) => setValue(e.target.value)} />
+                                            <InputText className='w-100' type='password' onChange={handleinput} name='password' />
+                                            {/* <Password  className='w-100  p-inputtext-sm'  value={value} onChange={(e) => setValue(e.target.value)} /> */}
                                             <span className='text-danger'>{LoginData.error.password}</span>
                                         </div>
                                         <div className="mt-3">
